@@ -85,7 +85,8 @@ The downloaded files matched an independent `curl` download by SHA-256 and size 
 re-runs 3 to 5); the warehouse was identical after each. They failed at the step that downloads the zone lookup, and I
 had not kept the error text. Probing that URL afterwards showed the CDN answering with no file, which the download
 mishandled; the fix and the evidence are in [docs/findings.md](docs/findings.md) (section 7). The 30 above are the
-rerun on the fixed code, in which the CDN did not misbehave, so the fix itself is shown by its tests and not by this run.
+rerun on the fixed code. Nothing recorded in that rerun says whether the CDN misbehaved during it, so the fix is
+shown by its tests and not by this run.
 
 **Killing the loader.** Five times the loader's container was SIGKILLed while PostgreSQL showed its `COPY` running on
 2025-02: the warehouse was identical to before in 5 of 5, and identical after running the load again in 5 of 5.
@@ -109,11 +110,12 @@ loaded, and the sink received one task-failure record and one DAG-failure record
 LATEST_MONTH_BEHIND and MISSING_MONTH, 4.3 s (4.3-4.5, n=5) after the task started; with a 3-minute age limit it reported
 LOAD_TOO_OLD, 4.2 s (4-4.4, n=5) after the task started.
 
-**What the first attempts found.** The first replay was not identical (12 table-and-month differences in the two
-aggregate marts, from floating-point sums over rows in a different order), a download that the CDN answered with HTTP
-202 and no body, or with HTTP 403 to every request in a run, and a first alerts run that exercised one broken file of
-four. Each is in
-[docs/findings.md](docs/findings.md) and its files are kept under `results/`.
+**What the first attempts found.** Three experiments went wrong the first time. The first replay was not identical
+(12 table-and-month differences in the two aggregate marts, from floating-point sums over rows in a different order).
+The first idempotency run hit a download that the CDN answered with HTTP 202 and no body, or with HTTP 403 to every
+request in a run. The first alerts run exercised one broken file of four, because `airflow dags backfill` stops at the
+first failed task. The pipeline problems are in [docs/findings.md](docs/findings.md), the method problem is in
+[docs/measurements.md](docs/measurements.md), and the files of every first attempt are kept under `results/`.
 
 ## Running it
 
