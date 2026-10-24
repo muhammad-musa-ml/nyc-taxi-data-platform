@@ -10,6 +10,7 @@ import contextlib
 import json
 import os
 import platform
+import re
 import subprocess
 import sys
 import time
@@ -36,7 +37,7 @@ def log(message: str) -> None:
 # ------------------------------------------------------------------------------------------------ lock
 
 @contextlib.contextmanager
-def measurement_lock(label: str, poll_seconds: float = 20.0):
+def measurement_lock(label: str, poll_seconds: float = 2.0):
     """Hold a machine-wide lock file while a timed batch runs.
 
     The path comes from TAXI_MEASURE_LOCK. The file is created exclusively, so only one batch holds it;
@@ -127,11 +128,34 @@ def tool_versions() -> dict:
     return out
 
 
+def sanitize_ps(table: str, own_prefix: str = "taxi-") -> str:
+    """Keep this stack's containers by name; reduce every other container to its image and status."""
+    lines, others = [], 0
+    for line in table.splitlines():
+        if not line.strip() or line.startswith(("NAMES", own_prefix)):
+            lines.append(line)
+            continue
+        others += 1
+        lines.append("(other container)".ljust(41) + "  ".join(re.split(r"\s{2,}", line.strip())[1:]))
+    lines.append(f"# {others} containers outside this stack were running; their names are withheld")
+    return "\n".join(lines) + "\n"
+
+
 def record_environment(out_dir: Path, note: str = "", prefix: str = "") -> None:
-    """The conditions a timed batch ran under: the container list, machine and tool versions."""
+    """The conditions a timed batch ran under: the container list, machine and tool versions.
+
+    The container list in the results folder names only this stack's containers. If TAXI_FULL_PS_DIR is set the
+    complete list is also written there (outside the repository).
+    """
     out_dir.mkdir(parents=True, exist_ok=True)
     ps = run(["docker", "ps", "--format", "table {{.Names}}\t{{.Image}}\t{{.Status}}"]).stdout
-    (out_dir / f"{prefix}docker-ps.txt").write_text(f"# captured {utc_now()} {note}\n{ps}", encoding="utf-8")
+    header = f"# captured {utc_now()} {note}\n"
+    (out_dir / f"{prefix}docker-ps.txt").write_text(header + sanitize_ps(ps), encoding="utf-8")
+    private = os.environ.get("TAXI_FULL_PS_DIR")
+    if private:
+        target = Path(private) / (out_dir.relative_to(RESULTS) if out_dir.is_relative_to(RESULTS) else out_dir.name)
+        target.mkdir(parents=True, exist_ok=True)
+        (target / f"{prefix}docker-ps-full.txt").write_text(header + ps, encoding="utf-8")
     info = run(["docker", "info", "--format", "{{.NCPU}} CPUs, {{.MemTotal}} bytes memory, server {{.ServerVersion}}"],
                check=False).stdout.strip()
     env = {

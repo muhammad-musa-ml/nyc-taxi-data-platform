@@ -95,6 +95,8 @@ jobs:
           dbt seed --profiles-dir .
           dbt run --profiles-dir . --vars '{source_month: "2025-03-01"}'
           dbt test --profiles-dir . --vars '{source_month: "2025-03-01"}'
+      - name: Rebuild the aggregate marts after shuffling the fact table's rows; they must come out identical
+        run: python scripts/check_marts_deterministic.py
       - name: Reconcile the month and render the lineage page
         run: |
           taxi-platform reconcile --month 2025-03 --run-id ci

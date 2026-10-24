@@ -1,0 +1,36 @@
+# captured 2026-10-24T09:49:22.473089+00:00 backfill run 1, before the timed section
+NAMES                                    IMAGE                                                   STATUS
+taxi-airflow-webserver-1                 taxi-airflow:local                                      Up About a minute (healthy)
+taxi-airflow-scheduler-1                 taxi-airflow:local                                      Up About a minute (healthy)
+taxi-postgres-1                          postgres:16                                             Up About a minute (healthy)
+taxi-s3-1                                chrislusf/seaweedfs:latest                              Up About a minute
+(other container)                        Up 3 minutes
+(other container)                        Up 3 minutes
+(other container)                        Up 3 minutes
+(other container)                        Up 39 minutes (healthy)
+(other container)                        Up 3 hours
+(other container)                        Up 3 hours
+(other container)                        Up 3 hours
+(other container)                        Up 3 hours
+(other container)                        Up 3 hours
+(other container)                        Up 3 hours
+(other container)                        Up 3 hours
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+# 29 containers outside this stack were running; their names and images are withheld
