@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from datetime import date, datetime, timedelta
 
+import pyarrow as pa
 import pytest
 
 from taxi_platform import rules, validate
@@ -114,6 +115,17 @@ def test_wrong_column_type_fails_the_contract():
     frame = validate.prepare_frame(table)
     frame["fare_amount"] = frame["fare_amount"].astype(str)
     assert validate.check_contract(frame).failures == ["TYPE_fare_amount"]
+
+
+@pytest.mark.parametrize("column", ["fare_amount", "trip_distance", "cbd_congestion_fee", "VendorID"])
+def test_a_text_column_where_numbers_belong_fails_the_contract_instead_of_crashing(column):
+    table = table_from_rows([clean_row(i) for i in range(10)])
+    index = table.column_names.index(column)
+    table = table.set_column(index, column, table.column(column).cast(pa.string()))
+    outcome = validate.validate_frame(validate.prepare_frame(validate.normalize_table(table)), MONTH, ZONE_IDS)
+    assert not outcome.contract.ok
+    assert outcome.contract.failures == [f"TYPE_{column.lower()}"]
+    assert outcome.row_codes == {}
 
 
 def test_empty_file_fails_the_contract():

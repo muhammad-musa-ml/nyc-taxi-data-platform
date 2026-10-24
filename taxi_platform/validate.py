@@ -38,10 +38,15 @@ def prepare_frame(table: pa.Table) -> pd.DataFrame:
     """The DataFrame Great Expectations sees: the data columns plus the derived columns the rules use."""
     df = table.select([c for c in rules.DATA_COLUMNS if c in table.column_names]).to_pandas()
     # Great Expectations 1.24's type-list check does not recognise pandas 3's default string dtype.
+    if "store_and_fwd_flag" in df.columns and isinstance(df["store_and_fwd_flag"].dtype, pd.StringDtype):
+        df["store_and_fwd_flag"] = df["store_and_fwd_flag"].astype(object)
     if any(c not in df.columns for c in rules.REQUIRED_COLUMNS):
         return df  # the file contract fails on the missing column; the derived columns need all of them
-    if isinstance(df["store_and_fwd_flag"].dtype, pd.StringDtype):
-        df["store_and_fwd_flag"] = df["store_and_fwd_flag"].astype(object)
+    stamps = ("tpep_pickup_datetime", "tpep_dropoff_datetime")
+    numbers = [c for c in rules.DATA_COLUMNS if c not in stamps + ("store_and_fwd_flag",) and c in df.columns]
+    if not all(pd.api.types.is_datetime64_any_dtype(df[c]) for c in stamps) \
+            or not all(pd.api.types.is_numeric_dtype(df[c]) for c in numbers):
+        return df  # a column has the wrong type: the contract names it, and arithmetic on it would crash
     duration = (df["tpep_dropoff_datetime"] - df["tpep_pickup_datetime"]).dt.total_seconds()
     df["trip_duration_s"] = duration
     hours = duration.where(duration > 0) / 3600.0

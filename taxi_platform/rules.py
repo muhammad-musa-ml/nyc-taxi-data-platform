@@ -109,8 +109,8 @@ CONTRACT_TYPES = {
     "tpep_pickup_datetime": _TIMESTAMP,
     "tpep_dropoff_datetime": _TIMESTAMP,
     "store_and_fwd_flag": _TEXT,
-    **{c: _INT_OR_FLOAT for c in REQUIRED_COLUMNS if c not in ("tpep_pickup_datetime", "tpep_dropoff_datetime",
-                                                               "store_and_fwd_flag")},
+    **{c: _INT_OR_FLOAT for c in DATA_COLUMNS if c not in ("tpep_pickup_datetime", "tpep_dropoff_datetime",
+                                                           "store_and_fwd_flag")},
 }
 
 

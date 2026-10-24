@@ -1,0 +1,29 @@
+{
+  "failing_rows_added_per_reason_code": {
+    "DISTANCE_OUT_OF_RANGE": 5,
+    "DROPOFF_BEFORE_PICKUP": 5,
+    "DURATION_OVER_24H": 5,
+    "EXCESSIVE_AMOUNT": 1,
+    "IMPLAUSIBLE_SPEED": 5,
+    "NEGATIVE_AMOUNT": 5,
+    "PICKUP_OUTSIDE_MONTH": 5
+  },
+  "fixture_primary_reason_counts": {
+    "DISTANCE_OUT_OF_RANGE": 5,
+    "DROPOFF_BEFORE_PICKUP": 5,
+    "DURATION_OVER_24H": 5,
+    "EXCESSIVE_AMOUNT": 1,
+    "IMPLAUSIBLE_SPEED": 5,
+    "NEGATIVE_AMOUNT": 201,
+    "PICKUP_OUTSIDE_MONTH": 5
+  },
+  "fixture_rows": 4031,
+  "fixture_rows_quarantined_by_the_rules": 227,
+  "month": "2025-03",
+  "note": "Real TLC rows only; no value was edited.",
+  "random_sample_rows": 4000,
+  "seed": 2025,
+  "source_file": "yellow_tripdata_2025-03.parquet",
+  "source_file_sha256": "20c4b77cce457b7cfdae77c5069ca7dc91c167f876a41467f4502ab69487a186",
+  "source_rows": 4145257
+}

@@ -10,6 +10,13 @@ x-pipeline-env: &pipeline-env
   TAXI_S3_ACCESS_KEY: taxi-local-key
   TAXI_S3_SECRET_KEY: taxi-local-secret
   TAXI_ALERT_SINK: /opt/airflow/alert-sink/alerts.jsonl
+  # Where the files come from and which buckets hold them. The defaults are the public TLC site and the
+  # two buckets the stack creates; a directory under ./data (mounted at /data) can stand in for the site.
+  TAXI_SOURCE_BASE: ${TAXI_SOURCE_BASE:-https://d37ci6vzurychx.cloudfront.net}
+  TAXI_LANDING_BUCKET: ${TAXI_LANDING_BUCKET:-landing}
+  TAXI_VALIDATED_BUCKET: ${TAXI_VALIDATED_BUCKET:-validated}
+  DBT_HOST: postgres
+  DBT_PORT: "5432"
   TAXI_LAST_MONTH: ${TAXI_LAST_MONTH:-2025-06}
   TAXI_EXPECTED_LATEST_MONTH: ${TAXI_EXPECTED_LATEST_MONTH:-2025-06}
   TAXI_VALIDATE_WORKERS: ${TAXI_VALIDATE_WORKERS:-4}
@@ -37,6 +44,7 @@ x-airflow-common: &airflow-common
     - ./dbt:/opt/airflow/dbt
     - ./taxi_platform:/opt/pipeline/taxi_platform:ro
     - ./alert-sink:/opt/airflow/alert-sink
+    - ./data:/data:ro
     - airflow-logs:/opt/airflow/logs
   depends_on:
     postgres:
