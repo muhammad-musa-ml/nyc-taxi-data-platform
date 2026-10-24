@@ -164,6 +164,27 @@ def test_a_load_gives_up_on_a_lock_a_dead_process_left_behind_and_then_succeeds(
     assert state(settings) == before
 
 
+def test_zone_lookup_falls_back_to_the_landed_copy_and_says_so(settings, tmp_path, monkeypatch):
+    monkeypatch.setattr(pipeline.time, "sleep", lambda _s: None)
+    first = pipeline.load_zones(settings, RUN)
+    unreachable = dataclasses.replace(settings, source_base=str(tmp_path / "nothing-here"))
+    again = pipeline.load_zones(unreachable, RUN + "-fallback")
+    assert again == first  # same rows, same SHA-256
+    detail = one(settings, "SELECT detail FROM ops.stage_timings WHERE stage = 'load_zones' ORDER BY id DESC LIMIT 1")[0]
+    assert detail["source"] == "landed copy" and detail["download_error"]
+    records = alerts.read_all(settings.alert_sink)
+    assert [r["kind"] for r in records] == ["zone_download_fallback"] and records[0]["severity"] == "warning"
+    assert one(settings, "SELECT count(*) FROM raw.taxi_zone_lookup")[0] == first["zones"]
+
+
+def test_zone_lookup_with_no_landed_copy_and_no_download_fails(settings, tmp_path, monkeypatch):
+    monkeypatch.setattr(pipeline.time, "sleep", lambda _s: None)
+    unreachable = dataclasses.replace(settings, source_base=str(tmp_path / "nothing-here"))
+    with pytest.raises(pipeline.NotPublished):
+        pipeline.load_zones(unreachable, RUN)
+    assert alerts.read_all(settings.alert_sink) == []
+
+
 def test_a_first_load_that_fails_halfway_leaves_no_rows_and_no_ledger_entry(settings, monkeypatch):
     pipeline.fetch(settings, MONTH, RUN)
     pipeline.load_zones(settings, RUN)

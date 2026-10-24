@@ -1,0 +1,1929 @@
+{
+  "ended_at": "2026-10-24T13:35:18.238348+00:00",
+  "expected_sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+  "note": "Not timed. What the CDN answers varies over time; this file records what it answered when run.",
+  "part_a_plain_requests": {
+    "answers": [
+      {
+        "at": "2026-10-24T13:33:49.632777+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 0,
+        "seconds": 0.28,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:50.085930+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 1,
+        "seconds": 0.153,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:50.542138+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 2,
+        "seconds": 0.155,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:50.993278+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 3,
+        "seconds": 0.152,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:51.421386+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 4,
+        "seconds": 0.127,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:51.871865+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 5,
+        "seconds": 0.15,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:52.291444+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 6,
+        "seconds": 0.119,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:52.742018+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 7,
+        "seconds": 0.15,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:53.172891+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 8,
+        "seconds": 0.13,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:53.620938+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 9,
+        "seconds": 0.148,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:54.048664+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 10,
+        "seconds": 0.128,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:54.495507+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 11,
+        "seconds": 0.146,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:54.922226+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 12,
+        "seconds": 0.126,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:55.371578+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 13,
+        "seconds": 0.149,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:55.814978+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 14,
+        "seconds": 0.143,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:56.255518+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 15,
+        "seconds": 0.14,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:56.700592+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 16,
+        "seconds": 0.146,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:57.141370+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 17,
+        "seconds": 0.139,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:57.578295+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 18,
+        "seconds": 0.137,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:58.007233+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 19,
+        "seconds": 0.128,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:58.425001+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 20,
+        "seconds": 0.117,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:58.872254+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 21,
+        "seconds": 0.146,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:59.314640+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 22,
+        "seconds": 0.142,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:33:59.739096+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 23,
+        "seconds": 0.124,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:00.180166+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 24,
+        "seconds": 0.14,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:00.620184+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 25,
+        "seconds": 0.139,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:01.044592+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 26,
+        "seconds": 0.124,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:01.491136+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 27,
+        "seconds": 0.146,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:01.921941+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 28,
+        "seconds": 0.129,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:02.346273+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 29,
+        "seconds": 0.124,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:02.785202+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 30,
+        "seconds": 0.138,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:03.219973+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 31,
+        "seconds": 0.135,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:03.642564+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 32,
+        "seconds": 0.122,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:04.075343+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 33,
+        "seconds": 0.133,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:04.508855+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 34,
+        "seconds": 0.133,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:04.933674+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 35,
+        "seconds": 0.124,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:05.373692+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 36,
+        "seconds": 0.139,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:05.807770+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 37,
+        "seconds": 0.133,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:06.264437+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 38,
+        "seconds": 0.157,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:06.697758+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 39,
+        "seconds": 0.133,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:07.127324+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 40,
+        "seconds": 0.129,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:07.556991+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 41,
+        "seconds": 0.129,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:08.007493+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 42,
+        "seconds": 0.15,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:08.451103+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 43,
+        "seconds": 0.145,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:08.880542+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 44,
+        "seconds": 0.128,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:09.309139+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 45,
+        "seconds": 0.128,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:09.738148+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 46,
+        "seconds": 0.128,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:10.179006+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 47,
+        "seconds": 0.14,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:10.612728+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 48,
+        "seconds": 0.133,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:11.037106+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 49,
+        "seconds": 0.124,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:11.482235+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 50,
+        "seconds": 0.144,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:11.932733+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 51,
+        "seconds": 0.15,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:12.357173+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 52,
+        "seconds": 0.123,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:12.796482+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 53,
+        "seconds": 0.138,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:13.262362+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 54,
+        "seconds": 0.165,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:13.721828+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 55,
+        "seconds": 0.159,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:14.163950+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 56,
+        "seconds": 0.142,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:14.594441+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 57,
+        "seconds": 0.13,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:15.030358+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 58,
+        "seconds": 0.136,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:15.503510+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 59,
+        "seconds": 0.173,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:15.942178+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 60,
+        "seconds": 0.139,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:16.360132+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 61,
+        "seconds": 0.117,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:16.785761+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 62,
+        "seconds": 0.125,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:17.221957+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 63,
+        "seconds": 0.136,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:17.689197+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 64,
+        "seconds": 0.166,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:18.140419+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 65,
+        "seconds": 0.151,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:18.590675+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 66,
+        "seconds": 0.15,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:19.042421+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 67,
+        "seconds": 0.152,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:19.485176+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 68,
+        "seconds": 0.142,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:19.926257+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 69,
+        "seconds": 0.14,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:20.373312+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 70,
+        "seconds": 0.147,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:20.867645+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 71,
+        "seconds": 0.193,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:21.310321+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 72,
+        "seconds": 0.142,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:21.769052+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 73,
+        "seconds": 0.159,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:22.195444+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 74,
+        "seconds": 0.126,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:22.683823+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 75,
+        "seconds": 0.188,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:23.117972+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 76,
+        "seconds": 0.133,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:23.545742+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 77,
+        "seconds": 0.127,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:23.994890+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 78,
+        "seconds": 0.148,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:24.439068+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 79,
+        "seconds": 0.143,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:24.858744+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 80,
+        "seconds": 0.119,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:25.312680+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 81,
+        "seconds": 0.154,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:25.759357+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 82,
+        "seconds": 0.146,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:26.185632+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 83,
+        "seconds": 0.126,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:26.629007+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 84,
+        "seconds": 0.143,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:27.052651+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 85,
+        "seconds": 0.124,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:27.470673+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 86,
+        "seconds": 0.118,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:27.911789+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 87,
+        "seconds": 0.14,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:28.365372+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 88,
+        "seconds": 0.154,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:28.838662+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 89,
+        "seconds": 0.172,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:29.302196+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 90,
+        "seconds": 0.163,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:29.742748+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 91,
+        "seconds": 0.14,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:30.167540+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 92,
+        "seconds": 0.124,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:30.592799+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 93,
+        "seconds": 0.125,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:31.013104+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 94,
+        "seconds": 0.119,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:31.445672+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 95,
+        "seconds": 0.133,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:31.887776+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 96,
+        "seconds": 0.141,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:32.331566+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 97,
+        "seconds": 0.144,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:32.792130+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 98,
+        "seconds": 0.16,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:33.226386+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 99,
+        "seconds": 0.134,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:33.645521+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 100,
+        "seconds": 0.119,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:34.082105+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 101,
+        "seconds": 0.134,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:34.511055+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 102,
+        "seconds": 0.129,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:34.949215+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 103,
+        "seconds": 0.137,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:35.370483+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 104,
+        "seconds": 0.121,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:35.801480+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 105,
+        "seconds": 0.131,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:36.241470+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 106,
+        "seconds": 0.139,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:36.673402+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 107,
+        "seconds": 0.131,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:37.110406+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 108,
+        "seconds": 0.137,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:37.547369+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 109,
+        "seconds": 0.137,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:38.005157+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 110,
+        "seconds": 0.157,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:38.436587+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 111,
+        "seconds": 0.131,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:38.873238+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 112,
+        "seconds": 0.136,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:39.305505+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 113,
+        "seconds": 0.132,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:39.759772+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 114,
+        "seconds": 0.154,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:40.223070+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 115,
+        "seconds": 0.163,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:40.670080+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 116,
+        "seconds": 0.147,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:41.100306+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 117,
+        "seconds": 0.13,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:41.563612+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 118,
+        "seconds": 0.163,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:41.986869+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 119,
+        "seconds": 0.123,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:42.433074+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 120,
+        "seconds": 0.146,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:42.877088+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 121,
+        "seconds": 0.144,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:43.316189+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 122,
+        "seconds": 0.139,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:43.783574+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 123,
+        "seconds": 0.167,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:44.211479+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 124,
+        "seconds": 0.128,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:44.672055+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 125,
+        "seconds": 0.159,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:45.118074+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 126,
+        "seconds": 0.146,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:45.556889+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 127,
+        "seconds": 0.139,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:46.031487+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 128,
+        "seconds": 0.174,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:46.499942+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 129,
+        "seconds": 0.168,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:46.937630+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 130,
+        "seconds": 0.137,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:47.356848+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 131,
+        "seconds": 0.118,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:47.810849+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 132,
+        "seconds": 0.154,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:48.241372+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 133,
+        "seconds": 0.13,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:48.691378+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 134,
+        "seconds": 0.149,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:49.127234+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 135,
+        "seconds": 0.135,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:49.744926+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 136,
+        "seconds": 0.317,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:50.165795+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 137,
+        "seconds": 0.12,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:50.611530+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 138,
+        "seconds": 0.145,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:51.037001+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 139,
+        "seconds": 0.126,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:51.484073+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 140,
+        "seconds": 0.146,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:51.939530+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 141,
+        "seconds": 0.155,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:52.383775+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 142,
+        "seconds": 0.144,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:52.832534+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 143,
+        "seconds": 0.148,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:53.282681+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 144,
+        "seconds": 0.15,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:53.721561+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 145,
+        "seconds": 0.139,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:54.155110+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 146,
+        "seconds": 0.133,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:54.595883+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 147,
+        "seconds": 0.14,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:55.055568+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 148,
+        "seconds": 0.159,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      },
+      {
+        "at": "2026-10-24T13:34:55.494099+00:00",
+        "body_bytes": 12331,
+        "content_length_header": "12331",
+        "index": 149,
+        "seconds": 0.138,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      }
+    ],
+    "requests": 150,
+    "tally": [
+      {
+        "body_bytes": 12331,
+        "count": 150,
+        "status": 200,
+        "x_cache": "Hit from cloudfront"
+      }
+    ]
+  },
+  "part_b_pipeline_download": {
+    "calls": 50,
+    "calls_that_ended_with_the_right_file": 20,
+    "calls_that_failed": 30,
+    "calls_that_needed_a_retry": 0,
+    "detail": [
+      {
+        "at": "2026-10-24T13:34:56.001834+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 0,
+        "seconds": 0.2,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:34:56.459461+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 1,
+        "seconds": 0.16,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:34:56.901389+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 2,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:34:57.417358+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 3,
+        "seconds": 0.21,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:34:57.895519+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 4,
+        "seconds": 0.18,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:34:58.343131+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 5,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:34:58.845962+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 6,
+        "seconds": 0.2,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:34:59.278420+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 7,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:34:59.723512+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 8,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:00.178174+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 9,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:00.643046+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 10,
+        "seconds": 0.16,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:01.096804+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 11,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:01.540946+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 12,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:01.986617+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 13,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:02.457618+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 14,
+        "seconds": 0.17,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:02.932880+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 15,
+        "seconds": 0.17,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:03.388358+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 16,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:03.861302+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 17,
+        "seconds": 0.17,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:04.297469+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 18,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:04.764836+00:00",
+        "attempts": 1,
+        "error": "",
+        "http_answers": [
+          200
+        ],
+        "index": 19,
+        "seconds": 0.17,
+        "sha256_matches_first_fetch": true
+      },
+      {
+        "at": "2026-10-24T13:35:05.190873+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 20,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:05.644943+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 21,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:06.082223+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 22,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:06.512143+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 23,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:06.966238+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 24,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:07.385420+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 25,
+        "seconds": 0.12,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:07.818268+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 26,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:08.248139+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 27,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:08.678739+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 28,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:09.126861+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 29,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:09.567347+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 30,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:10.016737+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 31,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:10.448647+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 32,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:10.897575+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 33,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:11.334431+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 34,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:11.798219+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 35,
+        "seconds": 0.16,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:12.223394+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 36,
+        "seconds": 0.12,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:12.660808+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 37,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:13.103069+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 38,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:13.579723+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 39,
+        "seconds": 0.18,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:14.023242+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 40,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:14.452696+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 41,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:14.880216+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 42,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:15.313595+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 43,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:15.729766+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 44,
+        "seconds": 0.11,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:16.178794+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 45,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:16.612126+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 46,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:17.043090+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 47,
+        "seconds": 0.13,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:17.493452+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 48,
+        "seconds": 0.15,
+        "sha256_matches_first_fetch": false
+      },
+      {
+        "at": "2026-10-24T13:35:17.936652+00:00",
+        "attempts": 1,
+        "error": "NotPublished: https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv answered HTTP 403",
+        "http_answers": [
+          403
+        ],
+        "index": 49,
+        "seconds": 0.14,
+        "sha256_matches_first_fetch": false
+      }
+    ],
+    "most_attempts_one_call_needed": 1
+  },
+  "started_at": "2026-10-24T13:33:49.352349+00:00",
+  "url": "https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv"
+}

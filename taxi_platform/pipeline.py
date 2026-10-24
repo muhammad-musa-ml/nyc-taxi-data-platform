@@ -36,29 +36,49 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _download(url: str, dest: Path) -> None:
-    """Stream ``url`` (http or a local directory path) to ``dest``."""
+DOWNLOAD_ATTEMPTS = 6  # backs off 2, 4, 8, 16, 32 s between attempts
+
+
+def _download(url: str, dest: Path, *, required: bool = False) -> None:
+    """Stream ``url`` (http or a local directory path) to ``dest``.
+
+    HTTP 403 and 404 mean "not published" for a month file (the CDN's S3 origin answers 403 for a missing key).
+    ``required=True`` is for a file that is known to exist: there the same answers are treated like any other
+    transient trouble and retried, because the CDN was seen answering 403 to every request for a minute or so.
+    """
     if url.startswith(("http://", "https://")):
         last: Exception | None = None
-        for attempt in range(3):
+        for attempt in range(DOWNLOAD_ATTEMPTS):
             try:
                 # Ask for the bytes as stored: the SHA-256 recorded in the ledger must be the file's own, and
                 # CloudFront gzips the CSV when the client offers it.
                 with requests.get(url, stream=True, timeout=(10, 120),
                                   headers={"Accept-Encoding": "identity"}) as resp:
-                    if resp.status_code in (403, 404):
+                    if resp.status_code in (403, 404) and not required:
                         raise NotPublished(f"{url} answered HTTP {resp.status_code}")
                     resp.raise_for_status()
+                    if resp.status_code != 200:
+                        # The TLC CDN was seen answering the zone CSV with HTTP 202 and no body ("Error from
+                        # cloudfront") for stretches of requests. raise_for_status() lets that through.
+                        raise RuntimeError(f"HTTP {resp.status_code} with no file")
+                    written = 0
                     with dest.open("wb") as fh:
                         for block in resp.iter_content(chunk_size=1 << 20):  # decodes a content-encoding if sent
                             fh.write(block)
+                            written += len(block)
+                    if written == 0:
+                        raise RuntimeError("the answer had an empty body")
+                    declared = resp.headers.get("Content-Length")
+                    if declared and not resp.headers.get("Content-Encoding") and int(declared) != written:
+                        raise RuntimeError(f"received {written} of {declared} bytes")
                 return
             except NotPublished:
                 raise
-            except Exception as err:  # network trouble: retry, then fail the task
+            except Exception as err:  # network trouble or an answer that is not the file: retry, then fail
                 last = err
-                time.sleep(2 * (attempt + 1))
-        raise RuntimeError(f"download failed after 3 attempts: {url}: {last}")
+                if attempt + 1 < DOWNLOAD_ATTEMPTS:
+                    time.sleep(2 ** (attempt + 1))
+        raise RuntimeError(f"download failed after {DOWNLOAD_ATTEMPTS} attempts: {url}: {last}")
     src = Path(url[7:] if url.startswith("file://") else url)
     if not src.exists():
         raise NotPublished(f"{src} does not exist")
@@ -67,14 +87,32 @@ def _download(url: str, dest: Path) -> None:
 
 # --------------------------------------------------------------------------- zones
 
+ZONES_KEY = "zones/taxi_zone_lookup.csv"
+
+
 def load_zones(settings: Settings, run_id: str) -> dict:
-    """Land the zone lookup and replace raw.taxi_zone_lookup in one transaction."""
+    """Land the zone lookup and replace raw.taxi_zone_lookup in one transaction.
+
+    If the download keeps failing but an earlier run already landed the file, that copy is used and a warning
+    is written to the alert sink; a first run with no landed copy fails.
+    """
     s3 = storage.client(settings)
     with db.timed_stage(settings, run_id, None, "load_zones") as info, tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / "taxi_zone_lookup.csv"
-        _download(settings.zone_source_url(), path)
-        sha = _sha256(path)
-        storage.put_file(s3, settings.landing_bucket, "zones/taxi_zone_lookup.csv", path)
+        try:
+            _download(settings.zone_source_url(), path, required=True)
+            info["detail"]["source"] = "download"
+            sha = _sha256(path)
+            storage.put_file(s3, settings.landing_bucket, ZONES_KEY, path)
+        except Exception as err:
+            if not storage.exists(s3, settings.landing_bucket, ZONES_KEY):
+                raise
+            storage.get_file(s3, settings.landing_bucket, ZONES_KEY, path)
+            sha = _sha256(path)
+            info["detail"].update(source="landed copy", download_error=str(err)[:300])
+            emit(settings.alert_sink, "zone_download_fallback", "warning",
+                 "the zone lookup could not be downloaded; the copy landed by an earlier run was used",
+                 run_id=run_id, error=str(err)[:300])
         zones = pd.read_csv(path)
         zones.columns = ["locationid", "borough", "zone", "service_zone"]
         table = pa.Table.from_pandas(zones, preserve_index=False)
