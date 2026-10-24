@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "taxi-platform"
+version = "0.1.0"
+description = "Monthly batch pipeline for NYC TLC yellow-taxi trip records: land, validate, quarantine, load, report."
+requires-python = ">=3.11"
+dependencies = [
+    "pyarrow",
+    "pandas",
+    "numpy",
+    "great_expectations>=1.3,<2",
+    "psycopg[binary]",
+    "boto3",
+    "requests",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+taxi-platform = "taxi_platform.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["taxi_platform*"]
+
+[tool.setuptools.package-data]
+taxi_platform = ["*.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: needs the compose Postgres and MinIO (skipped when TAXI_PG_DSN is not reachable)",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
