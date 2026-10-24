@@ -129,15 +129,15 @@ def tool_versions() -> dict:
 
 
 def sanitize_ps(table: str, own_prefix: str = "taxi-") -> str:
-    """Keep this stack's containers by name; reduce every other container to its image and status."""
+    """Keep this stack's containers by name; reduce every other container to its status only."""
     lines, others = [], 0
     for line in table.splitlines():
         if not line.strip() or line.startswith(("NAMES", own_prefix)):
             lines.append(line)
             continue
         others += 1
-        lines.append("(other container)".ljust(41) + "  ".join(re.split(r"\s{2,}", line.strip())[1:]))
-    lines.append(f"# {others} containers outside this stack were running; their names are withheld")
+        lines.append("(other container)".ljust(41) + re.split(r"\s{2,}", line.strip())[-1])
+    lines.append(f"# {others} containers outside this stack were running; their names and images are withheld")
     return "\n".join(lines) + "\n"
 
 
@@ -158,8 +158,12 @@ def record_environment(out_dir: Path, note: str = "", prefix: str = "") -> None:
         (target / f"{prefix}docker-ps-full.txt").write_text(header + ps, encoding="utf-8")
     info = run(["docker", "info", "--format", "{{.NCPU}} CPUs, {{.MemTotal}} bytes memory, server {{.ServerVersion}}"],
                check=False).stdout.strip()
+    head = run(["git", "rev-parse", "HEAD"], check=False).stdout.strip()
+    dirty = run(["git", "status", "--porcelain", "--", "taxi_platform", "dags", "dbt", "docker-compose.yml"],
+                check=False).stdout.strip()
     env = {
         "captured_at": utc_now(), "note": note,
+        "code": {"git_head": head, "uncommitted_changes_to_pipeline_dags_dbt_or_compose": bool(dirty)},
         "host": {"os": platform.platform(), "python": sys.version.split()[0], "docker": info,
                  "cpu_count_host": os.cpu_count()},
         "tools": tool_versions(),
@@ -167,9 +171,20 @@ def record_environment(out_dir: Path, note: str = "", prefix: str = "") -> None:
     (out_dir / f"{prefix}environment.json").write_text(json.dumps(env, indent=2), encoding="utf-8")
 
 
+def rounded(obj, digits: int = 4):
+    """Floats rounded to ``digits`` decimals (a timing is never meaningful past a tenth of a millisecond)."""
+    if isinstance(obj, float):
+        return round(obj, digits)
+    if isinstance(obj, dict):
+        return {k: rounded(v, digits) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [rounded(v, digits) for v in obj]
+    return obj
+
+
 def write_json(path: Path, obj) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, indent=2, sort_keys=True, default=str) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(rounded(obj), indent=2, sort_keys=True, default=str) + "\n", encoding="utf-8")
 
 
 # ------------------------------------------------------------------------------------------------ state

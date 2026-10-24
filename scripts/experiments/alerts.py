@@ -21,7 +21,8 @@ import shutil
 from datetime import datetime
 from pathlib import Path
 
-from common import ROOT, RESULTS, connect, in_scheduler, log, pipeline_cli, utc_now, write_json
+from common import (ROOT, RESULTS, connect, in_scheduler, log, measurement_lock, pipeline_cli, record_environment,
+                    utc_now, write_json)
 
 from taxi_platform import inject
 from taxi_platform.config import month_start
@@ -159,12 +160,15 @@ def main() -> None:
     parser.add_argument("--out", default=str(RESULTS / "alerts"))
     args = parser.parse_args()
     out = {"started_at": utc_now()}
-    if args.part in ("contract", "both"):
-        out["contract_faults"] = contract_faults(args)
-        write_json(Path(args.out) / "contract-faults.json", out["contract_faults"])
-    if args.part in ("freshness", "both"):
-        out["freshness"] = freshness(args)
-        write_json(Path(args.out) / "freshness.json", out["freshness"])
+    with measurement_lock("P2 alerts experiment"):  # the delays are timings, so nothing else may be running
+        record_environment(Path(args.out), "alerts experiment, before the timed section")
+        if args.part in ("contract", "both"):
+            out["contract_faults"] = contract_faults(args)
+            write_json(Path(args.out) / "contract-faults.json", out["contract_faults"])
+        if args.part in ("freshness", "both"):
+            out["freshness"] = freshness(args)
+            write_json(Path(args.out) / "freshness.json", out["freshness"])
+        record_environment(Path(args.out), "after the alerts experiment", prefix="end-")
     log("done")
 
 
