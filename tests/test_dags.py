@@ -35,7 +35,7 @@ def test_both_dags_are_present(bag):
 
 
 def test_monthly_dag_runs_the_seven_stages_in_order(bag):
-    dag = bag.get_dag("taxi_monthly")
+    dag = bag.dags["taxi_monthly"]  # not bag.get_dag(), which asks the (here empty) metadata database
     order = ["load_zones", "fetch_to_landing", "validate_with_great_expectations", "load_warehouse",
              "dbt_run", "dbt_test", "reconcile_and_check_freshness"]
     assert sorted(dag.task_ids) == sorted(order)
@@ -45,7 +45,7 @@ def test_monthly_dag_runs_the_seven_stages_in_order(bag):
 
 
 def test_monthly_dag_is_scheduled_monthly_with_catchup_and_one_run_at_a_time(bag):
-    dag = bag.get_dag("taxi_monthly")
+    dag = bag.dags["taxi_monthly"]
     assert dag.schedule_interval == "@monthly"
     assert dag.catchup is True
     assert dag.max_active_runs == 1
@@ -54,7 +54,7 @@ def test_monthly_dag_is_scheduled_monthly_with_catchup_and_one_run_at_a_time(bag
 
 
 def test_every_task_alerts_on_failure_and_retries_once(bag):
-    dag = bag.get_dag("taxi_monthly")
+    dag = bag.dags["taxi_monthly"]
     assert dag.on_failure_callback is not None
     for task in dag.tasks:
         assert task.on_failure_callback, task.task_id
@@ -62,7 +62,7 @@ def test_every_task_alerts_on_failure_and_retries_once(bag):
 
 
 def test_freshness_dag_is_daily_and_does_not_retry(bag):
-    dag = bag.get_dag("taxi_freshness")
+    dag = bag.dags["taxi_freshness"]
     assert dag.schedule_interval == "@daily"
     assert dag.catchup is False
     assert [t.retries for t in dag.tasks] == [0]
