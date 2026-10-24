@@ -1,0 +1,239 @@
+{
+  "finished_at": "2026-10-24T14:55:27.788441+00:00",
+  "injected_rows_found_in_raw_table": 400,
+  "ledger": {
+    "rows_in": 4145457,
+    "rows_loaded": 3930682,
+    "rows_quarantined": 214775
+  },
+  "loaded_count_agrees_with_score": true,
+  "manifest_entries": 5000,
+  "manifest_sha256": "f59ae2467579597fefe0f89d87b50854c7a3c715128f8d567369a65fd31a8f0e",
+  "month": "2025-03",
+  "natural_quarantined_rows_in_original": 210175,
+  "per_fault": 200,
+  "pipeline_seconds_not_a_headline": 60.1,
+  "rows_after_injection": 4145457,
+  "rows_before_injection": 4145257,
+  "score": {
+    "detectable_total": {
+      "caught_by_expected_code": 4600,
+      "injected": 4600,
+      "loaded": 0,
+      "quarantined_by_other_code_only": 0
+    },
+    "natural_quarantined_rows": 210175,
+    "per_fault": {
+      "DISTANCE_OUT_OF_RANGE": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "DISTANCE_OUT_OF_RANGE",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "DROPOFF_BEFORE_PICKUP": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "DROPOFF_BEFORE_PICKUP",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "DUPLICATE_TRIP": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "DUPLICATE_TRIP",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "DURATION_OVER_24H": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "DURATION_OVER_24H",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "EXCESSIVE_AMOUNT": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "EXCESSIVE_AMOUNT",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "FEE_OUT_OF_RANGE": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "FEE_OUT_OF_RANGE",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "IMPLAUSIBLE_SPEED": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "IMPLAUSIBLE_SPEED",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "INVALID_PASSENGER_COUNT": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "INVALID_PASSENGER_COUNT",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "INVALID_PAYMENT_TYPE": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "INVALID_PAYMENT_TYPE",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "INVALID_VENDOR": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "INVALID_VENDOR",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "NEGATIVE_AMOUNT": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "NEGATIVE_AMOUNT",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "NULL_DISTANCE": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "NULL_DISTANCE",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "NULL_DROPOFF_TS": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "NULL_DROPOFF_TS",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "NULL_DROPOFF_ZONE": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "NULL_ZONE",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "NULL_FARE": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "NULL_AMOUNT",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "NULL_PAYMENT_TYPE": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "NULL_PAYMENT_TYPE",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "NULL_PICKUP_TS": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "NULL_PICKUP_TS",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "NULL_PICKUP_ZONE": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "NULL_ZONE",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "NULL_TOTAL": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "NULL_AMOUNT",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "NULL_VENDOR": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "NULL_VENDOR",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "PICKUP_OUTSIDE_MONTH": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "PICKUP_OUTSIDE_MONTH",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "PLAUSIBLE_FARE_TAMPER": {
+        "caught_by_expected_code": 0,
+        "detectable": false,
+        "expected_reason_code": null,
+        "injected": 200,
+        "loaded": 200,
+        "quarantined_by_other_code_only": 0
+      },
+      "UNKNOWN_DROPOFF_ZONE": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "UNKNOWN_DROPOFF_ZONE",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "UNKNOWN_PICKUP_ZONE": {
+        "caught_by_expected_code": 200,
+        "detectable": true,
+        "expected_reason_code": "UNKNOWN_PICKUP_ZONE",
+        "injected": 200,
+        "loaded": 0,
+        "quarantined_by_other_code_only": 0
+      },
+      "ZONE_SWAP": {
+        "caught_by_expected_code": 0,
+        "detectable": false,
+        "expected_reason_code": null,
+        "injected": 200,
+        "loaded": 200,
+        "quarantined_by_other_code_only": 0
+      }
+    },
+    "quarantined_rows_not_injected": 210175,
+    "undetectable_total": {
+      "caught_by_expected_code": 0,
+      "injected": 400,
+      "loaded": 400,
+      "quarantined_by_other_code_only": 0
+    },
+    "unexpected_extra_quarantined_rows": 0
+  },
+  "seed": 1,
+  "source_file_sha256_of_injected_file": "415d5679fb065dc8f512e2dad1f0d109c561b60c7d8471c77756fc147ee3afaa"
+}

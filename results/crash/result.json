@@ -1,0 +1,181 @@
+{
+  "ended_at": "2026-10-24T14:52:49.452523+00:00",
+  "month": "2025-02",
+  "started_at": "2026-10-24T14:38:15.673835+00:00",
+  "trials": [
+    {
+      "copy_running_at_kill": {
+        "pid": 26995,
+        "query": "COPY raw.yellow_trips_2025_02 (source_month, source_row, vendorid, tpep_pickup_d",
+        "state": "active",
+        "transaction_age_s": 0.2934
+      },
+      "copy_seen_first": {
+        "pid": 26995,
+        "query": "COPY raw.yellow_trips_2025_02 (source_month, source_row, vendorid, tpep_pickup_d",
+        "state": "active",
+        "transaction_age_s": 0.0901
+      },
+      "deltas_after_kill": [],
+      "deltas_after_retry": [],
+      "duplicate_keys_after_retry": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "extra_delay_s": 0,
+      "finished_before_the_kill": false,
+      "killed_at": "2026-10-24T14:38:59.539995+00:00",
+      "load_count_after_kill": 17,
+      "load_count_after_retry": 18,
+      "load_count_before": 17,
+      "open_transactions_left": 0,
+      "released_within_the_wait_limit": true,
+      "retry_exit_code": 0,
+      "seconds_until_postgres_released_the_dead_loader": 0.4,
+      "state_after_kill_identical_to_before": true,
+      "state_after_retry_identical_to_before": true,
+      "trial": 1
+    },
+    {
+      "copy_running_at_kill": {
+        "pid": 27279,
+        "query": "COPY raw.yellow_trips_2025_02 (source_month, source_row, vendorid, tpep_pickup_d",
+        "state": "active",
+        "transaction_age_s": 3.4397
+      },
+      "copy_seen_first": {
+        "pid": 27279,
+        "query": "COPY raw.yellow_trips_2025_02 (source_month, source_row, vendorid, tpep_pickup_d",
+        "state": "active",
+        "transaction_age_s": 0.2081
+      },
+      "deltas_after_kill": [],
+      "deltas_after_retry": [],
+      "duplicate_keys_after_retry": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "extra_delay_s": 3,
+      "finished_before_the_kill": false,
+      "killed_at": "2026-10-24T14:41:18.122695+00:00",
+      "load_count_after_kill": 18,
+      "load_count_after_retry": 19,
+      "load_count_before": 18,
+      "open_transactions_left": 0,
+      "released_within_the_wait_limit": true,
+      "retry_exit_code": 0,
+      "seconds_until_postgres_released_the_dead_loader": 0.4,
+      "state_after_kill_identical_to_before": true,
+      "state_after_retry_identical_to_before": true,
+      "trial": 2
+    },
+    {
+      "copy_running_at_kill": {
+        "pid": 27577,
+        "query": "COPY raw.yellow_trips_2025_02 (source_month, source_row, vendorid, tpep_pickup_d",
+        "state": "active",
+        "transaction_age_s": 6.3823
+      },
+      "copy_seen_first": {
+        "pid": 27577,
+        "query": "COPY raw.yellow_trips_2025_02 (source_month, source_row, vendorid, tpep_pickup_d",
+        "state": "active",
+        "transaction_age_s": 0.1313
+      },
+      "deltas_after_kill": [],
+      "deltas_after_retry": [],
+      "duplicate_keys_after_retry": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "extra_delay_s": 6,
+      "finished_before_the_kill": false,
+      "killed_at": "2026-10-24T14:43:42.561595+00:00",
+      "load_count_after_kill": 19,
+      "load_count_after_retry": 20,
+      "load_count_before": 19,
+      "open_transactions_left": 0,
+      "released_within_the_wait_limit": true,
+      "retry_exit_code": 0,
+      "seconds_until_postgres_released_the_dead_loader": 60.7,
+      "state_after_kill_identical_to_before": true,
+      "state_after_retry_identical_to_before": true,
+      "trial": 3
+    },
+    {
+      "copy_running_at_kill": {
+        "pid": 27970,
+        "query": "COPY raw.yellow_trips_2025_02 (source_month, source_row, vendorid, tpep_pickup_d",
+        "state": "active",
+        "transaction_age_s": 9.1928
+      },
+      "copy_seen_first": {
+        "pid": 27970,
+        "query": "COPY raw.yellow_trips_2025_02 (source_month, source_row, vendorid, tpep_pickup_d",
+        "state": "active",
+        "transaction_age_s": 0.122
+      },
+      "deltas_after_kill": [],
+      "deltas_after_retry": [],
+      "duplicate_keys_after_retry": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "extra_delay_s": 9,
+      "finished_before_the_kill": false,
+      "killed_at": "2026-10-24T14:46:59.906650+00:00",
+      "load_count_after_kill": 20,
+      "load_count_after_retry": 21,
+      "load_count_before": 20,
+      "open_transactions_left": 0,
+      "released_within_the_wait_limit": true,
+      "retry_exit_code": 0,
+      "seconds_until_postgres_released_the_dead_loader": 60.7,
+      "state_after_kill_identical_to_before": true,
+      "state_after_retry_identical_to_before": true,
+      "trial": 4
+    },
+    {
+      "copy_running_at_kill": {
+        "pid": 28370,
+        "query": "COPY raw.yellow_trips_2025_02 (source_month, source_row, vendorid, tpep_pickup_d",
+        "state": "active",
+        "transaction_age_s": 12.337
+      },
+      "copy_seen_first": {
+        "pid": 28370,
+        "query": "COPY raw.yellow_trips_2025_02 (source_month, source_row, vendorid, tpep_pickup_d",
+        "state": "active",
+        "transaction_age_s": 0.1488
+      },
+      "deltas_after_kill": [],
+      "deltas_after_retry": [],
+      "duplicate_keys_after_retry": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "extra_delay_s": 12,
+      "finished_before_the_kill": false,
+      "killed_at": "2026-10-24T14:50:21.400937+00:00",
+      "load_count_after_kill": 21,
+      "load_count_after_retry": 22,
+      "load_count_before": 21,
+      "open_transactions_left": 0,
+      "released_within_the_wait_limit": true,
+      "retry_exit_code": 0,
+      "seconds_until_postgres_released_the_dead_loader": 60.7,
+      "state_after_kill_identical_to_before": true,
+      "state_after_retry_identical_to_before": true,
+      "trial": 5
+    }
+  ],
+  "trials_finished_before_the_kill": 0,
+  "trials_identical_after_retry": 5,
+  "trials_killed_mid_copy": 5,
+  "trials_left_unchanged_by_the_kill": 5
+}

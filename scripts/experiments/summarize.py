@@ -62,6 +62,12 @@ def backfill_section(out: dict, lines: list[str]) -> None:
     out["backfill"]["download_seconds_per_month"] = downloads
     sizes = {m: ok[0]["state"]["ledger"][m + "-01"]["file_bytes"] for m in MONTHS} if ok else {}
     out["backfill"]["file_bytes"] = sizes
+    # The zone lookup is 12 KB: its stage takes well under a second unless the download had to wait and retry
+    # (the first back-off is 2 s) or fall back to the landed copy.
+    zone_stages = [t for r in ok for t in r["stage_timings"] if t["stage"] == "load_zones"]
+    out["backfill"]["load_zones_stage"] = {
+        "stage_records": len(zone_stages), "max_seconds": round(max((t["seconds"] for t in zone_stages), default=0), 2),
+        "records_from_the_landed_copy": sum(1 for t in zone_stages if t["detail"].get("source") == "landed copy")}
     lines += ["## Backfill from an empty stack (all six months)", "",
               f"{len(ok)} of {len(runs)} runs succeeded. Each run deleted the Compose volumes first and downloaded all six files "
               "from the TLC site into an empty landing bucket.", "",
@@ -73,6 +79,9 @@ def backfill_section(out: dict, lines: list[str]) -> None:
         cells = [fmt(per_task[t][month]).split(" (")[0] for t in TASKS]
         lines.append(f"| {month} | {fmt(per_month[month]).split(' (')[0]} | " + " | ".join(cells) + " |")
     lines += ["", "Median seconds over the runs; ranges are in `summary.json`. The fetch task includes the download.", ""]
+    zs = out["backfill"]["load_zones_stage"]
+    lines += [f"The `load_zones` stage ran {zs['stage_records']} times across these runs; the longest took {zs['max_seconds']:g} s "
+              f"(a download that had to retry would have waited at least 2 s), and {zs['records_from_the_landed_copy']} used the landed copy.", ""]
     lines += ["Download of each file from the TLC site (seconds, fetch task):", ""]
     lines += [f"- {m}: {fmt(downloads[m])}, {sizes.get(m, 0):,} bytes" for m in MONTHS] + [""]
 

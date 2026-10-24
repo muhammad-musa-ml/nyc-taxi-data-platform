@@ -1,0 +1,679 @@
+{
+  "ended_at": "2026-10-24T14:38:14.386828+00:00",
+  "months": [
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06"
+  ],
+  "note": "Timings in this file were taken without the machine lock and are not headline results.",
+  "reruns_per_month": 5,
+  "reruns_with_any_difference_or_failure": 0,
+  "reruns_with_duplicate_keys": 0,
+  "runs": [
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 9,
+      "month": "2025-01",
+      "rerun": 1,
+      "rows": {
+        "marts.fct_trips": 3329750,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 95077,
+        "quarantine.yellow_trips": 145476,
+        "raw.yellow_trips": 3329750
+      },
+      "seconds_not_a_headline": 64.8
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 10,
+      "month": "2025-01",
+      "rerun": 2,
+      "rows": {
+        "marts.fct_trips": 3329750,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 95077,
+        "quarantine.yellow_trips": 145476,
+        "raw.yellow_trips": 3329750
+      },
+      "seconds_not_a_headline": 52.6
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 11,
+      "month": "2025-01",
+      "rerun": 3,
+      "rows": {
+        "marts.fct_trips": 3329750,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 95077,
+        "quarantine.yellow_trips": 145476,
+        "raw.yellow_trips": 3329750
+      },
+      "seconds_not_a_headline": 49.0
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 12,
+      "month": "2025-01",
+      "rerun": 4,
+      "rows": {
+        "marts.fct_trips": 3329750,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 95077,
+        "quarantine.yellow_trips": 145476,
+        "raw.yellow_trips": 3329750
+      },
+      "seconds_not_a_headline": 52.2
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 13,
+      "month": "2025-01",
+      "rerun": 5,
+      "rows": {
+        "marts.fct_trips": 3329750,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 95077,
+        "quarantine.yellow_trips": 145476,
+        "raw.yellow_trips": 3329750
+      },
+      "seconds_not_a_headline": 50.3
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 13,
+      "month": "2025-02",
+      "rerun": 1,
+      "rows": {
+        "marts.fct_trips": 3393617,
+        "marts.mart_daily_summary": 28,
+        "marts.mart_zone_hour_demand": 100264,
+        "quarantine.yellow_trips": 183926,
+        "raw.yellow_trips": 3393617
+      },
+      "seconds_not_a_headline": 61.2
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 14,
+      "month": "2025-02",
+      "rerun": 2,
+      "rows": {
+        "marts.fct_trips": 3393617,
+        "marts.mart_daily_summary": 28,
+        "marts.mart_zone_hour_demand": 100264,
+        "quarantine.yellow_trips": 183926,
+        "raw.yellow_trips": 3393617
+      },
+      "seconds_not_a_headline": 52.9
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 15,
+      "month": "2025-02",
+      "rerun": 3,
+      "rows": {
+        "marts.fct_trips": 3393617,
+        "marts.mart_daily_summary": 28,
+        "marts.mart_zone_hour_demand": 100264,
+        "quarantine.yellow_trips": 183926,
+        "raw.yellow_trips": 3393617
+      },
+      "seconds_not_a_headline": 48.5
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 16,
+      "month": "2025-02",
+      "rerun": 4,
+      "rows": {
+        "marts.fct_trips": 3393617,
+        "marts.mart_daily_summary": 28,
+        "marts.mart_zone_hour_demand": 100264,
+        "quarantine.yellow_trips": 183926,
+        "raw.yellow_trips": 3393617
+      },
+      "seconds_not_a_headline": 46.5
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 17,
+      "month": "2025-02",
+      "rerun": 5,
+      "rows": {
+        "marts.fct_trips": 3393617,
+        "marts.mart_daily_summary": 28,
+        "marts.mart_zone_hour_demand": 100264,
+        "quarantine.yellow_trips": 183926,
+        "raw.yellow_trips": 3393617
+      },
+      "seconds_not_a_headline": 48.7
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 6,
+      "month": "2025-03",
+      "rerun": 1,
+      "rows": {
+        "marts.fct_trips": 3935082,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 120150,
+        "quarantine.yellow_trips": 210175,
+        "raw.yellow_trips": 3935082
+      },
+      "seconds_not_a_headline": 56.5
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 7,
+      "month": "2025-03",
+      "rerun": 2,
+      "rows": {
+        "marts.fct_trips": 3935082,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 120150,
+        "quarantine.yellow_trips": 210175,
+        "raw.yellow_trips": 3935082
+      },
+      "seconds_not_a_headline": 57.8
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 8,
+      "month": "2025-03",
+      "rerun": 3,
+      "rows": {
+        "marts.fct_trips": 3935082,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 120150,
+        "quarantine.yellow_trips": 210175,
+        "raw.yellow_trips": 3935082
+      },
+      "seconds_not_a_headline": 52.9
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 9,
+      "month": "2025-03",
+      "rerun": 4,
+      "rows": {
+        "marts.fct_trips": 3935082,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 120150,
+        "quarantine.yellow_trips": 210175,
+        "raw.yellow_trips": 3935082
+      },
+      "seconds_not_a_headline": 56.4
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 10,
+      "month": "2025-03",
+      "rerun": 5,
+      "rows": {
+        "marts.fct_trips": 3935082,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 120150,
+        "quarantine.yellow_trips": 210175,
+        "raw.yellow_trips": 3935082
+      },
+      "seconds_not_a_headline": 54.2
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 8,
+      "month": "2025-04",
+      "rerun": 1,
+      "rows": {
+        "marts.fct_trips": 3782369,
+        "marts.mart_daily_summary": 30,
+        "marts.mart_zone_hour_demand": 112896,
+        "quarantine.yellow_trips": 188184,
+        "raw.yellow_trips": 3782369
+      },
+      "seconds_not_a_headline": 52.1
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 9,
+      "month": "2025-04",
+      "rerun": 2,
+      "rows": {
+        "marts.fct_trips": 3782369,
+        "marts.mart_daily_summary": 30,
+        "marts.mart_zone_hour_demand": 112896,
+        "quarantine.yellow_trips": 188184,
+        "raw.yellow_trips": 3782369
+      },
+      "seconds_not_a_headline": 55.1
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 10,
+      "month": "2025-04",
+      "rerun": 3,
+      "rows": {
+        "marts.fct_trips": 3782369,
+        "marts.mart_daily_summary": 30,
+        "marts.mart_zone_hour_demand": 112896,
+        "quarantine.yellow_trips": 188184,
+        "raw.yellow_trips": 3782369
+      },
+      "seconds_not_a_headline": 51.3
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 11,
+      "month": "2025-04",
+      "rerun": 4,
+      "rows": {
+        "marts.fct_trips": 3782369,
+        "marts.mart_daily_summary": 30,
+        "marts.mart_zone_hour_demand": 112896,
+        "quarantine.yellow_trips": 188184,
+        "raw.yellow_trips": 3782369
+      },
+      "seconds_not_a_headline": 74.3
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 12,
+      "month": "2025-04",
+      "rerun": 5,
+      "rows": {
+        "marts.fct_trips": 3782369,
+        "marts.mart_daily_summary": 30,
+        "marts.mart_zone_hour_demand": 112896,
+        "quarantine.yellow_trips": 188184,
+        "raw.yellow_trips": 3782369
+      },
+      "seconds_not_a_headline": 71.7
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 8,
+      "month": "2025-05",
+      "rerun": 1,
+      "rows": {
+        "marts.fct_trips": 4264777,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 124945,
+        "quarantine.yellow_trips": 327068,
+        "raw.yellow_trips": 4264777
+      },
+      "seconds_not_a_headline": 77.6
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 9,
+      "month": "2025-05",
+      "rerun": 2,
+      "rows": {
+        "marts.fct_trips": 4264777,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 124945,
+        "quarantine.yellow_trips": 327068,
+        "raw.yellow_trips": 4264777
+      },
+      "seconds_not_a_headline": 68.3
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 10,
+      "month": "2025-05",
+      "rerun": 3,
+      "rows": {
+        "marts.fct_trips": 4264777,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 124945,
+        "quarantine.yellow_trips": 327068,
+        "raw.yellow_trips": 4264777
+      },
+      "seconds_not_a_headline": 69.9
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 11,
+      "month": "2025-05",
+      "rerun": 4,
+      "rows": {
+        "marts.fct_trips": 4264777,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 124945,
+        "quarantine.yellow_trips": 327068,
+        "raw.yellow_trips": 4264777
+      },
+      "seconds_not_a_headline": 67.8
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 12,
+      "month": "2025-05",
+      "rerun": 5,
+      "rows": {
+        "marts.fct_trips": 4264777,
+        "marts.mart_daily_summary": 31,
+        "marts.mart_zone_hour_demand": 124945,
+        "quarantine.yellow_trips": 327068,
+        "raw.yellow_trips": 4264777
+      },
+      "seconds_not_a_headline": 76.9
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 8,
+      "month": "2025-06",
+      "rerun": 1,
+      "rows": {
+        "marts.fct_trips": 4045280,
+        "marts.mart_daily_summary": 30,
+        "marts.mart_zone_hour_demand": 123307,
+        "quarantine.yellow_trips": 277680,
+        "raw.yellow_trips": 4045280
+      },
+      "seconds_not_a_headline": 73.3
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 9,
+      "month": "2025-06",
+      "rerun": 2,
+      "rows": {
+        "marts.fct_trips": 4045280,
+        "marts.mart_daily_summary": 30,
+        "marts.mart_zone_hour_demand": 123307,
+        "quarantine.yellow_trips": 277680,
+        "raw.yellow_trips": 4045280
+      },
+      "seconds_not_a_headline": 80.8
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 10,
+      "month": "2025-06",
+      "rerun": 3,
+      "rows": {
+        "marts.fct_trips": 4045280,
+        "marts.mart_daily_summary": 30,
+        "marts.mart_zone_hour_demand": 123307,
+        "quarantine.yellow_trips": 277680,
+        "raw.yellow_trips": 4045280
+      },
+      "seconds_not_a_headline": 62.6
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 11,
+      "month": "2025-06",
+      "rerun": 4,
+      "rows": {
+        "marts.fct_trips": 4045280,
+        "marts.mart_daily_summary": 30,
+        "marts.mart_zone_hour_demand": 123307,
+        "quarantine.yellow_trips": 277680,
+        "raw.yellow_trips": 4045280
+      },
+      "seconds_not_a_headline": 72.2
+    },
+    {
+      "deltas": [],
+      "duplicate_keys": {
+        "marts.fct_trips.trip_id": 0,
+        "quarantine.yellow_trips": 0,
+        "raw.yellow_trips": 0
+      },
+      "error_output_tail": "",
+      "exit_code": 0,
+      "identical_to_state_before_the_first_rerun": true,
+      "load_count": 12,
+      "month": "2025-06",
+      "rerun": 5,
+      "rows": {
+        "marts.fct_trips": 4045280,
+        "marts.mart_daily_summary": 30,
+        "marts.mart_zone_hour_demand": 123307,
+        "quarantine.yellow_trips": 277680,
+        "raw.yellow_trips": 4045280
+      },
+      "seconds_not_a_headline": 79.9
+    }
+  ],
+  "started_at": "2026-10-24T13:42:54.639791+00:00",
+  "total_reruns": 30
+}
