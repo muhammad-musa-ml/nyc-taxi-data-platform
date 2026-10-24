@@ -42,12 +42,16 @@ def _download(url: str, dest: Path) -> None:
         last: Exception | None = None
         for attempt in range(3):
             try:
-                with requests.get(url, stream=True, timeout=(10, 120)) as resp:
+                # Ask for the bytes as stored: the SHA-256 recorded in the ledger must be the file's own, and
+                # CloudFront gzips the CSV when the client offers it.
+                with requests.get(url, stream=True, timeout=(10, 120),
+                                  headers={"Accept-Encoding": "identity"}) as resp:
                     if resp.status_code in (403, 404):
                         raise NotPublished(f"{url} answered HTTP {resp.status_code}")
                     resp.raise_for_status()
                     with dest.open("wb") as fh:
-                        shutil.copyfileobj(resp.raw, fh, 1 << 20)
+                        for block in resp.iter_content(chunk_size=1 << 20):  # decodes a content-encoding if sent
+                            fh.write(block)
                 return
             except NotPublished:
                 raise
