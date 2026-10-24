@@ -61,6 +61,7 @@ Anything that can tail a file can consume them; no external service is involved.
 | `task_failure` | a task failed after its retries (`error`, `try_number`, `source_month`, `task_ended_at`) | the task log in the Airflow UI |
 | `dag_run_failed` | the monthly run ended in failure | the task alert for the same `run_id` |
 | `freshness` | a month is missing (`MISSING_MONTH`), the newest load is older than `TAXI_MAX_LOAD_AGE_HOURS` (`LOAD_TOO_OLD`), or the newest loaded month is behind the expected one (`LATEST_MONTH_BEHIND`) | `taxi-platform status` |
+| `zone_download_fallback` (warning) | the zone lookup could not be downloaded after six attempts, so the copy an earlier run landed was used (`run_id`, `error`); the task did not fail | the `error` field, then the `detail` of the `load_zones` row in `ops.stage_timings`; the CDN's answers are described in [findings.md](findings.md), section 7 |
 
 Two exit codes of `taxi-platform` are not retried, because running the same file again cannot change the answer:
 
@@ -69,7 +70,7 @@ Two exit codes of `taxi-platform` are not retried, because running the same file
   changed the layout on purpose, change `taxi_platform/rules.py` (and the dbt models) and run the month again;
   otherwise wait for a corrected file and run `taxi-platform fetch --month <month> --force`.
 - **3, not published.** The source answered 403/404 for that month. The month has not been released yet; run it
-  again later.
+  again later. (A throttled CDN also answers 403, and for a month file the two cannot be told apart.)
 
 Anything else is retried once, 20 seconds later.
 
