@@ -1,0 +1,25 @@
+# captured 2026-10-24T15:24:30.211256+00:00 after the backfill
+NAMES                                    IMAGE                                                   STATUS
+taxi-airflow-scheduler-1                 taxi-airflow:local                                      Up 20 minutes (healthy)
+taxi-airflow-webserver-1                 taxi-airflow:local                                      Up 20 minutes (healthy)
+taxi-s3-1                                chrislusf/seaweedfs:latest                              Up 20 minutes
+taxi-postgres-1                          postgres:16                                             Up 20 minutes (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+(other container)                        Up 2 days (healthy)
+# 18 containers outside this stack were running; their names and images are withheld

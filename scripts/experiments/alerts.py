@@ -3,8 +3,9 @@
     python scripts/experiments/alerts.py --source data/mirror --repeats 5
 
 Part A, file-level faults. A real-sized month with a column renamed, a column dropped, a column of the wrong
-type, or no rows at all is offered to the monthly DAG as January..April. Each must fail at the validate task
-without a retry, load nothing, and write a task-failure record and a DAG-failure record to the alert sink.
+type, or no rows at all is offered to the monthly DAG as January..April, one backfill per fault. Each must fail at
+the validate task in a single attempt (counted from Airflow's task_fail table), load nothing, and write a
+task-failure record and a DAG-failure record to the alert sink.
 The script reports how long after the failing task ended the record appeared, and how long after the task
 started the failure was detected.
 
@@ -52,6 +53,24 @@ def task_times(dag_id: str, run_prefix: str) -> dict:
             for run_id, task, state, tries, start, end in rows}
 
 
+def db_now():
+    """The Airflow database's own clock, so attempts are counted against the clock that stamped them."""
+    with connect(AIRFLOW_DSN) as conn:
+        return conn.execute("SELECT now()").fetchone()[0]
+
+
+def failed_attempts_since(run_id: str, since, task_id: str = "validate_with_great_expectations") -> int:
+    """How many attempts of the task Airflow recorded as failed for this run after ``since``.
+
+    ``task_instance.try_number`` cannot show that a task was not retried: it keeps growing across
+    ``--reset-dagruns`` (the first attempt of this experiment read 2, 3, 4, 5, 6 for a task that ran once each time).
+    """
+    with connect(AIRFLOW_DSN) as conn:
+        return conn.execute(
+            "SELECT count(*) FROM task_fail WHERE dag_id = 'taxi_monthly' AND run_id = %s AND task_id = %s"
+            " AND start_date >= %s", (run_id, task_id, since)).fetchone()[0]
+
+
 def build_fault_files(source: Path, month: str) -> Path:
     lab = ROOT / "data" / "lab" / "faults"
     scratch = ROOT / "data" / "lab" / "faults-build"
@@ -80,23 +99,28 @@ def contract_faults(args) -> dict:
     pipeline_cli("init-storage", env=env)
     repeats = []
     for i in range(1, args.repeats + 1):
-        before = len(sink_lines())
-        result = in_scheduler("airflow", "dags", "backfill", "taxi_monthly", "-s", "2025-01-01", "-e", "2025-04-01",
-                              "--reset-dagruns", "-y", env=env, check=False)
-        new = sink_lines()[before:]
-        times = task_times("taxi_monthly", "backfill__")
-        per_fault = {}
+        per_fault, written = {}, 0
+        # One backfill per fault: `airflow dags backfill` stops at the first DAG run that fails, so offering all
+        # four months at once exercised only the first (the first attempt of this experiment, kept in
+        # results/alerts-first-attempt/, shows it).
         for fault, month in FAULT_MONTHS.items():
             run_id = f"backfill__{month}-01T00:00:00+00:00"
+            before, since = len(sink_lines()), db_now()
+            result = in_scheduler("airflow", "dags", "backfill", "taxi_monthly", "-s", month + "-01", "-e", month + "-01",
+                                  "--reset-dagruns", "-y", env=env, check=False)
+            new = sink_lines()[before:]
+            written += len(new)
+            times = task_times("taxi_monthly", run_id)
             validate = times[(run_id, "validate_with_great_expectations")]
             failure = [r for r in new if r["kind"] == "task_failure" and r.get("source_month") == month
                        and r["task_id"] == "validate_with_great_expectations"]
             dag_failure = [r for r in new if r["kind"] == "dag_run_failed" and month in r["run_id"]]
             downstream = {t: s["state"] for (rid, t), s in times.items() if rid == run_id and t not in
                           ("load_zones", "fetch_to_landing", "validate_with_great_expectations")}
-            entry = {"validate_state": validate["state"], "validate_tries": validate["tries"],
+            entry = {"backfill_exit_code": result.returncode, "validate_state": validate["state"],
+                     "validate_failed_attempts": failed_attempts_since(run_id, since),
                      "downstream_states": downstream, "task_failure_records": len(failure),
-                     "dag_failure_records": len(dag_failure)}
+                     "dag_failure_records": len(dag_failure), "alert_lines_written": len(new)}
             if failure:
                 rec = failure[0]
                 entry["alert_delay_after_task_ended_s"] = (when(rec["emitted_at"]) - when(rec["task_ended_at"])).total_seconds()
@@ -106,9 +130,9 @@ def contract_faults(args) -> dict:
         with connect(f"postgresql://taxi:taxi@localhost:18232/{db}") as conn:
             loaded = {"ledger_rows": conn.execute("SELECT count(*) FROM ops.ingestion_ledger").fetchone()[0],
                       "raw_rows": conn.execute("SELECT count(*) FROM raw.yellow_trips").fetchone()[0]}
-        repeats.append({"repeat": i, "backfill_exit_code": result.returncode, "faults": per_fault,
-                        "loaded_into_warehouse": loaded, "alert_lines_written": len(new)})
-        log(f"contract faults repeat {i}: exit {result.returncode}, {len(new)} alert lines, loaded {loaded}")
+        repeats.append({"repeat": i, "faults": per_fault, "loaded_into_warehouse": loaded, "alert_lines_written": written})
+        log(f"contract faults repeat {i}: {written} alert lines, loaded {loaded}, "
+            f"failed attempts {[e['validate_failed_attempts'] for e in per_fault.values()]}")
     with connect("postgresql://taxi:taxi@localhost:18232/postgres", autocommit=True) as conn:
         conn.execute(f'DROP DATABASE IF EXISTS "{db}" WITH (FORCE)')
     shutil.rmtree(ROOT / "data" / "lab" / "faults", ignore_errors=True)

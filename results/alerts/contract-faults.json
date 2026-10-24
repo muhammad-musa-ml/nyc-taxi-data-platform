@@ -1,0 +1,401 @@
+{
+  "fault_to_dag_month": {
+    "DROPPED_REQUIRED_COLUMN": "2025-02",
+    "EMPTY_FILE": "2025-04",
+    "RENAMED_REQUIRED_COLUMN": "2025-01",
+    "WRONG_COLUMN_TYPE": "2025-03"
+  },
+  "month_used_as_the_source": "2025-03",
+  "repeats": [
+    {
+      "alert_lines_written": 8,
+      "faults": {
+        "DROPPED_REQUIRED_COLUMN": {
+          "alert_delay_after_task_ended_s": 0.0019,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 8.8569,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "EMPTY_FILE": {
+          "alert_delay_after_task_ended_s": 0.0013,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 5.2289,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "RENAMED_REQUIRED_COLUMN": {
+          "alert_delay_after_task_ended_s": 0.0015,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 9.0707,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "WRONG_COLUMN_TYPE": {
+          "alert_delay_after_task_ended_s": 0.0016,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 14.7329,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        }
+      },
+      "loaded_into_warehouse": {
+        "ledger_rows": 0,
+        "raw_rows": 0
+      },
+      "repeat": 1
+    },
+    {
+      "alert_lines_written": 8,
+      "faults": {
+        "DROPPED_REQUIRED_COLUMN": {
+          "alert_delay_after_task_ended_s": 0.0017,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 8.9743,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "EMPTY_FILE": {
+          "alert_delay_after_task_ended_s": 0.0012,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 5.0463,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "RENAMED_REQUIRED_COLUMN": {
+          "alert_delay_after_task_ended_s": 0.0018,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 8.4685,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "WRONG_COLUMN_TYPE": {
+          "alert_delay_after_task_ended_s": 0.0015,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 13.7939,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        }
+      },
+      "loaded_into_warehouse": {
+        "ledger_rows": 0,
+        "raw_rows": 0
+      },
+      "repeat": 2
+    },
+    {
+      "alert_lines_written": 8,
+      "faults": {
+        "DROPPED_REQUIRED_COLUMN": {
+          "alert_delay_after_task_ended_s": 0.0016,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 8.922,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "EMPTY_FILE": {
+          "alert_delay_after_task_ended_s": 0.0014,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 5.2615,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "RENAMED_REQUIRED_COLUMN": {
+          "alert_delay_after_task_ended_s": 0.0017,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 8.3091,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "WRONG_COLUMN_TYPE": {
+          "alert_delay_after_task_ended_s": 0.0022,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 13.7535,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        }
+      },
+      "loaded_into_warehouse": {
+        "ledger_rows": 0,
+        "raw_rows": 0
+      },
+      "repeat": 3
+    },
+    {
+      "alert_lines_written": 8,
+      "faults": {
+        "DROPPED_REQUIRED_COLUMN": {
+          "alert_delay_after_task_ended_s": 0.0014,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 8.5113,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "EMPTY_FILE": {
+          "alert_delay_after_task_ended_s": 0.0014,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 5.3853,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "RENAMED_REQUIRED_COLUMN": {
+          "alert_delay_after_task_ended_s": 0.0015,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 8.5688,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "WRONG_COLUMN_TYPE": {
+          "alert_delay_after_task_ended_s": 0.0019,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 14.3346,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        }
+      },
+      "loaded_into_warehouse": {
+        "ledger_rows": 0,
+        "raw_rows": 0
+      },
+      "repeat": 4
+    },
+    {
+      "alert_lines_written": 8,
+      "faults": {
+        "DROPPED_REQUIRED_COLUMN": {
+          "alert_delay_after_task_ended_s": 0.0012,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 8.9092,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "EMPTY_FILE": {
+          "alert_delay_after_task_ended_s": 0.0014,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 5.0264,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "RENAMED_REQUIRED_COLUMN": {
+          "alert_delay_after_task_ended_s": 0.0013,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 8.2549,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        },
+        "WRONG_COLUMN_TYPE": {
+          "alert_delay_after_task_ended_s": 0.0014,
+          "alert_lines_written": 2,
+          "backfill_exit_code": 1,
+          "dag_failure_records": 1,
+          "detected_after_task_started_s": 13.7121,
+          "downstream_states": {
+            "dbt_run": "upstream_failed",
+            "dbt_test": "upstream_failed",
+            "load_warehouse": "upstream_failed",
+            "reconcile_and_check_freshness": "upstream_failed"
+          },
+          "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+          "task_failure_records": 1,
+          "validate_failed_attempts": 1,
+          "validate_state": "failed"
+        }
+      },
+      "loaded_into_warehouse": {
+        "ledger_rows": 0,
+        "raw_rows": 0
+      },
+      "repeat": 5
+    }
+  ]
+}

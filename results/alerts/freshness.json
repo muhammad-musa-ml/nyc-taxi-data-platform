@@ -1,0 +1,217 @@
+{
+  "cli_freshness_as_configured_exit_code": 0,
+  "scenarios": [
+    {
+      "environment": {},
+      "label": "as configured (all six months loaded and recent)",
+      "runs": [
+        {
+          "backfill_exit_code": 0,
+          "finding_messages": [],
+          "findings": [],
+          "repeat": 1,
+          "task_failure_records": 0,
+          "task_state": "success"
+        },
+        {
+          "backfill_exit_code": 0,
+          "finding_messages": [],
+          "findings": [],
+          "repeat": 2,
+          "task_failure_records": 0,
+          "task_state": "success"
+        },
+        {
+          "backfill_exit_code": 0,
+          "finding_messages": [],
+          "findings": [],
+          "repeat": 3,
+          "task_failure_records": 0,
+          "task_state": "success"
+        },
+        {
+          "backfill_exit_code": 0,
+          "finding_messages": [],
+          "findings": [],
+          "repeat": 4,
+          "task_failure_records": 0,
+          "task_state": "success"
+        },
+        {
+          "backfill_exit_code": 0,
+          "finding_messages": [],
+          "findings": [],
+          "repeat": 5,
+          "task_failure_records": 0,
+          "task_state": "success"
+        }
+      ]
+    },
+    {
+      "environment": {
+        "TAXI_EXPECTED_LATEST_MONTH": "2025-07"
+      },
+      "label": "a seventh month is expected but was never loaded",
+      "runs": [
+        {
+          "backfill_exit_code": 1,
+          "failure_alert_delay_after_task_ended_s": 0.001,
+          "finding_messages": [
+            "no load recorded for 2025-07",
+            "newest loaded month is 2025-06; expected 2025-07"
+          ],
+          "findings": [
+            "LATEST_MONTH_BEHIND",
+            "MISSING_MONTH"
+          ],
+          "first_finding_after_task_started_s": 4.3,
+          "repeat": 1,
+          "task_failure_records": 1,
+          "task_state": "failed"
+        },
+        {
+          "backfill_exit_code": 1,
+          "failure_alert_delay_after_task_ended_s": 0.0015,
+          "finding_messages": [
+            "no load recorded for 2025-07",
+            "newest loaded month is 2025-06; expected 2025-07"
+          ],
+          "findings": [
+            "LATEST_MONTH_BEHIND",
+            "MISSING_MONTH"
+          ],
+          "first_finding_after_task_started_s": 4.2634,
+          "repeat": 2,
+          "task_failure_records": 1,
+          "task_state": "failed"
+        },
+        {
+          "backfill_exit_code": 1,
+          "failure_alert_delay_after_task_ended_s": 0.0014,
+          "finding_messages": [
+            "no load recorded for 2025-07",
+            "newest loaded month is 2025-06; expected 2025-07"
+          ],
+          "findings": [
+            "LATEST_MONTH_BEHIND",
+            "MISSING_MONTH"
+          ],
+          "first_finding_after_task_started_s": 4.3829,
+          "repeat": 3,
+          "task_failure_records": 1,
+          "task_state": "failed"
+        },
+        {
+          "backfill_exit_code": 1,
+          "failure_alert_delay_after_task_ended_s": 0.0015,
+          "finding_messages": [
+            "no load recorded for 2025-07",
+            "newest loaded month is 2025-06; expected 2025-07"
+          ],
+          "findings": [
+            "LATEST_MONTH_BEHIND",
+            "MISSING_MONTH"
+          ],
+          "first_finding_after_task_started_s": 4.516,
+          "repeat": 4,
+          "task_failure_records": 1,
+          "task_state": "failed"
+        },
+        {
+          "backfill_exit_code": 1,
+          "failure_alert_delay_after_task_ended_s": 0.0011,
+          "finding_messages": [
+            "no load recorded for 2025-07",
+            "newest loaded month is 2025-06; expected 2025-07"
+          ],
+          "findings": [
+            "LATEST_MONTH_BEHIND",
+            "MISSING_MONTH"
+          ],
+          "first_finding_after_task_started_s": 4.2786,
+          "repeat": 5,
+          "task_failure_records": 1,
+          "task_state": "failed"
+        }
+      ]
+    },
+    {
+      "environment": {
+        "TAXI_MAX_LOAD_AGE_HOURS": "0.05"
+      },
+      "label": "the newest load is older than the allowed 0.05 h (3 min)",
+      "runs": [
+        {
+          "backfill_exit_code": 1,
+          "failure_alert_delay_after_task_ended_s": 0.0012,
+          "finding_messages": [
+            "newest load finished 0.5 h ago; the allowed age is 0.05 h"
+          ],
+          "findings": [
+            "LOAD_TOO_OLD"
+          ],
+          "first_finding_after_task_started_s": 4.4028,
+          "repeat": 1,
+          "task_failure_records": 1,
+          "task_state": "failed"
+        },
+        {
+          "backfill_exit_code": 1,
+          "failure_alert_delay_after_task_ended_s": 0.0017,
+          "finding_messages": [
+            "newest load finished 0.5 h ago; the allowed age is 0.05 h"
+          ],
+          "findings": [
+            "LOAD_TOO_OLD"
+          ],
+          "first_finding_after_task_started_s": 4.1816,
+          "repeat": 2,
+          "task_failure_records": 1,
+          "task_state": "failed"
+        },
+        {
+          "backfill_exit_code": 1,
+          "failure_alert_delay_after_task_ended_s": 0.0013,
+          "finding_messages": [
+            "newest load finished 0.5 h ago; the allowed age is 0.05 h"
+          ],
+          "findings": [
+            "LOAD_TOO_OLD"
+          ],
+          "first_finding_after_task_started_s": 4.1257,
+          "repeat": 3,
+          "task_failure_records": 1,
+          "task_state": "failed"
+        },
+        {
+          "backfill_exit_code": 1,
+          "failure_alert_delay_after_task_ended_s": 0.0012,
+          "finding_messages": [
+            "newest load finished 0.5 h ago; the allowed age is 0.05 h"
+          ],
+          "findings": [
+            "LOAD_TOO_OLD"
+          ],
+          "first_finding_after_task_started_s": 4.2653,
+          "repeat": 4,
+          "task_failure_records": 1,
+          "task_state": "failed"
+        },
+        {
+          "backfill_exit_code": 1,
+          "failure_alert_delay_after_task_ended_s": 0.0011,
+          "finding_messages": [
+            "newest load finished 0.5 h ago; the allowed age is 0.05 h"
+          ],
+          "findings": [
+            "LOAD_TOO_OLD"
+          ],
+          "first_finding_after_task_started_s": 4.006,
+          "repeat": 5,
+          "task_failure_records": 1,
+          "task_state": "failed"
+        }
+      ]
+    }
+  ]
+}

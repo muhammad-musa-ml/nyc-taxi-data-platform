@@ -147,3 +147,45 @@ so re-running a month cannot double it. The two aggregate marts sum and average 
 precision`: the first replay of all six months came back with the same rows but different last digits in them,
 because floating-point sums depend on row order ([docs/findings.md](docs/findings.md)). Lineage, rendered from
 dbt's manifest: [docs/lineage.md](docs/lineage.md).
+
+## Limits
+
+- **One laptop, shared.** Every timing is from a single Windows 11 machine running Docker Desktop that was also
+  running other projects' containers. The runs were serialised with a lock file, but the ranges in the results are
+  there because the machine was not otherwise idle. Conditions per run: [docs/measurements.md](docs/measurements.md).
+- **SeaweedFS stands in for an S3 service.** The code uses the S3 API through `boto3` and an endpoint setting; I have
+  not run it against Amazon S3 or MinIO. MinIO was the first choice and was not downloadable when I built this
+  (details in [docs/design.md](docs/design.md)).
+- **The rules are mine.** The thresholds (a fare between 0 and 5,000, at most 100 mph, a trip under 24 hours) come from
+  looking at the data, not from a TLC definition. A quarantined row failed one of these rules; it is not
+  necessarily a wrong record, and the largest group is negative fares, which the TLC publishes for refunds and
+  disputes as well as for errors.
+- **What the rules cannot see.** The injected plausible-value faults (a fare changed to another plausible fare) are
+  loaded by design, and the results report them as missed. Checks against another source of truth, such as a fare
+  recomputed from distance and rate code, are not built.
+- **A 403 from the download looks like "not published".** For a month file the CDN's storage origin answers 403 for a
+  key that does not exist, so a throttling 403 cannot be told from a month that is not out yet. The zone lookup, which
+  must exist, retries it ([docs/findings.md](docs/findings.md), section 7).
+- **A republished month is not picked up by itself.** A file already in the landing bucket is not downloaded again; a
+  corrected file needs `taxi-platform fetch --month <month> --force`.
+- **Alerts go to a local file.** Nothing pages anyone. The measured alert delay is the delay to that file on the
+  same host, not to an inbox or a pager.
+- **The crash drill kills the loader's container.** It does not lose the PostgreSQL volume or cut the power to the
+  host; it shows the load is one transaction and that PostgreSQL releases a vanished client's locks.
+- **One taxi type and six months.** Yellow-taxi trips from January to June 2025. Green taxis, for-hire vehicles and
+  later months are not loaded, and the DAG runs one month at a time.
+- **Local credentials.** The passwords in the Compose file are for containers published on `localhost` only.
+
+## Layout
+
+```
+taxi_platform/   the pipeline: settings, S3 and PostgreSQL access, the reason-code rules and their Great Expectations
+                 runner, the stages, alerts and freshness, the command line, and the bad-row injector
+dags/            taxi_monthly, taxi_freshness and their shared callbacks
+dbt/             staging, intermediate and mart models, seeds, generic and singular tests
+docker/          the Airflow image, database initialisation and the SeaweedFS S3 configuration
+scripts/         backfill.sh, lineage.py, check_marts_deterministic.py, make_fixture.py, and experiments/ (the measurements)
+tests/           unit, integration and DAG tests; fixtures/source holds the small real-data fixture
+results/         the raw result files of every experiment; SUMMARY.md and summary.json are computed from them
+docs/            design.md, operations.md, findings.md, measurements.md, lineage.md
+```

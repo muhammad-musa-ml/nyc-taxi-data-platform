@@ -1,0 +1,1022 @@
+{
+  "alert_lines_written": 0,
+  "dag_runs": {
+    "2025-01": {
+      "dag_run_seconds": 137.5598,
+      "ended": "2026-10-24T15:31:16.606238+00:00",
+      "run_id": "backfill__2025-01-01T00:00:00+00:00",
+      "started": "2026-10-24T15:28:59.046398+00:00",
+      "state": "success",
+      "tasks": {
+        "dbt_run": {
+          "seconds": 52.975,
+          "state": "success",
+          "tries": 1
+        },
+        "dbt_test": {
+          "seconds": 11.5919,
+          "state": "success",
+          "tries": 1
+        },
+        "fetch_to_landing": {
+          "seconds": 9.1954,
+          "state": "success",
+          "tries": 1
+        },
+        "load_warehouse": {
+          "seconds": 20.3045,
+          "state": "success",
+          "tries": 1
+        },
+        "load_zones": {
+          "seconds": 6.2023,
+          "state": "success",
+          "tries": 1
+        },
+        "reconcile_and_check_freshness": {
+          "seconds": 5.0995,
+          "state": "success",
+          "tries": 1
+        },
+        "validate_with_great_expectations": {
+          "seconds": 24.2111,
+          "state": "success",
+          "tries": 1
+        }
+      }
+    },
+    "2025-02": {
+      "dag_run_seconds": 157.2248,
+      "ended": "2026-10-24T15:33:55.848156+00:00",
+      "run_id": "backfill__2025-02-01T00:00:00+00:00",
+      "started": "2026-10-24T15:31:18.623368+00:00",
+      "state": "success",
+      "tasks": {
+        "dbt_run": {
+          "seconds": 69.7899,
+          "state": "success",
+          "tries": 1
+        },
+        "dbt_test": {
+          "seconds": 12.2052,
+          "state": "success",
+          "tries": 1
+        },
+        "fetch_to_landing": {
+          "seconds": 9.3403,
+          "state": "success",
+          "tries": 1
+        },
+        "load_warehouse": {
+          "seconds": 21.9787,
+          "state": "success",
+          "tries": 1
+        },
+        "load_zones": {
+          "seconds": 5.2471,
+          "state": "success",
+          "tries": 1
+        },
+        "reconcile_and_check_freshness": {
+          "seconds": 5.4546,
+          "state": "success",
+          "tries": 1
+        },
+        "validate_with_great_expectations": {
+          "seconds": 26.1093,
+          "state": "success",
+          "tries": 1
+        }
+      }
+    },
+    "2025-03": {
+      "dag_run_seconds": 206.6914,
+      "ended": "2026-10-24T15:37:24.564944+00:00",
+      "run_id": "backfill__2025-03-01T00:00:00+00:00",
+      "started": "2026-10-24T15:33:57.873511+00:00",
+      "state": "success",
+      "tasks": {
+        "dbt_run": {
+          "seconds": 80.3236,
+          "state": "success",
+          "tries": 1
+        },
+        "dbt_test": {
+          "seconds": 45.9564,
+          "state": "success",
+          "tries": 1
+        },
+        "fetch_to_landing": {
+          "seconds": 10.1824,
+          "state": "success",
+          "tries": 1
+        },
+        "load_warehouse": {
+          "seconds": 24.2498,
+          "state": "success",
+          "tries": 1
+        },
+        "load_zones": {
+          "seconds": 5.6636,
+          "state": "success",
+          "tries": 1
+        },
+        "reconcile_and_check_freshness": {
+          "seconds": 7.6626,
+          "state": "success",
+          "tries": 1
+        },
+        "validate_with_great_expectations": {
+          "seconds": 28.0777,
+          "state": "success",
+          "tries": 1
+        }
+      }
+    },
+    "2025-04": {
+      "dag_run_seconds": 230.8502,
+      "ended": "2026-10-24T15:41:17.430525+00:00",
+      "run_id": "backfill__2025-04-01T00:00:00+00:00",
+      "started": "2026-10-24T15:37:26.580282+00:00",
+      "state": "success",
+      "tasks": {
+        "dbt_run": {
+          "seconds": 92.9266,
+          "state": "success",
+          "tries": 1
+        },
+        "dbt_test": {
+          "seconds": 45.6197,
+          "state": "success",
+          "tries": 1
+        },
+        "fetch_to_landing": {
+          "seconds": 10.2354,
+          "state": "success",
+          "tries": 1
+        },
+        "load_warehouse": {
+          "seconds": 28.1456,
+          "state": "success",
+          "tries": 1
+        },
+        "load_zones": {
+          "seconds": 5.4838,
+          "state": "success",
+          "tries": 1
+        },
+        "reconcile_and_check_freshness": {
+          "seconds": 9.3576,
+          "state": "success",
+          "tries": 1
+        },
+        "validate_with_great_expectations": {
+          "seconds": 31.0729,
+          "state": "success",
+          "tries": 1
+        }
+      }
+    },
+    "2025-05": {
+      "dag_run_seconds": 244.0983,
+      "ended": "2026-10-24T15:45:23.548159+00:00",
+      "run_id": "backfill__2025-05-01T00:00:00+00:00",
+      "started": "2026-10-24T15:41:19.449893+00:00",
+      "state": "success",
+      "tasks": {
+        "dbt_run": {
+          "seconds": 93.7136,
+          "state": "success",
+          "tries": 1
+        },
+        "dbt_test": {
+          "seconds": 51.8794,
+          "state": "success",
+          "tries": 1
+        },
+        "fetch_to_landing": {
+          "seconds": 10.6555,
+          "state": "success",
+          "tries": 1
+        },
+        "load_warehouse": {
+          "seconds": 29.8378,
+          "state": "success",
+          "tries": 1
+        },
+        "load_zones": {
+          "seconds": 5.584,
+          "state": "success",
+          "tries": 1
+        },
+        "reconcile_and_check_freshness": {
+          "seconds": 9.7189,
+          "state": "success",
+          "tries": 1
+        },
+        "validate_with_great_expectations": {
+          "seconds": 35.6628,
+          "state": "success",
+          "tries": 1
+        }
+      }
+    },
+    "2025-06": {
+      "dag_run_seconds": 235.9138,
+      "ended": "2026-10-24T15:49:21.481450+00:00",
+      "run_id": "backfill__2025-06-01T00:00:00+00:00",
+      "started": "2026-10-24T15:45:25.567641+00:00",
+      "state": "success",
+      "tasks": {
+        "dbt_run": {
+          "seconds": 92.4768,
+          "state": "success",
+          "tries": 1
+        },
+        "dbt_test": {
+          "seconds": 51.7943,
+          "state": "success",
+          "tries": 1
+        },
+        "fetch_to_landing": {
+          "seconds": 11.0638,
+          "state": "success",
+          "tries": 1
+        },
+        "load_warehouse": {
+          "seconds": 26.8254,
+          "state": "success",
+          "tries": 1
+        },
+        "load_zones": {
+          "seconds": 5.709,
+          "state": "success",
+          "tries": 1
+        },
+        "reconcile_and_check_freshness": {
+          "seconds": 10.8276,
+          "state": "success",
+          "tries": 1
+        },
+        "validate_with_great_expectations": {
+          "seconds": 31.4043,
+          "state": "success",
+          "tries": 1
+        }
+      }
+    }
+  },
+  "ended_at": "2026-10-24T15:49:24.788866+00:00",
+  "exit_code": 0,
+  "months": "2025-01-01..2025-06-01",
+  "run": 3,
+  "stage_timings": [
+    {
+      "detail": {
+        "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+        "source": "download",
+        "status": "ok"
+      },
+      "month": null,
+      "rows": 265,
+      "run_id": "backfill__2025-01-01T00:00:00+00:00",
+      "seconds": 0.521,
+      "stage": "load_zones"
+    },
+    {
+      "detail": {
+        "cached": false,
+        "file_bytes": 59158238,
+        "status": "ok"
+      },
+      "month": "2025-01-01",
+      "rows": null,
+      "run_id": "backfill__2025-01-01T00:00:00+00:00",
+      "seconds": 4.099,
+      "stage": "fetch"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 145476,
+        "seconds_rules": 12.802,
+        "status": "ok"
+      },
+      "month": "2025-01-01",
+      "rows": 3475226,
+      "run_id": "backfill__2025-01-01T00:00:00+00:00",
+      "seconds": 19.122,
+      "stage": "validate"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 145476,
+        "status": "ok"
+      },
+      "month": "2025-01-01",
+      "rows": 3329750,
+      "run_id": "backfill__2025-01-01T00:00:00+00:00",
+      "seconds": 15.109,
+      "stage": "load"
+    },
+    {
+      "detail": {
+        "fct_trips": 3329750,
+        "freshness": [],
+        "problems": [],
+        "quarantine": 145476,
+        "raw": 3329750,
+        "rows_in": 3475226,
+        "status": "ok"
+      },
+      "month": "2025-01-01",
+      "rows": null,
+      "run_id": "backfill__2025-01-01T00:00:00+00:00",
+      "seconds": 0.31,
+      "stage": "reconcile"
+    },
+    {
+      "detail": {
+        "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+        "source": "download",
+        "status": "ok"
+      },
+      "month": null,
+      "rows": 265,
+      "run_id": "backfill__2025-02-01T00:00:00+00:00",
+      "seconds": 0.256,
+      "stage": "load_zones"
+    },
+    {
+      "detail": {
+        "cached": false,
+        "file_bytes": 60343086,
+        "status": "ok"
+      },
+      "month": "2025-02-01",
+      "rows": null,
+      "run_id": "backfill__2025-02-01T00:00:00+00:00",
+      "seconds": 4.181,
+      "stage": "fetch"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 183926,
+        "seconds_rules": 13.826,
+        "status": "ok"
+      },
+      "month": "2025-02-01",
+      "rows": 3577543,
+      "run_id": "backfill__2025-02-01T00:00:00+00:00",
+      "seconds": 20.6,
+      "stage": "validate"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 183926,
+        "status": "ok"
+      },
+      "month": "2025-02-01",
+      "rows": 3393617,
+      "run_id": "backfill__2025-02-01T00:00:00+00:00",
+      "seconds": 16.669,
+      "stage": "load"
+    },
+    {
+      "detail": {
+        "fct_trips": 3393617,
+        "freshness": [],
+        "problems": [],
+        "quarantine": 183926,
+        "raw": 3393617,
+        "rows_in": 3577543,
+        "status": "ok"
+      },
+      "month": "2025-02-01",
+      "rows": null,
+      "run_id": "backfill__2025-02-01T00:00:00+00:00",
+      "seconds": 0.498,
+      "stage": "reconcile"
+    },
+    {
+      "detail": {
+        "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+        "source": "download",
+        "status": "ok"
+      },
+      "month": null,
+      "rows": 265,
+      "run_id": "backfill__2025-03-01T00:00:00+00:00",
+      "seconds": 0.391,
+      "stage": "load_zones"
+    },
+    {
+      "detail": {
+        "cached": false,
+        "file_bytes": 69964745,
+        "status": "ok"
+      },
+      "month": "2025-03-01",
+      "rows": null,
+      "run_id": "backfill__2025-03-01T00:00:00+00:00",
+      "seconds": 4.784,
+      "stage": "fetch"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 210175,
+        "seconds_rules": 14.68,
+        "status": "ok"
+      },
+      "month": "2025-03-01",
+      "rows": 4145257,
+      "run_id": "backfill__2025-03-01T00:00:00+00:00",
+      "seconds": 22.523,
+      "stage": "validate"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 210175,
+        "status": "ok"
+      },
+      "month": "2025-03-01",
+      "rows": 3935082,
+      "run_id": "backfill__2025-03-01T00:00:00+00:00",
+      "seconds": 19.029,
+      "stage": "load"
+    },
+    {
+      "detail": {
+        "fct_trips": 3935082,
+        "freshness": [],
+        "problems": [],
+        "quarantine": 210175,
+        "raw": 3935082,
+        "rows_in": 4145257,
+        "status": "ok"
+      },
+      "month": "2025-03-01",
+      "rows": null,
+      "run_id": "backfill__2025-03-01T00:00:00+00:00",
+      "seconds": 2.395,
+      "stage": "reconcile"
+    },
+    {
+      "detail": {
+        "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+        "source": "download",
+        "status": "ok"
+      },
+      "month": null,
+      "rows": 265,
+      "run_id": "backfill__2025-04-01T00:00:00+00:00",
+      "seconds": 0.327,
+      "stage": "load_zones"
+    },
+    {
+      "detail": {
+        "cached": false,
+        "file_bytes": 67352824,
+        "status": "ok"
+      },
+      "month": "2025-04-01",
+      "rows": null,
+      "run_id": "backfill__2025-04-01T00:00:00+00:00",
+      "seconds": 4.712,
+      "stage": "fetch"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 188184,
+        "seconds_rules": 16.647,
+        "status": "ok"
+      },
+      "month": "2025-04-01",
+      "rows": 3970553,
+      "run_id": "backfill__2025-04-01T00:00:00+00:00",
+      "seconds": 25.812,
+      "stage": "validate"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 188184,
+        "status": "ok"
+      },
+      "month": "2025-04-01",
+      "rows": 3782369,
+      "run_id": "backfill__2025-04-01T00:00:00+00:00",
+      "seconds": 21.966,
+      "stage": "load"
+    },
+    {
+      "detail": {
+        "fct_trips": 3782369,
+        "freshness": [],
+        "problems": [],
+        "quarantine": 188184,
+        "raw": 3782369,
+        "rows_in": 3970553,
+        "status": "ok"
+      },
+      "month": "2025-04-01",
+      "rows": null,
+      "run_id": "backfill__2025-04-01T00:00:00+00:00",
+      "seconds": 4.218,
+      "stage": "reconcile"
+    },
+    {
+      "detail": {
+        "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+        "source": "download",
+        "status": "ok"
+      },
+      "month": null,
+      "rows": 265,
+      "run_id": "backfill__2025-05-01T00:00:00+00:00",
+      "seconds": 0.286,
+      "stage": "load_zones"
+    },
+    {
+      "detail": {
+        "cached": false,
+        "file_bytes": 77837865,
+        "status": "ok"
+      },
+      "month": "2025-05-01",
+      "rows": null,
+      "run_id": "backfill__2025-05-01T00:00:00+00:00",
+      "seconds": 5.37,
+      "stage": "fetch"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 327068,
+        "seconds_rules": 20.176,
+        "status": "ok"
+      },
+      "month": "2025-05-01",
+      "rows": 4591845,
+      "run_id": "backfill__2025-05-01T00:00:00+00:00",
+      "seconds": 29.441,
+      "stage": "validate"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 327068,
+        "status": "ok"
+      },
+      "month": "2025-05-01",
+      "rows": 4264777,
+      "run_id": "backfill__2025-05-01T00:00:00+00:00",
+      "seconds": 23.262,
+      "stage": "load"
+    },
+    {
+      "detail": {
+        "fct_trips": 4264777,
+        "freshness": [],
+        "problems": [],
+        "quarantine": 327068,
+        "raw": 4264777,
+        "rows_in": 4591845,
+        "status": "ok"
+      },
+      "month": "2025-05-01",
+      "rows": null,
+      "run_id": "backfill__2025-05-01T00:00:00+00:00",
+      "seconds": 4.567,
+      "stage": "reconcile"
+    },
+    {
+      "detail": {
+        "sha256": "1a99e105092230f8620f301edcca7f80d3080642ff404d28ed957d3fa222c8ed",
+        "source": "download",
+        "status": "ok"
+      },
+      "month": null,
+      "rows": 265,
+      "run_id": "backfill__2025-06-01T00:00:00+00:00",
+      "seconds": 0.385,
+      "stage": "load_zones"
+    },
+    {
+      "detail": {
+        "cached": false,
+        "file_bytes": 73542954,
+        "status": "ok"
+      },
+      "month": "2025-06-01",
+      "rows": null,
+      "run_id": "backfill__2025-06-01T00:00:00+00:00",
+      "seconds": 5.701,
+      "stage": "fetch"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 277680,
+        "seconds_rules": 17.715,
+        "status": "ok"
+      },
+      "month": "2025-06-01",
+      "rows": 4322960,
+      "run_id": "backfill__2025-06-01T00:00:00+00:00",
+      "seconds": 25.894,
+      "stage": "validate"
+    },
+    {
+      "detail": {
+        "rows_quarantined": 277680,
+        "status": "ok"
+      },
+      "month": "2025-06-01",
+      "rows": 4045280,
+      "run_id": "backfill__2025-06-01T00:00:00+00:00",
+      "seconds": 20.917,
+      "stage": "load"
+    },
+    {
+      "detail": {
+        "fct_trips": 4045280,
+        "freshness": [],
+        "problems": [],
+        "quarantine": 277680,
+        "raw": 4045280,
+        "rows_in": 4322960,
+        "status": "ok"
+      },
+      "month": "2025-06-01",
+      "rows": null,
+      "run_id": "backfill__2025-06-01T00:00:00+00:00",
+      "seconds": 5.719,
+      "stage": "reconcile"
+    }
+  ],
+  "started_at": "2026-10-24T15:28:55.512766+00:00",
+  "state": {
+    "checks": {
+      "2025-01-01": {
+        "DISTANCE_OUT_OF_RANGE": {
+          "rows_failed": 122,
+          "rows_primary": 100
+        },
+        "DROPOFF_BEFORE_PICKUP": {
+          "rows_failed": 124,
+          "rows_primary": 124
+        },
+        "DURATION_OVER_24H": {
+          "rows_failed": 20,
+          "rows_primary": 20
+        },
+        "EXCESSIVE_AMOUNT": {
+          "rows_failed": 1,
+          "rows_primary": 1
+        },
+        "IMPLAUSIBLE_SPEED": {
+          "rows_failed": 899,
+          "rows_primary": 772
+        },
+        "NEGATIVE_AMOUNT": {
+          "rows_failed": 144439,
+          "rows_primary": 144437
+        },
+        "PICKUP_OUTSIDE_MONTH": {
+          "rows_failed": 22,
+          "rows_primary": 22
+        }
+      },
+      "2025-02-01": {
+        "DISTANCE_OUT_OF_RANGE": {
+          "rows_failed": 151,
+          "rows_primary": 126
+        },
+        "DROPOFF_BEFORE_PICKUP": {
+          "rows_failed": 93,
+          "rows_primary": 93
+        },
+        "DURATION_OVER_24H": {
+          "rows_failed": 16,
+          "rows_primary": 16
+        },
+        "EXCESSIVE_AMOUNT": {
+          "rows_failed": 1,
+          "rows_primary": 1
+        },
+        "IMPLAUSIBLE_SPEED": {
+          "rows_failed": 765,
+          "rows_primary": 616
+        },
+        "NEGATIVE_AMOUNT": {
+          "rows_failed": 183043,
+          "rows_primary": 183043
+        },
+        "PICKUP_OUTSIDE_MONTH": {
+          "rows_failed": 31,
+          "rows_primary": 31
+        }
+      },
+      "2025-03-01": {
+        "DISTANCE_OUT_OF_RANGE": {
+          "rows_failed": 179,
+          "rows_primary": 145
+        },
+        "DROPOFF_BEFORE_PICKUP": {
+          "rows_failed": 81,
+          "rows_primary": 81
+        },
+        "DURATION_OVER_24H": {
+          "rows_failed": 11,
+          "rows_primary": 11
+        },
+        "EXCESSIVE_AMOUNT": {
+          "rows_failed": 1,
+          "rows_primary": 1
+        },
+        "IMPLAUSIBLE_SPEED": {
+          "rows_failed": 961,
+          "rows_primary": 772
+        },
+        "NEGATIVE_AMOUNT": {
+          "rows_failed": 209132,
+          "rows_primary": 209132
+        },
+        "PICKUP_OUTSIDE_MONTH": {
+          "rows_failed": 33,
+          "rows_primary": 33
+        }
+      },
+      "2025-04-01": {
+        "DISTANCE_OUT_OF_RANGE": {
+          "rows_failed": 269,
+          "rows_primary": 240
+        },
+        "DROPOFF_BEFORE_PICKUP": {
+          "rows_failed": 163,
+          "rows_primary": 163
+        },
+        "DURATION_OVER_24H": {
+          "rows_failed": 25,
+          "rows_primary": 25
+        },
+        "IMPLAUSIBLE_SPEED": {
+          "rows_failed": 1002,
+          "rows_primary": 731
+        },
+        "NEGATIVE_AMOUNT": {
+          "rows_failed": 187018,
+          "rows_primary": 187018
+        },
+        "PICKUP_OUTSIDE_MONTH": {
+          "rows_failed": 7,
+          "rows_primary": 7
+        }
+      },
+      "2025-05-01": {
+        "DISTANCE_OUT_OF_RANGE": {
+          "rows_failed": 309,
+          "rows_primary": 256
+        },
+        "DROPOFF_BEFORE_PICKUP": {
+          "rows_failed": 101,
+          "rows_primary": 101
+        },
+        "DURATION_OVER_24H": {
+          "rows_failed": 26,
+          "rows_primary": 26
+        },
+        "IMPLAUSIBLE_SPEED": {
+          "rows_failed": 1175,
+          "rows_primary": 857
+        },
+        "NEGATIVE_AMOUNT": {
+          "rows_failed": 325804,
+          "rows_primary": 325804
+        },
+        "PICKUP_OUTSIDE_MONTH": {
+          "rows_failed": 24,
+          "rows_primary": 24
+        }
+      },
+      "2025-06-01": {
+        "DISTANCE_OUT_OF_RANGE": {
+          "rows_failed": 222,
+          "rows_primary": 178
+        },
+        "DROPOFF_BEFORE_PICKUP": {
+          "rows_failed": 231,
+          "rows_primary": 231
+        },
+        "DUPLICATE_TRIP": {
+          "rows_failed": 1,
+          "rows_primary": 1
+        },
+        "DURATION_OVER_24H": {
+          "rows_failed": 20,
+          "rows_primary": 20
+        },
+        "EXCESSIVE_AMOUNT": {
+          "rows_failed": 1,
+          "rows_primary": 1
+        },
+        "IMPLAUSIBLE_SPEED": {
+          "rows_failed": 1396,
+          "rows_primary": 1174
+        },
+        "NEGATIVE_AMOUNT": {
+          "rows_failed": 276056,
+          "rows_primary": 276055
+        },
+        "PICKUP_OUTSIDE_MONTH": {
+          "rows_failed": 20,
+          "rows_primary": 20
+        }
+      }
+    },
+    "duplicates": {
+      "marts.fct_trips.trip_id": 0,
+      "quarantine.yellow_trips": 0,
+      "raw.yellow_trips": 0
+    },
+    "ledger": {
+      "2025-01-01": {
+        "file_bytes": 59158238,
+        "file_sha256": "9af277e4c0d3f9deb30644da822981e1e7df6af58313170fd3aa8a474485488a",
+        "load_count": 1,
+        "rows_in": 3475226,
+        "rows_loaded": 3329750,
+        "rows_quarantined": 145476
+      },
+      "2025-02-01": {
+        "file_bytes": 60343086,
+        "file_sha256": "037cba555a73663f3a51a2c27816e40e3feb364769942bdf122b9da31e377bd3",
+        "load_count": 1,
+        "rows_in": 3577543,
+        "rows_loaded": 3393617,
+        "rows_quarantined": 183926
+      },
+      "2025-03-01": {
+        "file_bytes": 69964745,
+        "file_sha256": "20c4b77cce457b7cfdae77c5069ca7dc91c167f876a41467f4502ab69487a186",
+        "load_count": 1,
+        "rows_in": 4145257,
+        "rows_loaded": 3935082,
+        "rows_quarantined": 210175
+      },
+      "2025-04-01": {
+        "file_bytes": 67352824,
+        "file_sha256": "6f98938de9380a3f85600533816f0dc0e6d9b5b210e485d623952bac599bbe28",
+        "load_count": 1,
+        "rows_in": 3970553,
+        "rows_loaded": 3782369,
+        "rows_quarantined": 188184
+      },
+      "2025-05-01": {
+        "file_bytes": 77837865,
+        "file_sha256": "7ef46bcd0fceee7f8c0bb38a532be05bceefabb512d4bb0b32a7727dd862b15c",
+        "load_count": 1,
+        "rows_in": 4591845,
+        "rows_loaded": 4264777,
+        "rows_quarantined": 327068
+      },
+      "2025-06-01": {
+        "file_bytes": 73542954,
+        "file_sha256": "1bea7f5b09c744414451fa7fef09fbc5a393ffb1621c859be6ba0df23a14e1b6",
+        "load_count": 1,
+        "rows_in": 4322960,
+        "rows_loaded": 4045280,
+        "rows_quarantined": 277680
+      }
+    },
+    "tables": {
+      "marts.fct_trips": {
+        "2025-01-01": {
+          "content_hash": "-11495824576738888325989",
+          "rows": 3329750
+        },
+        "2025-02-01": {
+          "content_hash": "8685377501317110573173",
+          "rows": 3393617
+        },
+        "2025-03-01": {
+          "content_hash": "-328342735368159746982",
+          "rows": 3935082
+        },
+        "2025-04-01": {
+          "content_hash": "-5253579795038152068242",
+          "rows": 3782369
+        },
+        "2025-05-01": {
+          "content_hash": "4588225186206243803657",
+          "rows": 4264777
+        },
+        "2025-06-01": {
+          "content_hash": "1097940416362686410425",
+          "rows": 4045280
+        }
+      },
+      "marts.mart_daily_summary": {
+        "2025-01-01": {
+          "content_hash": "1662473346261720621",
+          "rows": 31
+        },
+        "2025-02-01": {
+          "content_hash": "2996416480983413191",
+          "rows": 28
+        },
+        "2025-03-01": {
+          "content_hash": "17282738613509706325",
+          "rows": 31
+        },
+        "2025-04-01": {
+          "content_hash": "39148349480804019261",
+          "rows": 30
+        },
+        "2025-05-01": {
+          "content_hash": "46855396760775886411",
+          "rows": 31
+        },
+        "2025-06-01": {
+          "content_hash": "2999869059187563958",
+          "rows": 30
+        }
+      },
+      "marts.mart_zone_hour_demand": {
+        "2025-01-01": {
+          "content_hash": "251986811088941637281",
+          "rows": 95077
+        },
+        "2025-02-01": {
+          "content_hash": "-1783865873219559234926",
+          "rows": 100264
+        },
+        "2025-03-01": {
+          "content_hash": "-267507471940109974299",
+          "rows": 120150
+        },
+        "2025-04-01": {
+          "content_hash": "2273511927956486535053",
+          "rows": 112896
+        },
+        "2025-05-01": {
+          "content_hash": "-3472820667086291898949",
+          "rows": 124945
+        },
+        "2025-06-01": {
+          "content_hash": "3885768532225447797454",
+          "rows": 123307
+        }
+      },
+      "quarantine.yellow_trips": {
+        "2025-01-01": {
+          "content_hash": "2004273595987839914859",
+          "rows": 145476
+        },
+        "2025-02-01": {
+          "content_hash": "171354903770904953270",
+          "rows": 183926
+        },
+        "2025-03-01": {
+          "content_hash": "528860133833297281951",
+          "rows": 210175
+        },
+        "2025-04-01": {
+          "content_hash": "1112427832356905106743",
+          "rows": 188184
+        },
+        "2025-05-01": {
+          "content_hash": "-4361783240323810557824",
+          "rows": 327068
+        },
+        "2025-06-01": {
+          "content_hash": "4372020676655006248985",
+          "rows": 277680
+        }
+      },
+      "raw.yellow_trips": {
+        "2025-01-01": {
+          "content_hash": "-7125105567027477250825",
+          "rows": 3329750
+        },
+        "2025-02-01": {
+          "content_hash": "-8365716771459642784471",
+          "rows": 3393617
+        },
+        "2025-03-01": {
+          "content_hash": "5732580021368869356610",
+          "rows": 3935082
+        },
+        "2025-04-01": {
+          "content_hash": "-5440090393669670448370",
+          "rows": 3782369
+        },
+        "2025-05-01": {
+          "content_hash": "1716043124438883508791",
+          "rows": 4264777
+        },
+        "2025-06-01": {
+          "content_hash": "-6620543685049166547915",
+          "rows": 4045280
+        }
+      }
+    }
+  },
+  "wall_seconds": 1229.2915
+}

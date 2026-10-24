@@ -10,6 +10,9 @@ data/
 alert-sink/
 .env
 
+# the Airflow command output of each backfill is bulky, and what matters in it is also in result.json
+results/**/*.log
+
 # dbt build output
 dbt/target/
 dbt/dbt_packages/

@@ -8,7 +8,9 @@ Nothing is estimated: a quantity that no file holds is printed as "not measured"
 from __future__ import annotations
 
 import json
+import re
 import statistics
+from datetime import datetime
 from pathlib import Path
 
 from common import RESULTS, write_json
@@ -22,12 +24,12 @@ def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
 
 
-def med(values: list[float]) -> dict:
+def med(values: list[float], digits: int = 1) -> dict:
     values = [v for v in values if v is not None]
     if not values:
         return {"n": 0}
-    return {"n": len(values), "median": round(statistics.median(values), 1), "min": round(min(values), 1),
-            "max": round(max(values), 1)}
+    return {"n": len(values), "median": round(statistics.median(values), digits), "min": round(min(values), digits),
+            "max": round(max(values), digits)}
 
 
 def fmt(m: dict, unit: str = "s") -> str:
@@ -52,6 +54,12 @@ def backfill_section(out: dict, lines: list[str]) -> None:
             per_task.setdefault(task, {})[month] = med(
                 [r["dag_runs"][month]["tasks"][task]["seconds"] for r in ok if month in r["dag_runs"]
                  and task in r["dag_runs"][month]["tasks"]])
+    heads = {}
+    for path in sorted((RESULTS / "backfill").glob("run-*/environment.json")):
+        code = (load(path) or {}).get("code", {})
+        heads[path.parent.name] = {"git_head": code.get("git_head", "not recorded"),
+                                   "uncommitted": code.get("uncommitted_changes_to_pipeline_dags_dbt_or_compose")}
+    out["backfill"]["code_per_run"] = heads
     out["backfill"]["dag_run_seconds_per_month"] = per_month
     out["backfill"]["task_seconds_per_month"] = per_task
     downloads = {}
@@ -72,7 +80,11 @@ def backfill_section(out: dict, lines: list[str]) -> None:
               f"{len(ok)} of {len(runs)} runs succeeded. Each run deleted the Compose volumes first and downloaded all six files "
               "from the TLC site into an empty landing bucket.", "",
               f"- wall time of `airflow dags backfill` for 2025-01 .. 2025-06: **{fmt(out['backfill']['wall_seconds'])}**",
-              "- per run: " + ", ".join(f"{r['wall_seconds']:.1f} s" for r in ok), "",
+              "- per run: " + ", ".join(f"{r['wall_seconds']:.1f} s" for r in ok),
+              "- code revision per run: " + "; ".join(
+                  f"{run} not recorded" if head["git_head"] == "not recorded" else
+                  f"{run} {head['git_head'][:10]}" + (", with uncommitted changes" if head["uncommitted"] else ", clean")
+                  for run, head in heads.items()), "",
               "| month | DAG run | " + " | ".join(t.replace("_", " ") for t in TASKS) + " |",
               "|---|---|" + "---|" * len(TASKS)]
     for month in MONTHS:
@@ -227,11 +239,11 @@ def alerts_section(out: dict, lines: list[str]) -> None:
         for fault in contract["fault_to_dag_month"]:
             rows = [r["faults"][fault] for r in contract["repeats"]]
             per[fault] = {
-                "failed_without_retry": all(x["validate_state"] == "failed" and x["validate_tries"] <= 1 for x in rows),
+                "failed_without_retry": all(x["validate_state"] == "failed" and x["validate_failed_attempts"] == 1 for x in rows),
                 "downstream_not_run": all(set(x["downstream_states"].values()) == {"upstream_failed"} for x in rows),
                 "task_failure_records": med([x["task_failure_records"] for x in rows]),
                 "dag_failure_records": med([x["dag_failure_records"] for x in rows]),
-                "alert_delay_after_task_ended_s": med([x.get("alert_delay_after_task_ended_s") for x in rows]),
+                "alert_delay_after_task_ended_s": med([x.get("alert_delay_after_task_ended_s") for x in rows], 4),
                 "detected_after_task_started_s": med([x.get("detected_after_task_started_s") for x in rows]),
                 "error": rows[0].get("error", ""),
             }
@@ -258,7 +270,7 @@ def alerts_section(out: dict, lines: list[str]) -> None:
                     "task_states": sorted({r["task_state"] for r in runs}),
                     "findings": sorted({tuple(r["findings"]) for r in runs}),
                     "first_finding_after_task_started_s": med([r.get("first_finding_after_task_started_s") for r in runs]),
-                    "failure_alert_delay_after_task_ended_s": med([r.get("failure_alert_delay_after_task_ended_s") for r in runs])}
+                    "failure_alert_delay_after_task_ended_s": med([r.get("failure_alert_delay_after_task_ended_s") for r in runs], 4)}
             out["freshness_alerts"].append(item)
             lines.append(f"- {sc['label']}: task {item['task_states']}, findings {[list(f) for f in item['findings']]}, first finding "
                          f"{fmt(item['first_finding_after_task_started_s'])} after the task started, failure alert "
@@ -266,6 +278,86 @@ def alerts_section(out: dict, lines: list[str]) -> None:
         lines.append("")
     else:
         lines += ["Freshness: not measured", ""]
+
+
+def earlier_attempts_section(out: dict, lines: list[str]) -> None:
+    """The first tries of four experiments went wrong in ways worth keeping; their files stay in results/."""
+    e: dict = {}
+    lines += ["## Earlier attempts that found problems (files kept)", ""]
+
+    replay = load(RESULTS / "before-mart-fix" / "backfill-run-1" / "replay.json")
+    if replay:
+        deltas = replay["comparison_with_state_before_replay"]["deltas"]
+        e["replay_before_the_mart_fix"] = {"identical": replay["comparison_with_state_before_replay"]["identical"],
+                                           "differences": len(deltas),
+                                           "tables": sorted({d["table"] for d in deltas}),
+                                           "months": len({d["month"] for d in deltas}),
+                                           "row_count_changes": sum(1 for d in deltas if d.get("row_delta"))}
+        r = e["replay_before_the_mart_fix"]
+        lines += [f"- Replay of all six months before the aggregate marts were made exact (`before-mart-fix/`): identical: "
+                  f"{'yes' if r['identical'] else 'NO'}; {r['differences']} table-and-month differences in {', '.join(r['tables'])} "
+                  f"across {r['months']} months, {r['row_count_changes']} of them in a row count."]
+
+    first = load(RESULTS / "idempotency-first-attempt" / "result.json")
+    if first:
+        bad = [x for x in first["runs"] if x["exit_code"] != 0]
+        e["idempotency_first_attempt"] = {
+            "reruns": first["total_reruns"], "failed": len(bad),
+            "failed_reruns": [f"{x['month']} re-run {x['rerun']}" for x in bad],
+            "state_unchanged_after_every_failure": all(x["identical_to_state_before_the_first_rerun"] for x in bad),
+            "duplicate_keys": first["reruns_with_duplicate_keys"]}
+        f = e["idempotency_first_attempt"]
+        lines += [f"- First idempotency attempt (`idempotency-first-attempt/`): {f['reruns']} re-runs, {f['failed']} exited with "
+                  f"status 1 ({', '.join(f['failed_reruns'])}); the warehouse was identical to before after each of them: "
+                  f"{'yes' if f['state_unchanged_after_every_failure'] else 'NO'}; duplicate keys: {f['duplicate_keys']}."]
+
+    episode = RESULTS / "zone-download-probe" / "202-episode" / "output.txt"
+    if episode.exists():
+        text = episode.read_text(encoding="utf-8")
+        tally = {int(m.group(2)): int(m.group(1)) for m in re.finditer(r"(?m)^(\d+) (\d{3}) bytes=\d+", text)}
+        indexes = [int(m.group(1)) for m in re.finditer(r"(?m)^(\d+): 202 ", text)]
+        e["zone_requests_202"] = {"requests": sum(tally.values()), "answered_202_empty": tally.get(202, 0),
+                                  "answered_200": tally.get(200, 0),
+                                  "202s_were_the_first_in_a_row": bool(indexes) and min(indexes) == 0 and max(indexes) + 1 == len(indexes)}
+        z = e["zone_requests_202"]
+        lines += [f"- Plain requests for the zone lookup (`zone-download-probe/202-episode/`): {z['requests']} requests, "
+                  f"{z['answered_202_empty']} answered HTTP 202 with an empty body"
+                  f"{' (the first ' + str(z['answered_202_empty']) + ' in a row)' if z['202s_were_the_first_in_a_row'] else ''}, "
+                  f"{z['answered_200']} answered 200."]
+
+    for name, label in (("run-1-with-the-202-fix-only", "pipeline download with only the 202 fix"),
+                        ("run-2-final-code", "pipeline download, final code")):
+        probe = load(RESULTS / "zone-download-probe" / name / "result.json")
+        if not probe:
+            continue
+        b = probe["part_b_pipeline_download"]
+        answers = sorted({a for c in b["detail"] if c["error"] for a in c["http_answers"]})
+        failed = [c for c in b["detail"] if c["error"]]
+        span = ((datetime.fromisoformat(failed[-1]["at"]) - datetime.fromisoformat(failed[0]["at"])).total_seconds()
+                if failed else None)
+        e[name] = {"calls": b["calls"], "right_file": b["calls_that_ended_with_the_right_file"], "failed": b["calls_that_failed"],
+                   "needed_a_retry": b["calls_that_needed_a_retry"], "failed_http_answers": answers,
+                   "failed_calls_span_s": None if span is None else round(span, 1),
+                   "plain_requests": probe["part_a_plain_requests"]["requests"],
+                   "plain_requests_not_200": sum(t["count"] for t in probe["part_a_plain_requests"]["tally"] if t["status"] != 200)}
+        z = e[name]
+        lines += [f"- Zone-lookup probe, {label} (`zone-download-probe/{name}/`): {z['plain_requests']} plain requests "
+                  f"({z['plain_requests_not_200']} not 200), then {z['calls']} calls of the pipeline's download: "
+                  f"{z['right_file']} ended with the right file, {z['failed']} failed"
+                  + (f" (HTTP {', '.join(map(str, z['failed_http_answers']))}; the failures spanned {z['failed_calls_span_s']:g} s)" if z["failed"] else "")
+                  + f", {z['needed_a_retry']} needed a retry."]
+
+    first_alerts = load(RESULTS / "alerts-first-attempt" / "contract-faults.json")
+    if first_alerts:
+        exercised = sorted({sum(1 for x in rep["faults"].values() if x["validate_state"] is not None) for rep in first_alerts["repeats"]})
+        e["alerts_first_attempt"] = {"repeats": len(first_alerts["repeats"]), "faults_per_repeat": len(first_alerts["fault_to_dag_month"]),
+                                     "faults_that_ran_per_repeat": exercised}
+        a = e["alerts_first_attempt"]
+        lines += [f"- First alerts attempt (`alerts-first-attempt/`): {a['repeats']} repeats offering {a['faults_per_repeat']} broken files "
+                  f"to one backfill; the number of them that actually ran per repeat: {', '.join(map(str, a['faults_that_ran_per_repeat']))} "
+                  f"(`airflow dags backfill` stops at the first failed task unless `--continue-on-failures` is given)."]
+    lines.append("")
+    out["earlier_attempts"] = e
 
 
 def main() -> None:
@@ -278,6 +370,7 @@ def main() -> None:
     crash_section(out, lines)
     injection_section(out, lines)
     alerts_section(out, lines)
+    earlier_attempts_section(out, lines)
     write_json(RESULTS / "summary.json", out)
     (RESULTS / "SUMMARY.md").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     print("wrote", RESULTS / "SUMMARY.md")

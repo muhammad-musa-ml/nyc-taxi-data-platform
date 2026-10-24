@@ -1,0 +1,35 @@
+{
+  "captured_at": "2026-10-24T15:53:52.236719+00:00",
+  "note": "backfill run 4, before the timed section",
+  "code": {
+    "git_head": "b7d6f6e1ee9c706f9972e41f7bfaedaaea9cff37",
+    "uncommitted_changes_to_pipeline_dags_dbt_or_compose": false
+  },
+  "host": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.11",
+    "docker": "24 CPUs, 15550517248 bytes memory, server 28.4.0",
+    "cpu_count_host": 24
+  },
+  "tools": {
+    "pipeline_venv": [
+      "boto3==1.43.118",
+      "dbt-core==1.12.6",
+      "dbt-postgres==1.11.0",
+      "great_expectations==1.24.1",
+      "pandas==3.1.0",
+      "psycopg-binary==3.3.6",
+      "psycopg2-binary==2.9.13",
+      "psycopg==3.3.6",
+      "pyarrow==26.0.0"
+    ],
+    "airflow": [
+      "2.10.5"
+    ],
+    "python": "Python 3.12.9",
+    "postgres": "16.15 (Debian 16.15-1.pgdg13+2)",
+    "compose_images": [
+      "[{\"ID\":\"sha256:4e61d15fd35994cb1e43e1e553dff106794841fd9a99ade2fc8c8bfce4d7872d\",\"ContainerName\":\"taxi-s3-1\",\"Repository\":\"chrislusf/seaweedfs\",\"Tag\":\"latest\",\"Platform\":\"linux/amd64\",\"Size\":193574240,\"LastTagTime\":\"2026-10-24T07:06:23.337067678Z\"},{\"ID\":\"sha256:8820b1b5fe2c4168c38a90752c80096e68e6c2946e6f7af41f233f2a80cffe9e\",\"ContainerName\":\"taxi-airflow-scheduler-1\",\"Repository\":\"taxi-airflow\",\"Tag\":\"local\",\"Platform\":\"linux/amd64\",\"Size\":723299387,\"LastTagTime\":\"2026-10-24T07:52:40.519605647Z\"},{\"ID\":\"sha256:8820b1b5fe2c4168c38a90752c80096e68e6c2946e6f7af41f233f2a80cffe9e\",\"ContainerName\":\"taxi-airflow-webserver-1\",\"Repository\":\"taxi-airflow\",\"Tag\":\"local\",\"Platform\":\"linux/amd64\",\"Size\":723299387,\"LastTagTime\":\"2026-10-24T07:52:40.519605647Z\"},{\"ID\":\"sha256:8820b1b5fe2c4168c38a90752c80096e68e6c2946e6f7af41f233f2a80cffe9e\",\"ContainerName\":\"taxi-s3-init-1\",\"Repository\":\"taxi-airflow\",\"Tag\":\"local\",\"Platform\":\"linux/amd64\",\"Size\":723299387,\"LastTagTime\":\"2026-10-24T07:52:40.519605647Z\"},{\"ID\":\"sha256:9e2cf6287f25c3151f4c9421ccce2b17f3e60061c111a29165e0d2cdd9ff0a97\",\"ContainerName\":\"taxi-postgres-1\",\"Repository\":\"postgres\",\"Tag\":\"16\",\"Platform\":\"linux/amd64\",\"Size\":160313036,\"LastTagTime\":\"2026-10-24T07:00:13.612655572Z\"},{\"ID\":\"sha256:8820b1b5fe2c4168c38a90752c80096e68e6c2946e6f7af41f233f2a80cffe9e\",\"ContainerName\":\"taxi-airflow-init-1\",\"Repository\":\"taxi-airflow\",\"Tag\":\"local\",\"Platform\":\"linux/amd64\",\"Size\":723299387,\"LastTagTime\":\"2026-10-24T07:52:40.519605647Z\"}]"
+    ]
+  }
+}

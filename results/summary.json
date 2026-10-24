@@ -1,0 +1,1690 @@
+{
+  "backfill": {
+    "code_per_run": {
+      "run-1": {
+        "git_head": "not recorded",
+        "uncommitted": null
+      },
+      "run-2": {
+        "git_head": "b7d6f6e1ee9c706f9972e41f7bfaedaaea9cff37",
+        "uncommitted": false
+      },
+      "run-3": {
+        "git_head": "b7d6f6e1ee9c706f9972e41f7bfaedaaea9cff37",
+        "uncommitted": false
+      },
+      "run-4": {
+        "git_head": "b7d6f6e1ee9c706f9972e41f7bfaedaaea9cff37",
+        "uncommitted": false
+      },
+      "run-5": {
+        "git_head": "b7d6f6e1ee9c706f9972e41f7bfaedaaea9cff37",
+        "uncommitted": false
+      }
+    },
+    "counts": {
+      "checks": {
+        "2025-01-01": {
+          "DISTANCE_OUT_OF_RANGE": {
+            "rows_failed": 122,
+            "rows_primary": 100
+          },
+          "DROPOFF_BEFORE_PICKUP": {
+            "rows_failed": 124,
+            "rows_primary": 124
+          },
+          "DURATION_OVER_24H": {
+            "rows_failed": 20,
+            "rows_primary": 20
+          },
+          "EXCESSIVE_AMOUNT": {
+            "rows_failed": 1,
+            "rows_primary": 1
+          },
+          "IMPLAUSIBLE_SPEED": {
+            "rows_failed": 899,
+            "rows_primary": 772
+          },
+          "NEGATIVE_AMOUNT": {
+            "rows_failed": 144439,
+            "rows_primary": 144437
+          },
+          "PICKUP_OUTSIDE_MONTH": {
+            "rows_failed": 22,
+            "rows_primary": 22
+          }
+        },
+        "2025-02-01": {
+          "DISTANCE_OUT_OF_RANGE": {
+            "rows_failed": 151,
+            "rows_primary": 126
+          },
+          "DROPOFF_BEFORE_PICKUP": {
+            "rows_failed": 93,
+            "rows_primary": 93
+          },
+          "DURATION_OVER_24H": {
+            "rows_failed": 16,
+            "rows_primary": 16
+          },
+          "EXCESSIVE_AMOUNT": {
+            "rows_failed": 1,
+            "rows_primary": 1
+          },
+          "IMPLAUSIBLE_SPEED": {
+            "rows_failed": 765,
+            "rows_primary": 616
+          },
+          "NEGATIVE_AMOUNT": {
+            "rows_failed": 183043,
+            "rows_primary": 183043
+          },
+          "PICKUP_OUTSIDE_MONTH": {
+            "rows_failed": 31,
+            "rows_primary": 31
+          }
+        },
+        "2025-03-01": {
+          "DISTANCE_OUT_OF_RANGE": {
+            "rows_failed": 179,
+            "rows_primary": 145
+          },
+          "DROPOFF_BEFORE_PICKUP": {
+            "rows_failed": 81,
+            "rows_primary": 81
+          },
+          "DURATION_OVER_24H": {
+            "rows_failed": 11,
+            "rows_primary": 11
+          },
+          "EXCESSIVE_AMOUNT": {
+            "rows_failed": 1,
+            "rows_primary": 1
+          },
+          "IMPLAUSIBLE_SPEED": {
+            "rows_failed": 961,
+            "rows_primary": 772
+          },
+          "NEGATIVE_AMOUNT": {
+            "rows_failed": 209132,
+            "rows_primary": 209132
+          },
+          "PICKUP_OUTSIDE_MONTH": {
+            "rows_failed": 33,
+            "rows_primary": 33
+          }
+        },
+        "2025-04-01": {
+          "DISTANCE_OUT_OF_RANGE": {
+            "rows_failed": 269,
+            "rows_primary": 240
+          },
+          "DROPOFF_BEFORE_PICKUP": {
+            "rows_failed": 163,
+            "rows_primary": 163
+          },
+          "DURATION_OVER_24H": {
+            "rows_failed": 25,
+            "rows_primary": 25
+          },
+          "IMPLAUSIBLE_SPEED": {
+            "rows_failed": 1002,
+            "rows_primary": 731
+          },
+          "NEGATIVE_AMOUNT": {
+            "rows_failed": 187018,
+            "rows_primary": 187018
+          },
+          "PICKUP_OUTSIDE_MONTH": {
+            "rows_failed": 7,
+            "rows_primary": 7
+          }
+        },
+        "2025-05-01": {
+          "DISTANCE_OUT_OF_RANGE": {
+            "rows_failed": 309,
+            "rows_primary": 256
+          },
+          "DROPOFF_BEFORE_PICKUP": {
+            "rows_failed": 101,
+            "rows_primary": 101
+          },
+          "DURATION_OVER_24H": {
+            "rows_failed": 26,
+            "rows_primary": 26
+          },
+          "IMPLAUSIBLE_SPEED": {
+            "rows_failed": 1175,
+            "rows_primary": 857
+          },
+          "NEGATIVE_AMOUNT": {
+            "rows_failed": 325804,
+            "rows_primary": 325804
+          },
+          "PICKUP_OUTSIDE_MONTH": {
+            "rows_failed": 24,
+            "rows_primary": 24
+          }
+        },
+        "2025-06-01": {
+          "DISTANCE_OUT_OF_RANGE": {
+            "rows_failed": 222,
+            "rows_primary": 178
+          },
+          "DROPOFF_BEFORE_PICKUP": {
+            "rows_failed": 231,
+            "rows_primary": 231
+          },
+          "DUPLICATE_TRIP": {
+            "rows_failed": 1,
+            "rows_primary": 1
+          },
+          "DURATION_OVER_24H": {
+            "rows_failed": 20,
+            "rows_primary": 20
+          },
+          "EXCESSIVE_AMOUNT": {
+            "rows_failed": 1,
+            "rows_primary": 1
+          },
+          "IMPLAUSIBLE_SPEED": {
+            "rows_failed": 1396,
+            "rows_primary": 1174
+          },
+          "NEGATIVE_AMOUNT": {
+            "rows_failed": 276056,
+            "rows_primary": 276055
+          },
+          "PICKUP_OUTSIDE_MONTH": {
+            "rows_failed": 20,
+            "rows_primary": 20
+          }
+        }
+      },
+      "ledger": {
+        "2025-01-01": {
+          "file_bytes": 59158238,
+          "file_sha256": "9af277e4c0d3f9deb30644da822981e1e7df6af58313170fd3aa8a474485488a",
+          "load_count": 1,
+          "rows_in": 3475226,
+          "rows_loaded": 3329750,
+          "rows_quarantined": 145476
+        },
+        "2025-02-01": {
+          "file_bytes": 60343086,
+          "file_sha256": "037cba555a73663f3a51a2c27816e40e3feb364769942bdf122b9da31e377bd3",
+          "load_count": 1,
+          "rows_in": 3577543,
+          "rows_loaded": 3393617,
+          "rows_quarantined": 183926
+        },
+        "2025-03-01": {
+          "file_bytes": 69964745,
+          "file_sha256": "20c4b77cce457b7cfdae77c5069ca7dc91c167f876a41467f4502ab69487a186",
+          "load_count": 1,
+          "rows_in": 4145257,
+          "rows_loaded": 3935082,
+          "rows_quarantined": 210175
+        },
+        "2025-04-01": {
+          "file_bytes": 67352824,
+          "file_sha256": "6f98938de9380a3f85600533816f0dc0e6d9b5b210e485d623952bac599bbe28",
+          "load_count": 1,
+          "rows_in": 3970553,
+          "rows_loaded": 3782369,
+          "rows_quarantined": 188184
+        },
+        "2025-05-01": {
+          "file_bytes": 77837865,
+          "file_sha256": "7ef46bcd0fceee7f8c0bb38a532be05bceefabb512d4bb0b32a7727dd862b15c",
+          "load_count": 1,
+          "rows_in": 4591845,
+          "rows_loaded": 4264777,
+          "rows_quarantined": 327068
+        },
+        "2025-06-01": {
+          "file_bytes": 73542954,
+          "file_sha256": "1bea7f5b09c744414451fa7fef09fbc5a393ffb1621c859be6ba0df23a14e1b6",
+          "load_count": 1,
+          "rows_in": 4322960,
+          "rows_loaded": 4045280,
+          "rows_quarantined": 277680
+        }
+      }
+    },
+    "counts_identical_across_runs": true,
+    "dag_run_seconds_per_month": {
+      "2025-01": {
+        "max": 161.9,
+        "median": 140.9,
+        "min": 137.6,
+        "n": 5
+      },
+      "2025-02": {
+        "max": 176.4,
+        "median": 160.8,
+        "min": 157.1,
+        "n": 5
+      },
+      "2025-03": {
+        "max": 208.1,
+        "median": 201.3,
+        "min": 184.2,
+        "n": 5
+      },
+      "2025-04": {
+        "max": 230.9,
+        "median": 211.5,
+        "min": 190.8,
+        "n": 5
+      },
+      "2025-05": {
+        "max": 244.1,
+        "median": 231.9,
+        "min": 211.0,
+        "n": 5
+      },
+      "2025-06": {
+        "max": 244.4,
+        "median": 235.9,
+        "min": 228.1,
+        "n": 5
+      }
+    },
+    "download_seconds_per_month": {
+      "2025-01": {
+        "max": 5.3,
+        "median": 4.3,
+        "min": 4.1,
+        "n": 5
+      },
+      "2025-02": {
+        "max": 4.3,
+        "median": 4.3,
+        "min": 4.2,
+        "n": 5
+      },
+      "2025-03": {
+        "max": 5.3,
+        "median": 4.8,
+        "min": 4.8,
+        "n": 5
+      },
+      "2025-04": {
+        "max": 5.1,
+        "median": 4.7,
+        "min": 4.7,
+        "n": 5
+      },
+      "2025-05": {
+        "max": 5.7,
+        "median": 5.4,
+        "min": 5.2,
+        "n": 5
+      },
+      "2025-06": {
+        "max": 5.7,
+        "median": 5.0,
+        "min": 5.0,
+        "n": 5
+      }
+    },
+    "downloads_match_independent_digests": {
+      "runs": 5,
+      "runs_matching": 5,
+      "zone_lookup_match": true
+    },
+    "file_bytes": {
+      "2025-01": 59158238,
+      "2025-02": 60343086,
+      "2025-03": 69964745,
+      "2025-04": 67352824,
+      "2025-05": 77837865,
+      "2025-06": 73542954
+    },
+    "load_zones_stage": {
+      "max_seconds": 0.7,
+      "records_from_the_landed_copy": 0,
+      "stage_records": 30
+    },
+    "runs": 5,
+    "runs_succeeded": 5,
+    "task_seconds_per_month": {
+      "dbt_run": {
+        "2025-01": {
+          "max": 58.9,
+          "median": 54.7,
+          "min": 53.0,
+          "n": 5
+        },
+        "2025-02": {
+          "max": 73.2,
+          "median": 71.7,
+          "min": 69.3,
+          "n": 5
+        },
+        "2025-03": {
+          "max": 86.3,
+          "median": 80.3,
+          "min": 77.9,
+          "n": 5
+        },
+        "2025-04": {
+          "max": 92.9,
+          "median": 84.9,
+          "min": 81.8,
+          "n": 5
+        },
+        "2025-05": {
+          "max": 94.3,
+          "median": 92.0,
+          "min": 88.3,
+          "n": 5
+        },
+        "2025-06": {
+          "max": 94.7,
+          "median": 92.5,
+          "min": 88.2,
+          "n": 5
+        }
+      },
+      "dbt_test": {
+        "2025-01": {
+          "max": 13.0,
+          "median": 11.9,
+          "min": 11.6,
+          "n": 5
+        },
+        "2025-02": {
+          "max": 12.9,
+          "median": 12.5,
+          "min": 12.2,
+          "n": 5
+        },
+        "2025-03": {
+          "max": 46.0,
+          "median": 25.7,
+          "min": 20.5,
+          "n": 5
+        },
+        "2025-04": {
+          "max": 46.8,
+          "median": 44.0,
+          "min": 23.5,
+          "n": 5
+        },
+        "2025-05": {
+          "max": 52.8,
+          "median": 49.9,
+          "min": 27.1,
+          "n": 5
+        },
+        "2025-06": {
+          "max": 55.8,
+          "median": 53.4,
+          "min": 50.6,
+          "n": 5
+        }
+      },
+      "fetch_to_landing": {
+        "2025-01": {
+          "max": 13.0,
+          "median": 9.6,
+          "min": 9.2,
+          "n": 5
+        },
+        "2025-02": {
+          "max": 9.8,
+          "median": 9.5,
+          "min": 9.3,
+          "n": 5
+        },
+        "2025-03": {
+          "max": 10.4,
+          "median": 10.2,
+          "min": 10.0,
+          "n": 5
+        },
+        "2025-04": {
+          "max": 11.1,
+          "median": 10.2,
+          "min": 9.8,
+          "n": 5
+        },
+        "2025-05": {
+          "max": 11.2,
+          "median": 10.7,
+          "min": 10.6,
+          "n": 5
+        },
+        "2025-06": {
+          "max": 11.1,
+          "median": 10.2,
+          "min": 10.1,
+          "n": 5
+        }
+      },
+      "load_warehouse": {
+        "2025-01": {
+          "max": 22.9,
+          "median": 21.2,
+          "min": 20.3,
+          "n": 5
+        },
+        "2025-02": {
+          "max": 27.1,
+          "median": 23.2,
+          "min": 22.0,
+          "n": 5
+        },
+        "2025-03": {
+          "max": 27.4,
+          "median": 24.6,
+          "min": 24.2,
+          "n": 5
+        },
+        "2025-04": {
+          "max": 28.1,
+          "median": 25.9,
+          "min": 24.4,
+          "n": 5
+        },
+        "2025-05": {
+          "max": 29.8,
+          "median": 28.0,
+          "min": 27.1,
+          "n": 5
+        },
+        "2025-06": {
+          "max": 26.8,
+          "median": 26.4,
+          "min": 24.9,
+          "n": 5
+        }
+      },
+      "load_zones": {
+        "2025-01": {
+          "max": 6.7,
+          "median": 6.4,
+          "min": 6.0,
+          "n": 5
+        },
+        "2025-02": {
+          "max": 5.9,
+          "median": 5.6,
+          "min": 5.2,
+          "n": 5
+        },
+        "2025-03": {
+          "max": 5.9,
+          "median": 5.6,
+          "min": 5.4,
+          "n": 5
+        },
+        "2025-04": {
+          "max": 6.1,
+          "median": 5.5,
+          "min": 5.3,
+          "n": 5
+        },
+        "2025-05": {
+          "max": 6.4,
+          "median": 5.6,
+          "min": 5.5,
+          "n": 5
+        },
+        "2025-06": {
+          "max": 5.8,
+          "median": 5.6,
+          "min": 5.4,
+          "n": 5
+        }
+      },
+      "reconcile_and_check_freshness": {
+        "2025-01": {
+          "max": 5.8,
+          "median": 5.4,
+          "min": 5.1,
+          "n": 5
+        },
+        "2025-02": {
+          "max": 6.3,
+          "median": 5.7,
+          "min": 5.5,
+          "n": 5
+        },
+        "2025-03": {
+          "max": 8.4,
+          "median": 7.7,
+          "min": 6.7,
+          "n": 5
+        },
+        "2025-04": {
+          "max": 10.9,
+          "median": 9.3,
+          "min": 8.7,
+          "n": 5
+        },
+        "2025-05": {
+          "max": 10.1,
+          "median": 9.7,
+          "min": 9.3,
+          "n": 5
+        },
+        "2025-06": {
+          "max": 11.0,
+          "median": 10.8,
+          "min": 10.0,
+          "n": 5
+        }
+      },
+      "validate_with_great_expectations": {
+        "2025-01": {
+          "max": 34.8,
+          "median": 25.6,
+          "min": 24.2,
+          "n": 5
+        },
+        "2025-02": {
+          "max": 34.9,
+          "median": 26.3,
+          "min": 25.9,
+          "n": 5
+        },
+        "2025-03": {
+          "max": 39.0,
+          "median": 28.1,
+          "min": 26.9,
+          "n": 5
+        },
+        "2025-04": {
+          "max": 33.8,
+          "median": 29.1,
+          "min": 27.4,
+          "n": 5
+        },
+        "2025-05": {
+          "max": 38.0,
+          "median": 34.8,
+          "min": 32.8,
+          "n": 5
+        },
+        "2025-06": {
+          "max": 34.0,
+          "median": 32.0,
+          "min": 31.0,
+          "n": 5
+        }
+      }
+    },
+    "totals": {
+      "rows_in": 24083384,
+      "rows_loaded": 22750875,
+      "rows_quarantined": 1332509
+    },
+    "wall_seconds": {
+      "max": 1275.0,
+      "median": 1177.0,
+      "min": 1162.0,
+      "n": 5
+    }
+  },
+  "contract_alerts": {
+    "nothing_loaded": true,
+    "per_fault": {
+      "DROPPED_REQUIRED_COLUMN": {
+        "alert_delay_after_task_ended_s": {
+          "max": 0.0019,
+          "median": 0.0016,
+          "min": 0.0012,
+          "n": 5
+        },
+        "dag_failure_records": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 5
+        },
+        "detected_after_task_started_s": {
+          "max": 9.0,
+          "median": 8.9,
+          "min": 8.5,
+          "n": 5
+        },
+        "downstream_not_run": true,
+        "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+        "failed_without_retry": true,
+        "task_failure_records": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 5
+        }
+      },
+      "EMPTY_FILE": {
+        "alert_delay_after_task_ended_s": {
+          "max": 0.0014,
+          "median": 0.0014,
+          "min": 0.0012,
+          "n": 5
+        },
+        "dag_failure_records": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 5
+        },
+        "detected_after_task_started_s": {
+          "max": 5.4,
+          "median": 5.2,
+          "min": 5.0,
+          "n": 5
+        },
+        "downstream_not_run": true,
+        "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+        "failed_without_retry": true,
+        "task_failure_records": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 5
+        }
+      },
+      "RENAMED_REQUIRED_COLUMN": {
+        "alert_delay_after_task_ended_s": {
+          "max": 0.0018,
+          "median": 0.0015,
+          "min": 0.0013,
+          "n": 5
+        },
+        "dag_failure_records": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 5
+        },
+        "detected_after_task_started_s": {
+          "max": 9.1,
+          "median": 8.5,
+          "min": 8.3,
+          "n": 5
+        },
+        "downstream_not_run": true,
+        "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+        "failed_without_retry": true,
+        "task_failure_records": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 5
+        }
+      },
+      "WRONG_COLUMN_TYPE": {
+        "alert_delay_after_task_ended_s": {
+          "max": 0.0022,
+          "median": 0.0016,
+          "min": 0.0014,
+          "n": 5
+        },
+        "dag_failure_records": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 5
+        },
+        "detected_after_task_started_s": {
+          "max": 14.7,
+          "median": 13.8,
+          "min": 13.7,
+          "n": 5
+        },
+        "downstream_not_run": true,
+        "error": "/opt/pipeline-venv/bin/***-platform exited 2; retrying cannot fix this",
+        "failed_without_retry": true,
+        "task_failure_records": {
+          "max": 1,
+          "median": 1,
+          "min": 1,
+          "n": 5
+        }
+      }
+    },
+    "repeats": 5
+  },
+  "crash": {
+    "finished_before_the_kill": 0,
+    "identical_after_retry": 5,
+    "killed_mid_copy": 5,
+    "month": "2025-02",
+    "seconds_until_released": {
+      "max": 60.7,
+      "median": 60.7,
+      "min": 0.4,
+      "n": 5
+    },
+    "trials": 5,
+    "unchanged_after_kill": 5,
+    "valid_trials": 5
+  },
+  "earlier_attempts": {
+    "alerts_first_attempt": {
+      "faults_per_repeat": 4,
+      "faults_that_ran_per_repeat": [
+        1
+      ],
+      "repeats": 5
+    },
+    "idempotency_first_attempt": {
+      "duplicate_keys": 0,
+      "failed": 3,
+      "failed_reruns": [
+        "2025-03 re-run 3",
+        "2025-03 re-run 4",
+        "2025-03 re-run 5"
+      ],
+      "reruns": 30,
+      "state_unchanged_after_every_failure": true
+    },
+    "replay_before_the_mart_fix": {
+      "differences": 12,
+      "identical": false,
+      "months": 6,
+      "row_count_changes": 0,
+      "tables": [
+        "marts.mart_daily_summary",
+        "marts.mart_zone_hour_demand"
+      ]
+    },
+    "run-1-with-the-202-fix-only": {
+      "calls": 50,
+      "failed": 30,
+      "failed_calls_span_s": 12.7,
+      "failed_http_answers": [
+        403
+      ],
+      "needed_a_retry": 0,
+      "plain_requests": 150,
+      "plain_requests_not_200": 0,
+      "right_file": 20
+    },
+    "run-2-final-code": {
+      "calls": 100,
+      "failed": 0,
+      "failed_calls_span_s": null,
+      "failed_http_answers": [],
+      "needed_a_retry": 0,
+      "plain_requests": 100,
+      "plain_requests_not_200": 0,
+      "right_file": 100
+    },
+    "zone_requests_202": {
+      "202s_were_the_first_in_a_row": true,
+      "answered_200": 127,
+      "answered_202_empty": 23,
+      "requests": 150
+    }
+  },
+  "freshness_alerts": [
+    {
+      "environment": {},
+      "failure_alert_delay_after_task_ended_s": {
+        "n": 0
+      },
+      "findings": [
+        []
+      ],
+      "first_finding_after_task_started_s": {
+        "n": 0
+      },
+      "repeats": 5,
+      "scenario": "as configured (all six months loaded and recent)",
+      "task_states": [
+        "success"
+      ]
+    },
+    {
+      "environment": {
+        "TAXI_EXPECTED_LATEST_MONTH": "2025-07"
+      },
+      "failure_alert_delay_after_task_ended_s": {
+        "max": 0.0015,
+        "median": 0.0014,
+        "min": 0.001,
+        "n": 5
+      },
+      "findings": [
+        [
+          "LATEST_MONTH_BEHIND",
+          "MISSING_MONTH"
+        ]
+      ],
+      "first_finding_after_task_started_s": {
+        "max": 4.5,
+        "median": 4.3,
+        "min": 4.3,
+        "n": 5
+      },
+      "repeats": 5,
+      "scenario": "a seventh month is expected but was never loaded",
+      "task_states": [
+        "failed"
+      ]
+    },
+    {
+      "environment": {
+        "TAXI_MAX_LOAD_AGE_HOURS": "0.05"
+      },
+      "failure_alert_delay_after_task_ended_s": {
+        "max": 0.0017,
+        "median": 0.0012,
+        "min": 0.0011,
+        "n": 5
+      },
+      "findings": [
+        [
+          "LOAD_TOO_OLD"
+        ]
+      ],
+      "first_finding_after_task_started_s": {
+        "max": 4.4,
+        "median": 4.2,
+        "min": 4.0,
+        "n": 5
+      },
+      "repeats": 5,
+      "scenario": "the newest load is older than the allowed 0.05 h (3 min)",
+      "task_states": [
+        "failed"
+      ]
+    }
+  ],
+  "idempotency": {
+    "reruns_per_month": 5,
+    "reruns_with_any_difference_or_failure": 0,
+    "reruns_with_duplicate_keys": 0,
+    "total_reruns": 30
+  },
+  "injection": {
+    "agrees_with_loaded_table": true,
+    "detectable_total": {
+      "caught_by_expected_code": {
+        "max": 4600,
+        "median": 4600,
+        "min": 4600,
+        "n": 5
+      },
+      "injected": {
+        "max": 4600,
+        "median": 4600,
+        "min": 4600,
+        "n": 5
+      },
+      "loaded": {
+        "max": 0,
+        "median": 0,
+        "min": 0,
+        "n": 5
+      },
+      "quarantined_by_other_code_only": {
+        "max": 0,
+        "median": 0,
+        "min": 0,
+        "n": 5
+      }
+    },
+    "month": "2025-03",
+    "per_fault": {
+      "DISTANCE_OUT_OF_RANGE": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "DISTANCE_OUT_OF_RANGE",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "DROPOFF_BEFORE_PICKUP": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "DROPOFF_BEFORE_PICKUP",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "DUPLICATE_TRIP": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "DUPLICATE_TRIP",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "DURATION_OVER_24H": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "DURATION_OVER_24H",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "EXCESSIVE_AMOUNT": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "EXCESSIVE_AMOUNT",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "FEE_OUT_OF_RANGE": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "FEE_OUT_OF_RANGE",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "IMPLAUSIBLE_SPEED": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "IMPLAUSIBLE_SPEED",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "INVALID_PASSENGER_COUNT": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "INVALID_PASSENGER_COUNT",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "INVALID_PAYMENT_TYPE": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "INVALID_PAYMENT_TYPE",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "INVALID_VENDOR": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "INVALID_VENDOR",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "NEGATIVE_AMOUNT": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "NEGATIVE_AMOUNT",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "NULL_DISTANCE": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "NULL_DISTANCE",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "NULL_DROPOFF_TS": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "NULL_DROPOFF_TS",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "NULL_DROPOFF_ZONE": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "NULL_ZONE",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "NULL_FARE": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "NULL_AMOUNT",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "NULL_PAYMENT_TYPE": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "NULL_PAYMENT_TYPE",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "NULL_PICKUP_TS": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "NULL_PICKUP_TS",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "NULL_PICKUP_ZONE": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "NULL_ZONE",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "NULL_TOTAL": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "NULL_AMOUNT",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "NULL_VENDOR": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "NULL_VENDOR",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "PICKUP_OUTSIDE_MONTH": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "PICKUP_OUTSIDE_MONTH",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "PLAUSIBLE_FARE_TAMPER": {
+        "caught": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "detectable": false,
+        "expected_reason_code": null,
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "UNKNOWN_DROPOFF_ZONE": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "UNKNOWN_DROPOFF_ZONE",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "UNKNOWN_PICKUP_ZONE": {
+        "caught": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "detectable": true,
+        "expected_reason_code": "UNKNOWN_PICKUP_ZONE",
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      },
+      "ZONE_SWAP": {
+        "caught": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        },
+        "detectable": false,
+        "expected_reason_code": null,
+        "injected": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "loaded": {
+          "max": 200,
+          "median": 200,
+          "min": 200,
+          "n": 5
+        },
+        "other_code_only": {
+          "max": 0,
+          "median": 0,
+          "min": 0,
+          "n": 5
+        }
+      }
+    },
+    "per_fault_count": 200,
+    "seeds": 5,
+    "undetectable_total": {
+      "caught_by_expected_code": {
+        "max": 0,
+        "median": 0,
+        "min": 0,
+        "n": 5
+      },
+      "injected": {
+        "max": 400,
+        "median": 400,
+        "min": 400,
+        "n": 5
+      },
+      "loaded": {
+        "max": 400,
+        "median": 400,
+        "min": 400,
+        "n": 5
+      },
+      "quarantined_by_other_code_only": {
+        "max": 0,
+        "median": 0,
+        "min": 0,
+        "n": 5
+      }
+    },
+    "unexpected_extra_quarantined": {
+      "max": 0,
+      "median": 0,
+      "min": 0,
+      "n": 5
+    }
+  },
+  "replay": [
+    {
+      "deltas": [],
+      "exit_code": 0,
+      "identical": true,
+      "load_count_per_month": {
+        "2025-01-01": 2,
+        "2025-02-01": 2,
+        "2025-03-01": 2,
+        "2025-04-01": 2,
+        "2025-05-01": 2,
+        "2025-06-01": 2
+      },
+      "run": "run-1",
+      "wall_seconds": 1341.0838
+    }
+  ]
+}
