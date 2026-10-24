@@ -54,6 +54,67 @@ These credentials are local development values for containers that are not reach
 Why PostgreSQL and not DuckDB, why tasks call a command line, and what the object store is:
 [docs/design.md](docs/design.md).
 
+## Results
+
+Every figure here is copied from [results/SUMMARY.md](results/SUMMARY.md), which `scripts/experiments/summarize.py`
+computes from the raw files in [`results/`](results/); [docs/measurements.md](docs/measurements.md) says how each one
+was taken and on what. Medians, with the range and the number of runs (n) in brackets. Everything ran on one shared
+laptop (see [Limits](#limits)).
+
+**Rows.** The six months hold 24,083,384 trips. 22,750,875 were loaded and 1,332,509 (5.53%) were quarantined; the
+counts were identical in all 5 backfills. NEGATIVE_AMOUNT is the largest group in every month, from 144,439 rows in
+January to 325,804 in May (a row can fail several rules, and each rule's count is kept).
+
+| month | rows in | quarantined | share | DAG run | validate | load | dbt run | dbt test |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 2025-01 | 3,475,226 | 145,476 | 4.19% | 140.9 s | 25.6 s | 21.2 s | 54.7 s | 11.9 s |
+| 2025-02 | 3,577,543 | 183,926 | 5.14% | 160.8 s | 26.3 s | 23.2 s | 71.7 s | 12.5 s |
+| 2025-03 | 4,145,257 | 210,175 | 5.07% | 201.3 s | 28.1 s | 24.6 s | 80.3 s | 25.7 s |
+| 2025-04 | 3,970,553 | 188,184 | 4.74% | 211.5 s | 29.1 s | 25.9 s | 84.9 s | 44 s |
+| 2025-05 | 4,591,845 | 327,068 | 7.12% | 231.9 s | 34.8 s | 28 s | 92 s | 49.9 s |
+| 2025-06 | 4,322,960 | 277,680 | 6.42% | 235.9 s | 32 s | 26.4 s | 92.5 s | 53.4 s |
+
+**Backfill.** Starting from an empty stack and downloading all six files from the TLC site, the whole range took
+1177 s (1162-1275, n=5). The table's times are medians over those 5 runs, per task; dbt's run is the longest task in
+every month. A replay of the whole range afterwards took 1341.1 s (n=1), exited 0 and left every row count and
+content hash of the raw, quarantine and fact tables and both marts unchanged (ledger load count 2 per month).
+The downloaded files matched an independent `curl` download by SHA-256 and size in 5 of 5 runs.
+
+**Re-running a loaded month.** 30 re-runs (5 per month): 0 changed any row count, content hash or ledger count, and
+0 left a duplicate key. The first attempt at this experiment had 3 of 30 re-runs exit with status 1 (2025-03,
+re-runs 3 to 5); the warehouse was identical after each. They failed at the step that downloads the zone lookup, and I
+had not kept the error text. Probing that URL afterwards showed the CDN answering with no file, which the download
+mishandled; the fix and the evidence are in [docs/findings.md](docs/findings.md) (section 7). The 30 above are the
+rerun on the fixed code, in which the CDN did not misbehave, so the fix itself is shown by its tests and not by this run.
+
+**Killing the loader.** Five times the loader's container was SIGKILLed while PostgreSQL showed its `COPY` running on
+2025-02: the warehouse was identical to before in 5 of 5, and identical after running the load again in 5 of 5.
+PostgreSQL released the dead loader's locks after 60.7 s (0.4-60.7, n=5): 0.4 s when the kill came 0 or 3 s into
+the `COPY`, 60.7 s when it came 6, 9 or 12 s in.
+
+**Catching bad rows.** Real March rows that had passed every rule were changed to carry each of 25 kinds of fault, 200
+rows per kind, and the whole pipeline was run on the result, 5 times with different seeds. For the 23 kinds a rule
+should see: 4600 rows injected per run, 4600 caught by the expected reason code (4600-4600, n=5), 0 caught only by
+another code, 0 loaded. For the 2 kinds no rule can see (a fare raised to another plausible fare, and a pickup zone
+replaced by another valid zone): 400 injected per run and 400 loaded. The pipeline rejected 0 rows beyond the file's
+own rejects and the injected ones. The table by fault is in [results/SUMMARY.md](results/SUMMARY.md). The injected
+faults are synthetic and I wrote them and the rules, so a perfect score here shows the rules do what they say, not that
+they would catch every real defect.
+
+**Alerts.** Four broken files (a renamed column, a dropped column, a wrong column type, no rows) were offered to the
+monthly DAG, 5 times each. Every time the validate task failed in a single attempt, the later tasks did not run, nothing was
+loaded, and the sink received one task-failure record and one DAG-failure record. The record appeared 0.0014 to
+0.0016 s after the task ended (medians per fault) and the failure was detected 5.2 to 13.8 s after the task started
+(medians per fault). The freshness DAG found nothing on six loaded months; expecting a seventh month it reported
+LATEST_MONTH_BEHIND and MISSING_MONTH, 4.3 s (4.3-4.5, n=5) after the task started; with a 3-minute age limit it reported
+LOAD_TOO_OLD, 4.2 s (4-4.4, n=5) after the task started.
+
+**What the first attempts found.** The first replay was not identical (12 table-and-month differences in the two
+aggregate marts, from floating-point sums over rows in a different order), a download that the CDN answered with HTTP
+202 and no body, or with HTTP 403 to every request in a run, and a first alerts run that exercised one broken file of
+four. Each is in
+[docs/findings.md](docs/findings.md) and its files are kept under `results/`.
+
 ## Running it
 
 Needs Docker with Compose. The Airflow image is 3.37 GB because it carries the data libraries.

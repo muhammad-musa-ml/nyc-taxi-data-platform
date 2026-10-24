@@ -78,6 +78,7 @@ Rows that failed each rule (a row can fail several; the first failing rule is it
 - warehouse identical to before the kill: 5 of 5
 - warehouse identical to before after running the load again: 5 of 5
 - seconds until PostgreSQL released the dead loader's locks: 60.7 s (0.4-60.7, n=5)
+- per trial (seconds after the COPY first showed before the kill -> seconds until the locks were released): 0 -> 0.4; 3 -> 0.4; 6 -> 60.7; 9 -> 60.7; 12 -> 60.7
 
 ## Injected bad rows
 

@@ -60,11 +60,30 @@ beyond that, and the 12-digit fractions of a raw `float` trip the publish checks
 
 ## Which code produced which run
 
-`environment.json` records the git revision and whether the pipeline code, DAGs, dbt project or compose file had
-uncommitted changes. Run 1 and its replay were taken before the zone-download fix described in findings section 7 and
-before the other changes listed there; the rest were taken after it. The fix changes only what happens when the CDN
-does not answer with the file, so the happy path that a timing measures is the same code; the longest `load_zones` stage
-in each run is reported in the summary so a retry (at least 2 s of waiting) would be visible.
+Runs 2 to 5 record commit `b7d6f6e` in their `environment.json`, with no uncommitted change to the pipeline, the DAGs,
+the dbt project or the compose file. Run 1 and its replay were taken earlier and did not record a revision. The last
+commit that changed anything a backfill uses before them is `3a31a8f` (the exact aggregate marts); the commits
+between it and `b7d6f6e` changed the bad-row injector, which a backfill does not use, and then the download and the
+compose file. Two things therefore differ between run 1 and runs 2 to 5 on the path a backfill takes:
+
+- the download code (findings section 7): an answer of HTTP 202, 403 (for the zone lookup) or an empty body is retried
+  instead of used or reported as "not published", and the zone lookup falls back to its landed copy. When the CDN
+  answers 200 with the file, as it did for the downloads in these runs, it is the same single request. The longest
+  `load_zones` stage of the runs is in the summary: a retry would have added at least 2 s of waiting, and a fallback
+  is counted;
+- the Airflow administrator's address in the compose file, which matters only when the stack starts.
+
+Run 1's wall time is the highest of the five. These runs cannot say whether that comes from the code or from the
+machine.
+
+## The first attempts
+
+Four experiments went wrong the first time and were redone; their files stay in `results/` and their numbers are in
+the last section of the summary: the first replay (before the marts were made exact), the first idempotency run, the
+zone-download probes, and the first alerts run. In that last one, `airflow dags backfill` stopped at the first failed
+task, so only one of the four broken files ran in each repeat; the script now runs one backfill per file and counts
+attempts from Airflow's `task_fail` table, because `task_instance.try_number` keeps growing across `--reset-dagruns`
+and cannot show that a task was not retried.
 
 ## What was not measured
 

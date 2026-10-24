@@ -184,7 +184,9 @@ def crash_section(out: dict, lines: list[str]) -> None:
               f"(already finished before the kill: {data['trials_finished_before_the_kill']})",
               f"- warehouse identical to before the kill: {data['trials_left_unchanged_by_the_kill']} of {len(ok)}",
               f"- warehouse identical to before after running the load again: {data['trials_identical_after_retry']} of {len(ok)}",
-              f"- seconds until PostgreSQL released the dead loader's locks: {fmt(out['crash']['seconds_until_released'])}", ""]
+              f"- seconds until PostgreSQL released the dead loader's locks: {fmt(out['crash']['seconds_until_released'])}",
+              "- per trial (seconds after the COPY first showed before the kill -> seconds until the locks were released): "
+              + "; ".join(f"{t['extra_delay_s']:g} -> {t['seconds_until_postgres_released_the_dead_loader']:g}" for t in ok), ""]
 
 
 def injection_section(out: dict, lines: list[str]) -> None:

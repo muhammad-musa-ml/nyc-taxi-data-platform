@@ -1,0 +1,14 @@
+Final test run, started 2026-10-24T17:05:07Z, on commit 8ede9333ecd3f7e8c1bbbb0298189eda6e6242e5 (README and result summaries edited afterwards).
+
+python -m pytest tests -q --ignore=tests/test_dags.py
+  unit tests, plus the integration tests against the Compose PostgreSQL 16 (database warehouse_test) and SeaweedFS
+  101 passed, 1 skipped in 54.67s
+  the skipped test is the concurrent-append test of the alert sink, which is skipped on Windows (docs/findings.md, section 5)
+
+python -m pytest tests/test_dags.py -q   (inside the Airflow 2.10.5 scheduler container)
+  6 passed in 1.88s
+
+ruff check taxi_platform tests scripts dags
+  All checks passed!
+
+101 passed, 1 skipped (unit and integration); 6 passed (DAG tests in the Airflow container); ruff clean
