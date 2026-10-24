@@ -14,8 +14,11 @@ env:
 
 jobs:
   # Unit tests: row rules, the injector, config, alerts, freshness, download, lineage. No services needed.
+  # Each job normally takes two to three minutes. The limit exists because one run once sat on an assigned runner
+  # for a quarter of an hour without starting a step, and the default limit is six hours.
   unit:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -33,6 +36,7 @@ jobs:
   # The pipeline on the fixture month against a real PostgreSQL and an S3-compatible store, then dbt.
   pipeline:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     services:
       postgres:
         image: postgres:16
@@ -117,6 +121,7 @@ jobs:
   # The DAG files import under the Airflow version the stack runs.
   dags:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
