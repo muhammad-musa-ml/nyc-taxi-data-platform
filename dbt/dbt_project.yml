@@ -1,0 +1,30 @@
+name: taxi
+version: "1.0.0"
+config-version: 2
+profile: taxi
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+# `source_month` selects one month's slice of the incremental models and of the tests, for example
+#   dbt run  --vars '{source_month: "2025-03-01"}'
+# Left unset, everything is built (or tested) across all loaded months.
+
+models:
+  taxi:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: view
+      +schema: intermediate
+    marts:
+      +schema: marts
+
+seeds:
+  taxi:
+    +schema: marts

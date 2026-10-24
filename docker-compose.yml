@@ -1,0 +1,161 @@
+name: taxi
+
+# Host ports are limited to 18200-18299: PostgreSQL 18232, S3 API 18290, Airflow UI 18280.
+# The credentials below are local-only development values for containers that are not reachable
+# from outside this machine.
+
+x-pipeline-env: &pipeline-env
+  TAXI_PG_DSN: postgresql://taxi:taxi@postgres:5432/warehouse
+  TAXI_S3_ENDPOINT: http://s3:8333
+  TAXI_S3_ACCESS_KEY: taxi-local-key
+  TAXI_S3_SECRET_KEY: taxi-local-secret
+  TAXI_ALERT_SINK: /opt/airflow/alert-sink/alerts.jsonl
+  TAXI_LAST_MONTH: ${TAXI_LAST_MONTH:-2025-06}
+  TAXI_EXPECTED_LATEST_MONTH: ${TAXI_EXPECTED_LATEST_MONTH:-2025-06}
+  TAXI_VALIDATE_WORKERS: ${TAXI_VALIDATE_WORKERS:-4}
+  DBT_PROFILES_DIR: /opt/airflow/dbt
+  GX_ANALYTICS_ENABLED: "False"
+
+x-airflow-common: &airflow-common
+  image: taxi-airflow:local
+  environment:
+    <<: *pipeline-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://taxi:taxi@postgres:5432/airflow
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    AIRFLOW__CORE__DEFAULT_TIMEZONE: utc
+    AIRFLOW__CORE__PARALLELISM: "4"
+    AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL: "30"
+    AIRFLOW__WEBSERVER__SECRET_KEY: local-dev-only-not-a-secret
+    AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "false"
+    AIRFLOW__API__AUTH_BACKENDS: airflow.api.auth.backend.basic_auth
+    _AIRFLOW_WWW_USER_USERNAME: admin
+    _AIRFLOW_WWW_USER_PASSWORD: admin
+  volumes:
+    - ./dags:/opt/airflow/dags:ro
+    - ./dbt:/opt/airflow/dbt
+    - ./taxi_platform:/opt/pipeline/taxi_platform:ro
+    - ./alert-sink:/opt/airflow/alert-sink
+    - airflow-logs:/opt/airflow/logs
+  depends_on:
+    postgres:
+      condition: service_healthy
+    s3-init:
+      condition: service_completed_successfully
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: taxi
+      POSTGRES_PASSWORD: taxi
+      POSTGRES_DB: warehouse
+    command:
+      - postgres
+      - -c
+      - shared_buffers=1GB
+      - -c
+      - work_mem=64MB
+      - -c
+      - maintenance_work_mem=512MB
+      - -c
+      - max_wal_size=8GB
+      - -c
+      - checkpoint_timeout=15min
+    ports:
+      - "18232:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/initdb:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taxi -d warehouse"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    deploy:
+      resources:
+        limits:
+          memory: 3g
+
+  s3:
+    # S3-compatible landing store. MinIO was the first choice, but on 2026-10-24 its image on quay.io
+    # answered 401 and its binary download answered 410, so SeaweedFS is used instead.
+    image: chrislusf/seaweedfs:latest
+    command: ["server", "-dir=/data", "-s3", "-s3.port=8333", "-s3.config=/etc/seaweedfs/s3.json",
+              "-master.volumeSizeLimitMB=1024", "-volume.max=100"]
+    ports:
+      - "18290:8333"
+    volumes:
+      - s3data:/data
+      - ./docker/seaweedfs-s3.json:/etc/seaweedfs/s3.json:ro
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+
+  s3-init:
+    image: taxi-airflow:local   # built by `docker compose build` (airflow-init shares the image)
+    environment:
+      <<: *pipeline-env
+    entrypoint: ["/opt/pipeline-venv/bin/taxi-platform", "init-storage", "--wait", "120"]
+    depends_on:
+      - s3
+    volumes:
+      - ./taxi_platform:/opt/pipeline/taxi_platform:ro
+
+  airflow-init:
+    <<: *airflow-common
+    build:   # the one place the image is built; the other Airflow services reuse it
+      context: .
+      dockerfile: docker/airflow.Dockerfile
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - |
+        airflow db migrate
+        airflow users create --username admin --password admin --firstname Local --lastname Admin --role Admin --email admin@localhost || true
+        /opt/pipeline-venv/bin/taxi-platform init-db
+    restart: "no"
+
+  airflow-scheduler:
+    <<: *airflow-common
+    command: scheduler
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 8g
+    healthcheck:
+      test: ["CMD-SHELL", "airflow jobs check --job-type SchedulerJob --hostname \"$${HOSTNAME}\""]
+      interval: 20s
+      timeout: 20s
+      retries: 10
+
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - "18280:8080"
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/health"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+
+volumes:
+  pgdata:
+  s3data:
+  airflow-logs:

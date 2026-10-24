@@ -1,0 +1,11 @@
+.git
+.venv
+data
+alert-sink
+results
+logs
+dbt/target
+dbt/logs
+**/__pycache__
+.pytest_cache
+.ruff_cache

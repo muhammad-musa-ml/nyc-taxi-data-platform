@@ -38,6 +38,8 @@ def prepare_frame(table: pa.Table) -> pd.DataFrame:
     """The DataFrame Great Expectations sees: the data columns plus the derived columns the rules use."""
     df = table.select([c for c in rules.DATA_COLUMNS if c in table.column_names]).to_pandas()
     # Great Expectations 1.24's type-list check does not recognise pandas 3's default string dtype.
+    if any(c not in df.columns for c in rules.REQUIRED_COLUMNS):
+        return df  # the file contract fails on the missing column; the derived columns need all of them
     if isinstance(df["store_and_fwd_flag"].dtype, pd.StringDtype):
         df["store_and_fwd_flag"] = df["store_and_fwd_flag"].astype(object)
     duration = (df["tpep_dropoff_datetime"] - df["tpep_pickup_datetime"]).dt.total_seconds()

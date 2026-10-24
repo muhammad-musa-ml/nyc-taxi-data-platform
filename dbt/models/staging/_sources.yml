@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Rows that passed validation, loaded by the pipeline. One partition per month.
+    tables:
+      - name: yellow_trips
+        description: One row per yellow-taxi trip that passed every row rule.
+        columns:
+          - name: source_month
+            description: First day of the calendar month of the TLC file the row came from.
+          - name: source_row
+            description: Row number inside that month's file; with source_month it is the row's identity.
+      - name: taxi_zone_lookup
+        description: The TLC taxi zone lookup (265 zones).
+  - name: quarantine
+    description: Rows that failed at least one rule, kept as received.
+    tables:
+      - name: yellow_trips
+        description: One row per rejected trip record with its machine-readable reason codes.
+        columns:
+          - name: reason_codes
+            description: Every rule the row failed, as codes such as NEGATIVE_AMOUNT.
+          - name: primary_reason
+            description: The first failing rule in the order the rules run.
+  - name: ops
+    description: Pipeline bookkeeping written by the loader in the same transaction as the data.
+    tables:
+      - name: ingestion_ledger
+        description: One row per loaded month with the counts and file digest of the last load.
+        loaded_at_field: loaded_at
+        config:
+          freshness:
+            warn_after: {count: 36, period: hour}
+      - name: ingestion_checks
+        description: Rows failed and rows first-failed per month and reason code.

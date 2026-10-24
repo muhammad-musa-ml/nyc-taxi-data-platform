@@ -1,0 +1,162 @@
+version: 2
+
+# Every test that has a `where:` runs over one month when `--vars '{source_month: ...}'` is passed and
+# over every loaded month otherwise. (dbt cannot call a custom macro from a test's `where`, so the
+# expression is written out once, as the anchor below; the singular tests in tests/ use the
+# month_filter() macro.)
+anchors:
+  month_where: &month_where
+    where: "{{ \"true\" if var('source_month', '') == '' else \"source_month = '\" ~ var('source_month') ~ \"'::date\" }}"
+
+models:
+  - name: stg_yellow_trips
+    description: >
+      Typed, renamed view over raw.yellow_trips. The raw table's primary key (source_month, source_row)
+      already guarantees one row per file row, so the heavier uniqueness tests live on the models built
+      from it.
+    columns:
+      - name: source_row
+        data_tests:
+          - not_null:
+              config: *month_where
+
+  - name: stg_taxi_zones
+    description: Zone lookup with the missing borough, zone and service-zone names filled in as 'Unknown'.
+    columns:
+      - name: zone_id
+        data_tests: [unique, not_null]
+
+  - name: stg_quarantined_trips
+    description: The quarantined trip records with their reason codes, for analysis of what was rejected and why.
+    columns:
+      - name: primary_reason
+        data_tests:
+          - not_null:
+              config: *month_where
+          - accepted_values:
+              arguments:
+                values: ["NULL_PICKUP_TS", "NULL_DROPOFF_TS", "NULL_ZONE", "NULL_AMOUNT", "NULL_VENDOR",
+                         "NULL_PAYMENT_TYPE", "NULL_DISTANCE", "INVALID_VENDOR", "INVALID_PAYMENT_TYPE",
+                         "INVALID_PASSENGER_COUNT", "UNKNOWN_PICKUP_ZONE", "UNKNOWN_DROPOFF_ZONE",
+                         "PICKUP_OUTSIDE_MONTH", "DROPOFF_BEFORE_PICKUP", "DURATION_OVER_24H", "NEGATIVE_AMOUNT",
+                         "EXCESSIVE_AMOUNT", "DISTANCE_OUT_OF_RANGE", "FEE_OUT_OF_RANGE", "IMPLAUSIBLE_SPEED",
+                         "DUPLICATE_TRIP"]
+              config: *month_where
+      - name: reason_count
+        data_tests:
+          - expression_is_true:
+              arguments:
+                expression: "reason_count >= 1"
+              config: *month_where
+
+  - name: int_trips_enriched
+    description: >
+      One row per loaded trip with derived duration, average speed, tip share and time parts, plus
+      `trip_id`, a hash of the fields the duplicate rule uses (vendor, pickup, drop-off, both zones,
+      distance, fare, total). A view: it is computed once per run, inside the incremental `fct_trips`.
+    columns:
+      - name: trip_duration_min
+        data_tests:
+          - expression_is_true:
+              arguments:
+                expression: "trip_duration_min >= 0 and trip_duration_min <= 1440"
+              config: *month_where
+
+  - name: dim_zone
+    description: One row per TLC taxi zone, with flags for Manhattan and airports.
+    columns:
+      - name: zone_id
+        data_tests: [unique, not_null]
+
+  - name: fct_trips
+    description: >
+      Fact table, one row per trip that passed validation, with zone, payment and rate names attached.
+      Grain: (source_month, source_row). Cash tips are not recorded by the meter, so tip share is only
+      meaningful for card trips (`is_card_trip`).
+    columns:
+      - name: trip_id
+        description: Hash of the duplicate-rule key.
+        data_tests:
+          - not_null:
+              config: *month_where
+          - unique:
+              config: *month_where
+      - name: pickup_zone_id
+        data_tests:
+          - not_null:
+              config: *month_where
+          - relationships:
+              arguments:
+                to: ref('dim_zone')
+                field: zone_id
+              config: *month_where
+      - name: dropoff_zone_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_zone')
+                field: zone_id
+              config: *month_where
+      - name: payment_type_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_payment_type')
+                field: payment_type_id
+              config: *month_where
+      - name: fare_amount
+        data_tests:
+          - expression_is_true:
+              arguments:
+                expression: "fare_amount >= 0 and total_amount >= 0"
+              config: *month_where
+      - name: pickup_hour
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                quote: false
+              config: *month_where
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source_month, source_row]
+          config: *month_where
+
+  - name: mart_zone_hour_demand
+    description: >
+      The analysis mart: trips, passengers, fares, speed, tips and revenue per pickup zone, date and hour.
+      Query it for questions such as "which zones and hours earn the most per trip" or "where do card
+      riders tip best". Tip share averages over card trips only.
+    columns:
+      - name: trips
+        data_tests:
+          - expression_is_true:
+              arguments:
+                expression: "trips > 0"
+              config: *month_where
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [source_month, pickup_zone_id, pickup_date, pickup_hour]
+          config: *month_where
+
+  - name: mart_daily_summary
+    description: One row per day with trips, revenue, average fare, card share and average speed.
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [pickup_date]
+          config: *month_where
+
+  - name: mart_ingestion_quality
+    description: >
+      Rows in, loaded and quarantined per month, split by rejecting rule. One row per month and reason;
+      a month with nothing rejected has a single row with a null reason.
+    columns:
+      - name: source_month
+        data_tests: [not_null]
+    data_tests:
+      - expression_is_true:
+          arguments:
+            expression: "rows_in = rows_loaded + rows_quarantined"

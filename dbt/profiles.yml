@@ -1,0 +1,12 @@
+taxi:
+  target: local
+  outputs:
+    local:
+      type: postgres
+      host: "{{ env_var('DBT_HOST', 'localhost') }}"
+      port: "{{ env_var('DBT_PORT', '18232') | as_number }}"
+      user: "{{ env_var('DBT_USER', 'taxi') }}"
+      password: "{{ env_var('DBT_PASSWORD', 'taxi') }}"
+      dbname: "{{ env_var('DBT_DBNAME', 'warehouse') }}"
+      schema: public
+      threads: 4

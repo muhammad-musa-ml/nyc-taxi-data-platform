@@ -1,0 +1,9 @@
+{
+  "identities": [
+    {
+      "name": "taxi",
+      "credentials": [{ "accessKey": "taxi-local-key", "secretKey": "taxi-local-secret" }],
+      "actions": ["Admin", "Read", "Write", "List", "Tagging"]
+    }
+  ]
+}
