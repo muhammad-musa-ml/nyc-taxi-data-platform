@@ -23,8 +23,10 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: pip
           cache-dependency-path: requirements.txt
-      - run: pip install -r requirements.txt pytest
+      - run: pip install -r requirements.txt pytest ruff
       - run: pip install --no-deps -e .
+      - name: Lint
+        run: ruff check taxi_platform tests scripts dags
       - name: Unit tests (integration and DAG tests skip themselves here)
         run: python -m pytest tests -q -p no:cacheprovider
 

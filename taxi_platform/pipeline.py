@@ -216,7 +216,8 @@ def load_month(settings: Settings, month: date, run_id: str) -> dict:
             raise RuntimeError("rows_in does not equal rows_loaded + rows_quarantined")
 
         with db.connect(settings) as conn:  # one transaction: commit on exit, roll back on error
-            good_part = db.ensure_partition(conn, "raw.yellow_trips", month)
+            conn.execute(f"SET LOCAL lock_timeout = '{int(settings.load_lock_timeout_s)}s'")
+            good_part =db.ensure_partition(conn, "raw.yellow_trips", month)
             q_part = db.ensure_partition(conn, "quarantine.yellow_trips", month)
             conn.execute(f"TRUNCATE {good_part}")
             conn.execute(f"TRUNCATE {q_part}")

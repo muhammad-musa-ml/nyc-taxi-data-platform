@@ -60,6 +60,7 @@ def test_undetectable_faults_are_loaded_and_counted_apart(scored):
 
 def test_nothing_else_is_quarantined(scored):
     assert scored["quarantined_rows_not_injected"] == 0
+    assert scored["unexpected_extra_quarantined_rows"] == 0
 
 
 def test_every_fault_has_a_row_in_the_manifest_and_every_code_has_a_fault(injected):
@@ -128,6 +129,7 @@ def test_scoring_separates_expected_other_and_loaded():
                                         "caught_by_expected_code": 1, "quarantined_by_other_code_only": 1, "loaded": 1}
     assert result["per_fault"]["B"]["loaded"] == 1
     assert result["quarantined_rows_not_injected"] == 1  # row 7 was never touched by the injector
+    assert result["unexpected_extra_quarantined_rows"] == 1  # and the original file did not already reject it
 
 
 # ---------------------------------------------------------------------------- file-level faults

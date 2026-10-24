@@ -25,12 +25,12 @@ where they appear.
 ## Shape
 
 ```
-TLC CloudFront ──fetch──> MinIO landing/    (raw file, immutable, SHA-256 beside it)
+TLC CloudFront ──fetch──> S3 landing/    (raw file as published, SHA-256 beside it)
                               │
                          validate (Great Expectations)
                               │
               ┌───────────────┴────────────────┐
-        MinIO validated/<month>/good     MinIO validated/<month>/quarantine
+        S3 validated/<month>/good        S3 validated/<month>/quarantine
               │                                  │
               └──────────── load (one transaction per month) ────────────┐
                                                                          ▼
@@ -48,28 +48,30 @@ Everything is orchestrated by one Airflow DAG per month and run with Docker Comp
 | piece | choice | why |
 |---|---|---|
 | orchestrator | Apache Airflow 2.10.5, LocalExecutor | the monthly schedule, retries, per-task state, the `dags backfill` command and failure callbacks all come with it |
-| landing storage | MinIO (S3 API) | the raw file is kept untouched in an object store, as it would be on S3; a reload never re-downloads |
+| landing storage | SeaweedFS (S3 API) | the raw file is kept untouched in an object store, as it would be on S3; a reload never re-downloads. MinIO was the first choice, but on 2026-10-24 its image on quay.io answered 401, its Docker Hub image refused the pull and its binary download answered 410, so SeaweedFS stands in; the code only uses the S3 API |
 | validation | Great Expectations 1.x | the rules are declared as expectations; GX returns the row numbers that fail each one |
 | warehouse | PostgreSQL 16 | partition-per-month makes "replace this month" one transaction; dbt has a first-class adapter |
 | transforms | dbt-postgres | staging, intermediate and mart models with tests and generated lineage |
 | task code | the `taxi_platform` Python package in its own virtual environment inside the Airflow image | tasks call `taxi-platform <stage> --month YYYY-MM`, so the same code runs from Airflow, from the command line and in CI |
 
-Host ports (all in 18200-18299): Airflow UI 18280, PostgreSQL 18232, MinIO API 18290, MinIO console 18291.
+Host ports (all in 18200-18299): Airflow UI 18280, PostgreSQL 18232, S3 API 18290.
 
 ## Stages and idempotency
 
 Every stage takes a month and can be run again for the same month.
 
-1. **fetch** downloads the month's file if the landing bucket does not already hold it with the
-   same size and SHA-256, and records the digest. A different digest for a month already loaded
-   is reported, not silently overwritten.
+1. **fetch** downloads the month's file unless the landing bucket already holds it, and writes a
+   `.meta.json` beside it with the source URL, size, SHA-256 and fetch time. A replay therefore never
+   downloads again; `taxi-platform fetch --force` does. The bytes are requested as stored (no
+   content-encoding), so the digest is the published file's own. The digest travels into the ledger.
 2. **validate** checks the file contract (required columns and types), then runs the row rules.
    Output: `good.parquet`, `quarantine.parquet` and a `report.json` with a count per reason code.
 3. **load** replaces the month inside one transaction: create the month's partition if missing,
    truncate it, copy the good rows in, delete the month's quarantine rows, copy the quarantined
    rows in, upsert the ledger row. Nothing is appended, so a re-run, or a re-run after a crash
-   half way through, ends in the same state. Uniqueness is enforced by the database
-   (`PRIMARY KEY (source_month, source_row)` and a unique content hash per month), not by the loader.
+   half way through, ends in the same state. Row identity is enforced by the database
+   (`PRIMARY KEY (source_month, source_row)`), not by the loader; a trip that appears twice inside one
+   file is a validation rule (`DUPLICATE_TRIP`), and dbt tests that `trip_id` is unique in the fact table.
 4. **dbt run / dbt test** rebuild the month's slice of the incremental models (delete the month's
    rows, insert them again) and test it.
 5. **reconcile** checks that rows loaded equal rows in the fact table and that
@@ -104,13 +106,15 @@ fails the whole month before any row is loaded, and raises an alert.
 
 ## dbt
 
-`staging` renames and types the raw tables (views). `intermediate` joins the zone lookup and derives
-duration, speed and tip share (incremental by month). `marts` hold the analyst-facing tables:
+`staging` renames and types the raw tables (views). `intermediate` derives duration, speed, tip share and
+the `trip_id` hash (a view, evaluated inside the incremental `fct_trips`). `marts` hold the analyst-facing tables
+(`fct_trips`, `mart_zone_hour_demand` and `mart_daily_summary` are incremental: each run deletes the month's rows
+and inserts them again):
 `fct_trips`, `dim_zone`, `mart_zone_hour_demand` (trips, fares, tips and speed by pickup zone, date
 and hour), `mart_daily_summary` and `mart_ingestion_quality` (rows in, loaded and quarantined per month
 and reason). Schema tests cover keys, not-null, accepted values and relationships, and singular tests
-reconcile row counts and totals against the raw layer. `dbt docs generate` produces the lineage graph;
-`docs/lineage.md` is rendered from the manifest.
+reconcile row counts and totals against the raw layer. `docs/lineage.md` is rendered from dbt's
+`manifest.json` by `scripts/lineage.py`.
 
 ## Operations
 
@@ -128,11 +132,13 @@ reconcile row counts and totals against the raw layer. `dbt docs generate` produ
 ## What gets measured
 
 Rows in, loaded and quarantined per month and per reason code; end-to-end DAG-run time per month;
-backfill time for all six months from an empty warehouse; idempotency (row counts, key duplicates and a
-content checksum before and after re-running every month); and detection of deliberately injected bad
-rows (how many were caught, by which rule, how many were missed). Timed runs repeat 5 times while the
-machine-wide measurement lock is held, with the container list saved beside each result file. Results
-live in `results/`, and every number in the README is copied from there.
+backfill time for all six months from an empty warehouse and the time of a replay; idempotency (row
+counts, key duplicates and a content hash of every row before and after re-running every month); a loader
+killed in the middle of its transaction; detection of deliberately injected bad rows (how many were caught,
+by which rule, how many were missed); and how long a failure or a freshness breach takes to reach the
+alert sink. Timed runs repeat 5 times. Other containers were running on the machine, so the container list
+is saved beside every timed result. Results live in `results/`, produced by the scripts in
+`scripts/experiments/`, and every number in the README is copied from there.
 
 ## Decisions worth knowing
 

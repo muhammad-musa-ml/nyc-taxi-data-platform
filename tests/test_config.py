@@ -6,7 +6,11 @@ from datetime import date
 import pytest
 
 from taxi_platform.config import (
-    Settings, month_label, month_range, month_start, next_month,
+    Settings,
+    month_label,
+    month_range,
+    month_start,
+    next_month,
 )
 
 

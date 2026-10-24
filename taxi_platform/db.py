@@ -72,7 +72,8 @@ def timed_stage(settings: Settings, run_id: str, month: date | None, stage: str,
         try:
             with connect(settings, autocommit=True) as conn:
                 conn.execute(
-                    "INSERT INTO ops.stage_timings (run_id, source_month, stage, started_at, finished_at, seconds, rows, detail)"
+                    "INSERT INTO ops.stage_timings"
+                    " (run_id, source_month, stage, started_at, finished_at, seconds, rows, detail)"
                     " VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
                     (run_id, month, stage, started, utcnow(), round(seconds, 3), info["rows"],
                      json.dumps(info["detail"], default=str)))

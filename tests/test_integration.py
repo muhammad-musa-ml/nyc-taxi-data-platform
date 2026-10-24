@@ -6,11 +6,14 @@ database whose name does not contain "test".
 """
 from __future__ import annotations
 
+import dataclasses
 import json
 import os
+import time
 from datetime import date
 from pathlib import Path
 
+import psycopg
 import pytest
 
 from taxi_platform import alerts, cli, db, inject, pipeline, storage
@@ -140,6 +143,25 @@ def test_a_load_that_fails_halfway_leaves_the_previous_state_and_a_retry_succeed
     pipeline.load_month(settings, MONTH, RUN + "-retry")
     assert state(settings) == before
     assert one(settings, "SELECT load_count FROM ops.ingestion_ledger")[0] == 2
+
+
+def test_a_load_gives_up_on_a_lock_a_dead_process_left_behind_and_then_succeeds(settings):
+    pipeline.run_month(settings, MONTH, RUN)
+    before = state(settings)
+    impatient = dataclasses.replace(settings, load_lock_timeout_s=2)
+    blocker = db.connect(settings)  # stands in for the transaction of a killed loader
+    try:
+        blocker.execute("LOCK TABLE raw.yellow_trips_2025_03 IN ACCESS EXCLUSIVE MODE")
+        started = time.perf_counter()
+        with pytest.raises(psycopg.errors.LockNotAvailable):
+            pipeline.load_month(impatient, MONTH, RUN + "-blocked")
+        assert time.perf_counter() - started < 60
+    finally:
+        blocker.rollback()
+        blocker.close()
+    assert state(settings) == before
+    pipeline.load_month(impatient, MONTH, RUN + "-after")
+    assert state(settings) == before
 
 
 def test_a_first_load_that_fails_halfway_leaves_no_rows_and_no_ledger_entry(settings, monkeypatch):

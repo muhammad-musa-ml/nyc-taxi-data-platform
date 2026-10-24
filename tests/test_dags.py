@@ -39,7 +39,7 @@ def test_monthly_dag_runs_the_seven_stages_in_order(bag):
     order = ["load_zones", "fetch_to_landing", "validate_with_great_expectations", "load_warehouse",
              "dbt_run", "dbt_test", "reconcile_and_check_freshness"]
     assert sorted(dag.task_ids) == sorted(order)
-    for upstream, downstream in zip(order, order[1:]):
+    for upstream, downstream in zip(order, order[1:], strict=False):
         assert downstream in dag.get_task(upstream).downstream_task_ids
         assert dag.get_task(upstream).downstream_task_ids == {downstream}
 

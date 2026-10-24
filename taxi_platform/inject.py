@@ -181,7 +181,7 @@ def inject(table: pa.Table, month: date, zone_ids: list[int], natural_rows: np.n
     originals = table.take(pa.array(positions)).to_pylist() if positions else []
     entries, new_rows = [], []
     ctx = {"zone_ids": sorted(zone_ids)}
-    for pos, original in zip(positions, originals):
+    for pos, original in zip(positions, originals, strict=True):
         lowered = {k.lower(): v for k, v in original.items()}
         changes = chosen[pos].mutate(lowered, ctx)
         updated = dict(original)
@@ -256,6 +256,9 @@ def evaluate(manifest: dict, quarantined: dict[int, list[str]]) -> dict:
         "undetectable_total": total(False),
         "quarantined_rows_not_injected": len(unexplained),
         "natural_quarantined_rows": manifest["natural_quarantined_rows"],
+        # rows the pipeline rejected that the injector never touched, beyond the ones the original file
+        # already had rejected: false positives caused by the injection (0 is the expected value)
+        "unexpected_extra_quarantined_rows": len(unexplained) - manifest["natural_quarantined_rows"],
     }
 
 
@@ -275,7 +278,8 @@ def write_file_faults(source_file: Path, zone_file: Path, out_root: Path, month:
             table.column(names["fare_amount"]).cast(pa.string())),
         "EMPTY_FILE": table.slice(0, 0),
         # Not a rejection case: an extra column the contract does not mention must not stop the load.
-        "ADDED_UNKNOWN_COLUMN": table.append_column("surge_multiplier", pa.array(np.ones(table.num_rows), pa.float64())),
+        "ADDED_UNKNOWN_COLUMN": table.append_column(
+            "surge_multiplier", pa.array(np.ones(table.num_rows), pa.float64())),
     }
     written = {}
     for name, variant in variants.items():

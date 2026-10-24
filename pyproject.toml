@@ -31,13 +31,18 @@ taxi_platform = ["*.sql"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-markers = [
-    "integration: needs the compose Postgres and MinIO (skipped when TAXI_PG_DSN is not reachable)",
-]
 
 [tool.ruff]
-line-length = 110
+line-length = 120
 target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# validate.py imports .rules first on purpose: it sets GX_ANALYTICS_ENABLED before Great Expectations loads.
+"taxi_platform/validate.py" = ["I001"]
+# The measurement scripts import their sibling modules and build long report lines.
+"scripts/**" = ["E501", "I001"]
+# Tests hold long SQL strings and hand-written data literals.
+"tests/**" = ["E501"]

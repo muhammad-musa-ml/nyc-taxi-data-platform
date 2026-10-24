@@ -50,6 +50,9 @@ class Settings:
     expected_latest_month: str = field(default_factory=lambda: os.environ.get("TAXI_EXPECTED_LATEST_MONTH", "2025-06"))
     first_month: str = field(default_factory=lambda: os.environ.get("TAXI_FIRST_MONTH", "2025-01"))
     max_load_age_hours: float = field(default_factory=lambda: float(os.environ.get("TAXI_MAX_LOAD_AGE_HOURS", "36")))
+    # How long the loader waits for a lock on the month's partition before giving up, so a task never hangs
+    # behind a transaction that a dead process left open.
+    load_lock_timeout_s: int = field(default_factory=lambda: int(os.environ.get("TAXI_LOAD_LOCK_TIMEOUT_S", "180")))
 
     def source_url(self, month: date) -> str:
         label = month_label(month)

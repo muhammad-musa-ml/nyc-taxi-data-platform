@@ -72,6 +72,14 @@ services:
       - max_wal_size=8GB
       - -c
       - checkpoint_timeout=15min
+      # A client that dies without closing its connection (a killed worker) keeps its transaction and locks
+      # open until the server notices; without these the operating system's default is about two hours.
+      - -c
+      - tcp_keepalives_idle=30
+      - -c
+      - tcp_keepalives_interval=10
+      - -c
+      - tcp_keepalives_count=3
     ports:
       - "18232:5432"
     volumes:
