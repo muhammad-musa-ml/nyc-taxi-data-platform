@@ -53,7 +53,8 @@ def trial(month: str, delay: float, number: int) -> dict:
         time.sleep(delay)
         at_kill = active_copy(watcher)  # None when the COPY already ended and a later statement is running
         killed_at = utc_now()
-        run(["docker", "kill", "--signal=KILL", CONTAINER])
+        killed = run(["docker", "kill", "--signal=KILL", CONTAINER], check=False)
+        finished_before_kill = killed.returncode != 0  # the load had already ended and its container had exited
         killed_clock = time.perf_counter()
         run(["docker", "wait", CONTAINER], check=False)
         run(["docker", "rm", "-f", CONTAINER], check=False)
@@ -78,7 +79,7 @@ def trial(month: str, delay: float, number: int) -> dict:
     retry_compare = compare(before, after_retry)
     return {
         "trial": number, "extra_delay_s": delay, "copy_seen_first": seen, "copy_running_at_kill": at_kill,
-        "killed_at": killed_at, "seconds_until_postgres_released_the_dead_loader": round(release_s, 1),
+        "finished_before_the_kill": finished_before_kill, "killed_at": killed_at, "seconds_until_postgres_released_the_dead_loader": round(release_s, 1),
         "released_within_the_wait_limit": release_s <= 600, "open_transactions_left": leftover,
         "state_after_kill_identical_to_before": crash_compare["identical"], "deltas_after_kill": crash_compare["deltas"],
         "load_count_after_kill": after_crash["ledger"][first_day]["load_count"],
@@ -92,24 +93,29 @@ def trial(month: str, delay: float, number: int) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--month", default="2025-02")
-    parser.add_argument("--delays", type=float, nargs="+", default=[0, 6, 12, 18, 24])
+    parser.add_argument("--delays", type=float, nargs="+", default=[0, 3, 6, 9, 12])
     parser.add_argument("--out", default=str(RESULTS / "crash"))
     args = parser.parse_args()
     started = utc_now()
     trials = []
+
+    def save() -> None:  # after every trial, so a failure later cannot lose the earlier ones
+        ok = [t for t in trials if "error" not in t]
+        write_json(Path(args.out) / "result.json", {
+            "started_at": started, "ended_at": utc_now(), "month": args.month, "trials": trials,
+            "trials_killed_mid_copy": sum(1 for t in ok if t["copy_running_at_kill"] and not t["finished_before_the_kill"]),
+            "trials_finished_before_the_kill": sum(1 for t in ok if t["finished_before_the_kill"]),
+            "trials_left_unchanged_by_the_kill": sum(1 for t in ok if t["state_after_kill_identical_to_before"]),
+            "trials_identical_after_retry": sum(1 for t in ok if t["state_after_retry_identical_to_before"]),
+        })
+
     for i, delay in enumerate(args.delays, start=1):
         result = trial(args.month, delay, i)
         trials.append(result)
+        save()
         log(f"trial {i}: {result.get('copy_running_at_kill') and 'COPY still running' or 'past the COPY'}, "
             f"identical after kill={result.get('state_after_kill_identical_to_before')}, "
             f"identical after retry={result.get('state_after_retry_identical_to_before')}")
-    ok = [t for t in trials if "error" not in t]
-    write_json(Path(args.out) / "result.json", {
-        "started_at": started, "ended_at": utc_now(), "month": args.month, "trials": trials,
-        "trials_killed_mid_copy": sum(1 for t in ok if t["copy_running_at_kill"]),
-        "trials_left_unchanged_by_the_kill": sum(1 for t in ok if t["state_after_kill_identical_to_before"]),
-        "trials_identical_after_retry": sum(1 for t in ok if t["state_after_retry_identical_to_before"]),
-    })
 
 
 if __name__ == "__main__":

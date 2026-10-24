@@ -113,7 +113,9 @@ and inserts them again):
 `fct_trips`, `dim_zone`, `mart_zone_hour_demand` (trips, fares, tips and speed by pickup zone, date
 and hour), `mart_daily_summary` and `mart_ingestion_quality` (rows in, loaded and quarantined per month
 and reason). Schema tests cover keys, not-null, accepted values and relationships, and singular tests
-reconcile row counts and totals against the raw layer. `docs/lineage.md` is rendered from dbt's
+reconcile row counts and totals against the raw layer. The aggregate marts sum over `numeric` so that a replayed
+month, whose rows come back in a different physical order, produces exactly the same numbers
+(`scripts/check_marts_deterministic.py` proves it on every push). `docs/lineage.md` is rendered from dbt's
 `manifest.json` by `scripts/lineage.py`.
 
 ## Operations

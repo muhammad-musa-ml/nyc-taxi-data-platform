@@ -33,13 +33,15 @@ def main() -> None:
         previous = baseline
         for k in range(1, args.reruns + 1):
             t0 = time.perf_counter()
-            result = pipeline_cli("run-month", "--month", month, "--run-id", f"idem-{month}-{k}", check=False)
+            result = pipeline_cli("run-month", "--month", month, "--run-id", f"idem-{month}-{k}", check=False,
+                                  env={"TAXI_VALIDATE_WORKERS": "2"})  # fewer workers: this run is not timed
             seconds = time.perf_counter() - t0
             with connect() as conn:
                 now = snapshot(conn, [first_day])
             versus_baseline = compare(baseline, now)
             entry = {
                 "month": month, "rerun": k, "exit_code": result.returncode, "seconds_not_a_headline": round(seconds, 1),
+                "error_output_tail": (result.stderr + result.stdout)[-2500:] if result.returncode else "",
                 "identical_to_state_before_the_first_rerun": versus_baseline["identical"],
                 "deltas": versus_baseline["deltas"],
                 "duplicate_keys": now["duplicates"],

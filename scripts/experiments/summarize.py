@@ -76,6 +76,20 @@ def backfill_section(out: dict, lines: list[str]) -> None:
     lines += ["Download of each file from the TLC site (seconds, fetch task):", ""]
     lines += [f"- {m}: {fmt(downloads[m])}, {sizes.get(m, 0):,} bytes" for m in MONTHS] + [""]
 
+    # the pipeline's downloads must be the files an independent download produced
+    independent = load(RESULTS / "source-files.json")
+    if independent:
+        same = [all(r["state"]["ledger"][m + "-01"]["file_sha256"] == independent["files"][m]["sha256"]
+                    and r["state"]["ledger"][m + "-01"]["file_bytes"] == independent["files"][m]["bytes"] for m in MONTHS)
+                for r in ok]
+        zone_digests = {t["detail"].get("sha256") for r in ok for t in r["stage_timings"]
+                        if t["stage"] == "load_zones" and t["detail"].get("sha256")}
+        out["backfill"]["downloads_match_independent_digests"] = {
+            "runs_matching": sum(same), "runs": len(ok), "zone_lookup_match": zone_digests == {independent["zone_lookup"]["sha256"]}}
+        lines += [f"The six files the pipeline downloaded had the same SHA-256 and size as an independent `curl` download "
+                  f"(`source-files.json`, fetched {independent['fetched_at_utc']}) in {sum(same)} of {len(ok)} runs; the zone lookup "
+                  f"digest matched: {'yes' if zone_digests == {independent['zone_lookup']['sha256']} else 'NO'}.", ""]
+
     # counts must be identical in every run
     first = ok[0]["state"]["ledger"]
     identical = all(r["state"]["ledger"] == first and r["state"]["checks"] == ok[0]["state"]["checks"] for r in ok)
@@ -137,12 +151,16 @@ def crash_section(out: dict, lines: list[str]) -> None:
     ok = [t for t in data["trials"] if "error" not in t]
     out["crash"] = {"month": data["month"], "trials": len(data["trials"]), "valid_trials": len(ok),
                     "killed_mid_copy": data["trials_killed_mid_copy"],
+                    "finished_before_the_kill": data["trials_finished_before_the_kill"],
                     "unchanged_after_kill": data["trials_left_unchanged_by_the_kill"],
                     "identical_after_retry": data["trials_identical_after_retry"],
                     "seconds_until_released": med([t["seconds_until_postgres_released_the_dead_loader"] for t in ok])}
+    delays = [t["extra_delay_s"] for t in ok]
     lines += ["## Loader killed in the middle of its transaction", "",
-              f"{len(data['trials'])} trials on {data['month']} (SIGKILL to the loader's container after 0-24 s of its COPY).",
-              f"- killed while the COPY was still running: {data['trials_killed_mid_copy']}",
+              f"{len(data['trials'])} trials on {data['month']}: SIGKILL to the loader's container {min(delays):g} to "
+              f"{max(delays):g} s after PostgreSQL first showed its COPY running.",
+              f"- killed while the COPY was still running: {data['trials_killed_mid_copy']} "
+              f"(already finished before the kill: {data['trials_finished_before_the_kill']})",
               f"- warehouse identical to before the kill: {data['trials_left_unchanged_by_the_kill']} of {len(ok)}",
               f"- warehouse identical to before after running the load again: {data['trials_identical_after_retry']} of {len(ok)}",
               f"- seconds until PostgreSQL released the dead loader's locks: {fmt(out['crash']['seconds_until_released'])}", ""]

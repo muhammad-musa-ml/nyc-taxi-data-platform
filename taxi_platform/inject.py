@@ -332,6 +332,7 @@ def main(argv: list[str] | None = None) -> int:
     else:
         natural = natural_quarantine(table, month, zone_ids, workers=args.workers)
         if cache:
+            cache.parent.mkdir(parents=True, exist_ok=True)
             np.save(cache, natural)
     injected, manifest = inject(table, month, zone_ids, natural, per_fault=args.per_fault, seed=args.seed)
     out = Path(args.out)

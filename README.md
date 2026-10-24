@@ -143,4 +143,7 @@ import under Airflow 2.10.5 with its constraints file.
 `trip_id` hash), and `marts`: `fct_trips`, `dim_zone`, `mart_zone_hour_demand` (trips, fares, tips and speed by
 pickup zone, date and hour), `mart_daily_summary` and `mart_ingestion_quality` (rows in, loaded and quarantined per
 month and reason). The three big marts are incremental: each run deletes the month's rows and inserts them again,
-so re-running a month cannot double it. Lineage, rendered from dbt's manifest: [docs/lineage.md](docs/lineage.md).
+so re-running a month cannot double it. The two aggregate marts sum and average over `numeric`, not `double
+precision`: the first replay of all six months came back with the same rows but different last digits in them,
+because floating-point sums depend on row order ([docs/findings.md](docs/findings.md)). Lineage, rendered from
+dbt's manifest: [docs/lineage.md](docs/lineage.md).

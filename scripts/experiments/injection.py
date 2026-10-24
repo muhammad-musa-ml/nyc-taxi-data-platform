@@ -35,7 +35,7 @@ def one_seed(seed: int, args) -> dict:
     env = {"TAXI_SOURCE_BASE": f"/data/lab/inject-s{seed}",
            "TAXI_PG_DSN": f"postgresql://taxi:taxi@postgres:5432/{db}",
            "TAXI_LANDING_BUCKET": f"lab-landing-s{seed}", "TAXI_VALIDATED_BUCKET": f"lab-validated-s{seed}",
-           "TAXI_VALIDATE_WORKERS": "4"}
+           "TAXI_VALIDATE_WORKERS": "2"}  # fewer workers than the timed runs: this run is not timed
     log(f"seed {seed}: writing the injected month")
     run([sys.executable, "-m", "taxi_platform.inject", "make", "--source", args.source, "--month", args.month,
                 "--out", str(lab), "--per-fault", str(args.per_fault), "--seed", str(seed),
