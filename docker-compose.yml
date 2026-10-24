@@ -5,7 +5,7 @@ name: taxi
 # from outside this machine.
 
 x-pipeline-env: &pipeline-env
-  TAXI_PG_DSN: postgresql://taxi:taxi@postgres:5432/warehouse
+  TAXI_PG_DSN: ${TAXI_PG_DSN:-postgresql://taxi:taxi@postgres:5432/warehouse}
   TAXI_S3_ENDPOINT: http://s3:8333
   TAXI_S3_ACCESS_KEY: taxi-local-key
   TAXI_S3_SECRET_KEY: taxi-local-secret
@@ -17,6 +17,7 @@ x-pipeline-env: &pipeline-env
   TAXI_VALIDATED_BUCKET: ${TAXI_VALIDATED_BUCKET:-validated}
   DBT_HOST: postgres
   DBT_PORT: "5432"
+  DBT_DBNAME: ${DBT_DBNAME:-warehouse}
   TAXI_LAST_MONTH: ${TAXI_LAST_MONTH:-2025-06}
   TAXI_EXPECTED_LATEST_MONTH: ${TAXI_EXPECTED_LATEST_MONTH:-2025-06}
   TAXI_VALIDATE_WORKERS: ${TAXI_VALIDATE_WORKERS:-4}

@@ -1,0 +1,126 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: "3.12"
+  GX_ANALYTICS_ENABLED: "False"
+  DBT_SEND_ANONYMOUS_USAGE_STATS: "False"
+
+jobs:
+  # Unit tests: row rules, the injector, config, alerts, freshness, download, lineage. No services needed.
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt pytest
+      - run: pip install --no-deps -e .
+      - name: Unit tests (integration and DAG tests skip themselves here)
+        run: python -m pytest tests -q -p no:cacheprovider
+
+  # The pipeline on the fixture month against a real PostgreSQL and an S3-compatible store, then dbt.
+  pipeline:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: taxi
+          POSTGRES_PASSWORD: taxi
+          POSTGRES_DB: warehouse
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U taxi -d warehouse"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      TAXI_PG_DSN: postgresql://taxi:taxi@localhost:5432/warehouse
+      TAXI_S3_ENDPOINT: http://localhost:8333
+      TAXI_S3_ACCESS_KEY: taxi-local-key
+      TAXI_S3_SECRET_KEY: taxi-local-secret
+      TAXI_SOURCE_BASE: tests/fixtures/source
+      TAXI_ALERT_SINK: alert-sink/alerts.jsonl
+      TAXI_FIRST_MONTH: "2025-03"
+      TAXI_EXPECTED_LATEST_MONTH: "2025-03"
+      DBT_HOST: localhost
+      DBT_PORT: "5432"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt pytest
+      - run: pip install --no-deps -e .
+      - name: Start the S3-compatible object store
+        run: |
+          docker run -d --name s3 -p 8333:8333 \
+            -v "$GITHUB_WORKSPACE/docker/seaweedfs-s3.json:/etc/seaweedfs/s3.json:ro" \
+            chrislusf/seaweedfs:latest server -dir=/data -s3 -s3.port=8333 \
+            -s3.config=/etc/seaweedfs/s3.json -master.volumeSizeLimitMB=1024 -volume.max=100
+          for i in $(seq 1 60); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8333/ || true)
+            if [ "$code" = "200" ] || [ "$code" = "403" ]; then exit 0; fi
+            sleep 2
+          done
+          docker logs s3
+          exit 1
+      - name: Create the throw-away test database
+        run: PGPASSWORD=taxi psql -h localhost -U taxi -d warehouse -c "CREATE DATABASE warehouse_test"
+      - name: Integration tests (fixture month twice, crash halfway, broken files, freshness)
+        env:
+          TAXI_TEST_PG_DSN: postgresql://taxi:taxi@localhost:5432/warehouse_test
+          TAXI_TEST_S3_ENDPOINT: http://localhost:8333
+        run: python -m pytest tests/test_integration.py -q -p no:cacheprovider
+      - name: Run the fixture month through the pipeline
+        run: |
+          taxi-platform init-db
+          taxi-platform init-storage --wait 60
+          taxi-platform run-month --month 2025-03 --run-id ci
+      - name: dbt seed, run, test
+        working-directory: dbt
+        run: |
+          dbt seed --profiles-dir .
+          dbt run --profiles-dir . --vars '{source_month: "2025-03-01"}'
+          dbt test --profiles-dir . --vars '{source_month: "2025-03-01"}'
+      - name: Reconcile the month and render the lineage page
+        run: |
+          taxi-platform reconcile --month 2025-03 --run-id ci
+          (cd dbt && dbt parse --profiles-dir .)
+          python scripts/lineage.py --out "$RUNNER_TEMP/lineage.md"
+          head -20 "$RUNNER_TEMP/lineage.md"
+      - name: Run the month again and check nothing changed
+        run: |
+          before=$(PGPASSWORD=taxi psql -h localhost -U taxi -d warehouse -Atc "SELECT md5(string_agg(t::text, '|' ORDER BY source_row)) FROM raw.yellow_trips t")
+          taxi-platform run-month --month 2025-03 --run-id ci-again
+          after=$(PGPASSWORD=taxi psql -h localhost -U taxi -d warehouse -Atc "SELECT md5(string_agg(t::text, '|' ORDER BY source_row)) FROM raw.yellow_trips t")
+          echo "before=$before after=$after"
+          test "$before" = "$after"
+      - name: Object store log on failure
+        if: failure()
+        run: docker logs s3 | tail -50
+
+  # The DAG files import under the Airflow version the stack runs.
+  dags:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install Airflow with its constraints file
+        run: |
+          pip install "apache-airflow==2.10.5" pytest \
+            --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.10.5/constraints-${PYTHON_VERSION}.txt"
+      - run: pip install --no-deps -e .
+      - run: python -m pytest tests/test_dags.py -q -p no:cacheprovider
