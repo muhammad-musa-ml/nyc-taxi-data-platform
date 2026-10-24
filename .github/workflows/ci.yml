@@ -127,4 +127,5 @@ jobs:
           pip install "apache-airflow==2.10.5" pytest \
             --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.10.5/constraints-${PYTHON_VERSION}.txt"
       - run: pip install --no-deps -e .
-      - run: python -m pytest tests/test_dags.py -q -p no:cacheprovider
+      # --noconftest: this job has Airflow but not the data libraries that tests/conftest.py imports for the other tests
+      - run: python -m pytest tests/test_dags.py -q -p no:cacheprovider --noconftest
